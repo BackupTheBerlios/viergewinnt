@@ -19,7 +19,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
     static final int COLS = 7;
     private ImageIcon blankIcon = new ImageIcon("./img/blank.gif");
     private ImageIcon redArrowIcon = new ImageIcon("./img/redarrow.gif");
-    private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
+    //private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
     private ImageIcon emptyTokenIcon = new ImageIcon("./img/emptytoken.gif");
     private ImageIcon redTokenIcon = new ImageIcon("./img/redtoken.gif");
     private ImageIcon yellowTokenIcon = new ImageIcon("./img/yellowtoken.gif");
