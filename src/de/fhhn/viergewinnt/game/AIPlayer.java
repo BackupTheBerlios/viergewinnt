@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -26,7 +26,9 @@ public class AIPlayer extends Player implements View {
     public AIPlayer(int strength, Game g, Token color) {
         super(g, color);
         g.addObserver(this); // als View registrieren
-        root = new GraphNode(new AIGameState(Token.RED), null); // Rot fängt an
+
+        // Weil Rot immer anfängt, muss im 0-ten Zustand Gelb dran sein
+        root = new GraphNode(new AIGameState(Token.YELLOW), null);
         list = new GraphNodeList();
 
         limit = strength;
