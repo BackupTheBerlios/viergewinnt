@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: malte $
- * @version $Revision: 1.4 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.5 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -44,8 +44,8 @@ public class TextUI implements View {
         while (true) {
             drawBoard();
             int col = 0;
-            while (col < 1 || col > 5) {
-                System.out.println("Spielstein in welche Spalte (1-5)?");
+            while (col < 1 || col > 6) {
+                System.out.println("Spielstein in welche Spalte (1-6)?");
                 try {
                     col = Integer.parseInt(stdin.readLine()); // XXX IOException
                 } catch (NumberFormatException e) {
@@ -58,7 +58,7 @@ public class TextUI implements View {
 
     /** Gibt das aktuelle Spielbrett auf die Kommandozeile aus. */
     private void drawBoard() {
-        /* 
+        /*
         Die Ausgabe sieht so aus:
 
          1 2 3 4 5 6 7
@@ -69,7 +69,7 @@ public class TextUI implements View {
         |O| | | | | | |
         |X|X| | | | | |
         ---------------
-        
+
         Eine schönere Ausgabe könnte man mit Unicode (bzw. diesen
         Rahmen-Symbolen) hinkriegen.
         */
@@ -83,7 +83,7 @@ public class TextUI implements View {
         }
         sb.append("\n");
 
-        // Spielfeld 
+        // Spielfeld
         for (int i = board.length - 1; i >= 0; i--) {
             sb.append("|");
             for (int j = 0; j < board[0].length; j++) {
