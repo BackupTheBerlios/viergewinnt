@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: p_herk $
- * @version $Revision: 1.46 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.47 $
  * @since LCA
  * @stereotype Model
  */
@@ -65,14 +65,8 @@ public class Game extends Observable {
 		 * MoveEvent mit Token.RED, und anschließend gleich ein zweites mit
 		 * Token.YELLOW übergibt, hat er das Spiel sabotiert.
 		 */
-
         System.out.println("------\nGame.accept(): move=" + m);
 
-		if (m.getToken() != Token.RED && m.getToken() != Token.YELLOW) {
-			throw new IllegalArgumentException();
-		}
-
-        
         if (isValid(m)) { // MoveEvent gültig?
             System.out.println("Game.accept(): move ist gültig");
             // XXX der andere Spieler ist dran:

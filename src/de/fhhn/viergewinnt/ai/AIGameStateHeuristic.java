@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 /** 
  * Die Bewetung der einzellen Stellungen
  *
- * @author $Author: manuel $
- * @version $Revision: 1.1 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.2 $
  */
 public class AIGameStateHeuristic {
     // speicher der verwendeten leeren Tokens, gewinnen kann man nur einmal
@@ -29,7 +29,8 @@ public class AIGameStateHeuristic {
 
 		rating[0] = axisRating[0] + diagsRating[0];
 		rating[1] = axisRating[1] + diagsRating[1];
-		
+		System.out.println("0 = "+rating[0]+"  1 =  "+rating[1]);
+
 		if (state.getWhoseTurn() == Token.RED) {
 			return rating[0] - rating[1];
         } else {
@@ -89,7 +90,7 @@ public class AIGameStateHeuristic {
 	private static int[] rateTuple(int[] rating, int[] localValues) {
 		// wenn es nur einen leeren Token gibt und diesen nicht schon bei einer anderen Stellung verwendet wird
 		if((localValues[2] == 1) && useEmptyToken(getLastEmptyTokenPosition())) {
-			if(localValues[1] == 0) { // MAX
+			if(localValues[0] == 0) { // MAX
 				rating[0]++;
 			} else if (localValues[1] == 0) { // MIN
 				rating[1]++;	
@@ -151,7 +152,8 @@ public class AIGameStateHeuristic {
 						position[1] = j+k; // Y
 					}
 					
-					localValues = countTokens(board[position[1]][position[0]], position, localValues);
+					localValues = countTokens(board[position[1]][position[0]],
+                        position, localValues);
 				}
 				
 				rating = rateTuple(rating, localValues);

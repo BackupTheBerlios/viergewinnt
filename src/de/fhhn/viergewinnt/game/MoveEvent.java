@@ -5,8 +5,8 @@ import java.util.EventObject;
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
  * Objekte dieser Klasse sind <em>nicht</em> immutable.
- * @author $Author: malte $
- * @version $Revision: 1.11 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.12 $
  * @since LCA
  */
 public class MoveEvent extends EventObject {
@@ -60,6 +60,11 @@ public class MoveEvent extends EventObject {
 			throw new IllegalArgumentException(
 				"Mit einem leeren Spielstein kann kein Spielzug gemacht werden!");
 		}
+		if (t != Token.RED && t != Token.YELLOW) {
+			throw new IllegalArgumentException(
+                "Es sind nur Rote oder Gelbe Spielsteine zugelassen!");
+		}
+
         this.token = t;
     }
 
