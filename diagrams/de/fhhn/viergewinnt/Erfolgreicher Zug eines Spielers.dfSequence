@@ -46,10 +46,10 @@ class __positions {
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node:oiref>=40,30,104,81,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id4md00d9dug116d9duv15q.node.link9:oiref>=0,0,157,13,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link27:oiref>=0,0,199,13,1:oigroup>
-<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link27:oiref>=126,178,199,13,1:oigroup>
+<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link27:oiref>=71,262,199,13,1:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link16:oiref>=524,130,524,150,554,150,554,120,534,120:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link14:oiref>=439,150,200,13,1:oigroup>
-<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link28:oiref>=502,130,91,290:oigroup>
+<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link28:oiref>=502,130,81,410:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link23:oiref>=439,180,175,13,1:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.node24:oiref>=0,-227,0,0,1:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.node15:oiref>=0,-227,0,0,1:oigroup>
@@ -64,7 +64,7 @@ class __positions {
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link23:oiref>=0,0,175,13,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link21:oiref>=0,0,156,13,1:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node7.link21:oiref>=439,165,156,13,1:oigroup>
-<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node25:oiref>=50,290,83,81,1:oigroup>
+<oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node25:oiref>=40,410,83,81,1:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node.link6:oiref>=86,111,86,190:oigroup>
 <oigroup:<oiref:design#Class#id4md00d9dug116d9duv15q.node.link9:oiref>=234,71,157,13,1:oigroup>
 @__viewType collaborationView 
