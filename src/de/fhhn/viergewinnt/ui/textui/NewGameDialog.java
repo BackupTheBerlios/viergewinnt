@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * Neuer Spiel Dialog
- * @author $Author: manuel $
- * @version $Revision: 1.3 $
+ * @author $Author: malte $
+ * @version $Revision: 1.4 $
  * @since IOC
  */
 
@@ -20,14 +20,15 @@ import de.fhhn.viergewinnt.game.*;
 		
 		String selection = new String("magick");
 		
-		while(!selection.equals("") && !selection.equals("y") && !selection.equals("n")) {
+		while(!selection.equals("") && !selection.equals("j") &&
+              !selection.equals("n") && !selection.equals("N")) {
 			try {
-				selection = IO.promptAndRead("\nOptionen bearbeiten (y/N)? ");
+				selection = IO.promptAndRead("\nOptionen bearbeiten (j/N)? ");
 				selection.toLowerCase();
 			} catch (Exception e) {}
 		}
 		
-		if(selection.equals("y")) {
+		if(selection.equals("j")) {
 			askUser();
 		} else {
 			config.setFirstPlayer(GameConfiguration.HUMANPLAYER);
