@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: kathrin $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @since IOC
  */
 public class GameState {
@@ -33,19 +33,19 @@ public class GameState {
 		}
 	}
 
-    public Token checkWinner(int lastMoveRow, int lastMoveCol) {
-        // Diagonale prüfen links unten nach rechts oben
-        int row = lastMoveRow;
-        //System.out.println("checkWinner(): row=" + row);
-        int col = lastMoveCol;
+	/** zählt wie viele Steine horizotal aneinanderliegen.
+	* @return Anzahl der Steine die horizontal aneinanderliegen
+	* @param lastMoveRow Zeile in die der letzte Stein eingeworfen wurde
+	* @param lastMoveCol Spalte in die der letzte Stein eingeworfen wurde
+	*/
+	public int getCounterHorizontal(int lastMoveRow, int lastMoveCol) {
+		int row = lastMoveRow;
+		int col = lastMoveCol;
+		int counterHorizontal = 1;
+		Token token = whoseTurn;
 
-        //System.out.println("checkWinner(): col=" + col);
-        Token token = whoseTurn;
-
-        int counterHorizontal = 1;
-
-        // Auswertung horizontal linke Hälfte
-        while (col > 0) {
+		// Auswertung horizontal linke Hälfte
+		while (col > 0) {
             col--;
 			if (token == board[row][col]) {
 				counterHorizontal += 1;
@@ -66,10 +66,19 @@ public class GameState {
 				break;
 			}
         }
-		row = lastMoveRow;
-        col = lastMoveCol;
+		return counterHorizontal;
+	}
 
-        int counterVertical = 1;
+	/** zählt wie viele Steine vertical aneinanderliegen.
+	* @return Anzahl der Steine die vertical aneinanderliegen
+	* @param lastMoveRow Zeile in die der letzte Stein eingeworfen wurde
+	* @param lastMoveCol Spalte in die der letzte Stein eingeworfen wurde
+	*/
+	public int getCounterVertical(int lastMoveRow, int lastMoveCol) {
+		int row = lastMoveRow;
+		int col = lastMoveCol;
+		int counterVertical = 1;
+		Token token = whoseTurn;
 
 		// Auswertung vertikal
         while (row > 0) {
@@ -80,12 +89,20 @@ public class GameState {
                 break;
             }
         }
-		row = lastMoveRow;
-        col = lastMoveCol;
+		return counterVertical;
+	}
 
-		 // zählt ob vier Tokens von einer Farbe in einer Diagonalen links
-        //oben nach rechts unten liegen.
+	/** zählt ob vier Tokens von einer Farbe in einer Diagonalen links
+    * oben nach rechts unten liegen.
+	* @return Anzahl der Steine in einer Diagonalen links oben rechts unten
+	* @param lastMoveRow Zeile in die der letzte Stein eingeworfen wurde
+	* @param lastMoveCol Spalte in die der letzte Stein eingeworfen wurde
+	*/
+	public int getCounterLupRdown(int lastMoveRow, int lastMoveCol) {
+		int row = lastMoveRow;
+		int col = lastMoveCol;
 		int counterLupRdown = 1;
+		Token token = whoseTurn;
 
 		// linker oberer Teil der Diagonale von links oben nach rechts unten.
         while (row < Game.ROWS - 1 && col > 0) {
@@ -94,10 +111,10 @@ public class GameState {
 			if (token == board[row] [col]) {
 				counterLupRdown += 1;
             } else {
-				break; //eventuell Variable continue einführen, damit man aus
-                		// for Schleife kommt sobald das if nicht mehr stimmt.
+				break;
             }
         }
+
 		row = lastMoveRow;
         col = lastMoveCol;
 
@@ -108,23 +125,32 @@ public class GameState {
 			if (token == board[row] [col]) {
 				counterLupRdown += 1;
             } else {
-				break; //s.o.
+				break;
             }
         }
-		row = lastMoveRow;
-        col = lastMoveCol;
 
-        // Counter für Diagonale rechts oben nach links unten.
+		return counterLupRdown;
+	}
+
+	/** Counter für Diagonale rechts oben nach links unten ermitteln.
+	* @return Anzahl der Steine in einer Diagonalen rechts oben links unten
+	* @param lastMoveRow Zeile in die der letzte Stein eingeworfen wurde
+	* @param lastMoveCol Spalte in die der letzte Stein eingeworfen wurde
+	*/
+	public int getCounterRupLdown(int lastMoveRow, int lastMoveCol) {
+		int row = lastMoveRow;
+		int col = lastMoveCol;
 		int counterRupLdown = 1;
+		Token token = whoseTurn;
 
-        // rechter oberer Teil der Diagonalen von links unten nach rchts oben.
+		// rechter oberer Teil der Diagonalen von links unten nach rchts oben.
 		while (row < Game.ROWS - 1 && col < Game.COLS - 1) {
             row++;
             col++;
 			if (token == board[row] [col]) {
 				counterRupLdown += 1;
             } else {
-				break; // s.o.
+				break;
             }
         }
 		row = lastMoveRow;
@@ -137,9 +163,26 @@ public class GameState {
 			if (token == board[row] [col]) {
 				counterRupLdown += 1;
             } else {
-				break; // s.o.
+				break;
             }
         }
+		return counterRupLdown;
+	}
+
+    public Token checkWinner(int lastMoveRow, int lastMoveCol) {
+        int row = lastMoveRow;
+        //System.out.println("checkWinner(): row=" + row);
+        int col = lastMoveCol;
+        //System.out.println("checkWinner(): col=" + col);
+        Token token = whoseTurn;
+
+        int counterHorizontal = getCounterHorizontal(row, col);
+        int counterVertical = getCounterVertical(row, col);
+		// zählt ob vier Tokens von einer Farbe in einer Diagonalen links
+        // oben nach rechts unten liegen.
+		int counterLupRdown = getCounterLupRdown(row, col);
+        // Counter für Diagonale rechts oben nach links unten.
+		int counterRupLdown = getCounterRupLdown(row, col);
 
 		System.out.println("counterRupLdown=" + counterRupLdown);
 		System.out.println("counterLupRdown=" + counterLupRdown);
