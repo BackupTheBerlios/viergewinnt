@@ -51,7 +51,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id627kd95fvn02d95fxxuq.diagram:oiref>=380,270,105,100,1:oigroup>
+@__positions <oigroup:<oiref:design#Class#id627kd95fvn02d95fxxuq.diagram:oiref>=380,270,142,116,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#spielerMachtZug#(##)#:oiref>=462,268,194,13,1:oigroup>
 <oigroup:<oiref:java#Class#de.fhhn.viergewinnt.Runner:oiref>=141,222,101,142,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Move#confirm#(##)#:oiref>=-228,415,98,13,1:oigroup>
