@@ -251,6 +251,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 ((MoveEventListener) listeners[i + 1]).tokenMoved(move);
             }
         }
+        move = null;
     }
 
     /** Steckt ein Token in Zeile row und Spalte column ins Spielbrett. */

@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: manuel $
- * @version $Revision: 1.14 $
+ * @author $Author: malte $
+ * @version $Revision: 1.15 $
  * @since LCA
  * @stereotype Model
  */
@@ -41,9 +41,6 @@ public class Game extends Observable {
         board[row] [column] = token;
         // Move is valid and will be saved
         lastMove = m;
-        // notify observers, the model has changed
-        setChanged();
-        notifyObservers();
     }
 
 	/* This method will be called from the observers
@@ -66,12 +63,14 @@ public class Game extends Observable {
             valid = true;
         } else {
             valid = false;
+            System.out.println("Game.isValid(): falsche Spalte -> ungültiger Move");
         }
         // richtiger Spieler?
         if (valid && (whoseTurn == m.getToken())) {
             valid = true;
         } else {
             valid = false;
+            System.out.println("Game.isValid(): falscher Spieler -> ungültiger Move");
         }
         return valid;
     }
@@ -128,6 +127,11 @@ public class Game extends Observable {
             } else {
                 // assert false
             }
+           // notify observers, the model has changed
+	        setChanged();
+    	    notifyObservers();
+
+            System.out.println("Game.accept():" + whoseTurn + " ist dran");
         } else {
             System.out.println("Game.accept(): move ist ungültig!");
             //Zug ungültig -> Fehler
@@ -141,5 +145,10 @@ public class Game extends Observable {
     public Token[] [] getBoard() {
         // return no reference, copy the array!
         return board;
+    }
+
+    /** Welcher Spieler ist jetzt am Zug? */
+    public Token getWhoseTurn() {
+        return whoseTurn;
     }
 }
