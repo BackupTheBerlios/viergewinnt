@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  * @since LCA
  * @stereotype Model
  */
@@ -19,11 +19,17 @@ public class Game extends Observable {
     private Token whoseTurn;
     private MoveEvent lastMoveEvent;
 
+	/**
+	 * Zustand des Spiels mit Spielbrett.
+	 */
+	private GameState state;
+	
     /** 
-	 * Spielbrett mit 6 Zeilen und 7 Spalten. Die Zeilen beginnen mit der 
-	 * Zählung von unten. 
+	 * Hilfs-Spielbrett mit 6 Zeilen und 7 Spalten. Die Zeilen beginnen mit der 
+	 * Zählung von unten. Wird bei Änderungen aus state in makeMove aktualisiert.
 	 */
     private Token[][] board;
+
 
     /** 
      * Der Gewinner des Spiels. Solange noch niemand gewonnen hat, ist der
@@ -37,12 +43,16 @@ public class Game extends Observable {
 	 */
     public Game(Token beginner) {
         whoseTurn = beginner;
+		state = new GameState(whoseTurn);
+		/*
         board = new Token[ROWS][COLS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j] = Token.EMPTY;
             }
         }
+		*/
+		board = state.getBoard();
     }
 
 	/**
@@ -153,6 +163,8 @@ public class Game extends Observable {
         board[row][column] = token; // Zug in Spielbrett eintragen
         m.setRow(row);
         lastMoveEvent = m;
+		
+		state = new GameState(whoseTurn, board);
     }
 
 	/**
