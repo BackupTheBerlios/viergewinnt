@@ -66,7 +66,8 @@ public class SwingUI extends JFrame implements MouseListener, View {
         for (int i = ROWS - 1; i >= 0; i--) {
             for (int j = 0; j < COLS; j++) {
                 playfieldToken[i] [j] = new JLabel();
-                playfieldToken[i] [j].setIcon(emptyTokenIcon);
+                //playfieldToken[i] [j].setIcon(emptyTokenIcon);
+                setToken(i, j, Token.EMPTY);
                 playfieldToken[i] [j].addMouseListener(this);
                 playField.add(playfieldToken[i] [j]);
             }
@@ -106,10 +107,12 @@ public class SwingUI extends JFrame implements MouseListener, View {
         playField.setMaximumSize(new java.awt.Dimension(357, 306));
         playField.setBackground(new java.awt.Color(255, 255, 255));
         // for testing purposes only
+        /*
         playfieldToken[0] [0].setIcon(redTokenIcon);
         playfieldToken[1] [2].setIcon(yellowTokenIcon);
         playfieldToken[2] [1].setIcon(redTokenIcon);
         playfieldToken[1] [1].setIcon(yellowTokenIcon);
+        */
         messageLabel.setText("messageLabel");
     }
 
@@ -121,11 +124,11 @@ public class SwingUI extends JFrame implements MouseListener, View {
                     insertToken[j].setIcon(redArrowIcon);
                     jumpout = true;
                 }
-                if (jumpout == true) {
+                if (jumpout) { // XXX wäre hier ein "labeled break" angemessen?
                     break;
                 }
             }
-            if (jumpout == true) {
+            if (jumpout) {
                 break;
             }
         }
@@ -139,11 +142,11 @@ public class SwingUI extends JFrame implements MouseListener, View {
                     insertToken[j].setIcon(blankIcon);
                     jumpout = true;
                 }
-                if (jumpout == true) {
+                if (jumpout) {
                     break;
                 }
             }
-            if (jumpout == true) {
+            if (jumpout) {
                 break;
             }
         }
@@ -159,11 +162,11 @@ public class SwingUI extends JFrame implements MouseListener, View {
                     fireMoveEventTokenMoved (j); // XXX
                     jumpout = true;
                 }
-                if (jumpout == true) {
+                if (jumpout) {
                     break;
                 }
             }
-            if (jumpout == true) {
+            if (jumpout) {
                 break;
             }
         }
@@ -194,12 +197,12 @@ public class SwingUI extends JFrame implements MouseListener, View {
         System.out.println("SwingUI.update(): " + o + " sagt " + arg);
     }
 
-    /** Fügt einen MoveListener hinzu. */
+    /** Fügt einen MoveEventListener hinzu. */
     public void addMoveEventListener(MoveEventListener listener) {
         listenerList.add(MoveEventListener.class, listener);
     }
 
-    /** Entfernt einen Move-Listener. */
+    /** Entfernt einen MoveEvent-Listener. */
     public void removeMoveEventListener(MoveEventListener listener) {
         listenerList.remove(MoveEventListener.class, listener);
     }
@@ -208,7 +211,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
     // is lazily created using the parameters passed into
     // the fire method.
 
-    /** FIXME: Funktioniert das? Besser ChangeEvent? */
+    /** XXX: Besser ChangeEvent? */
     protected void fireMoveEventTokenMoved(int column) {
         System.out.println("SwingUI.fireMoveEventTokenMoved(): column=" + column);
         // Guaranteed to return a non-null array
@@ -225,5 +228,20 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 ((MoveEventListener) listeners[i + 1]).tokenMoved(move);
             }
         }
+    }
+
+    /** Steckt ein Token in Zeile row und Spalte column ins Spielbrett. */
+    private void setToken(int row, int column, Token t) {
+        ImageIcon tokenIcon = null;
+        if (t == Token.RED) {
+            tokenIcon = redTokenIcon;
+        } else if (t == Token.YELLOW) {
+            tokenIcon = yellowTokenIcon;
+        } else if (t == Token.EMPTY) {
+			tokenIcon = emptyTokenIcon;
+        } else {
+            // assert false
+        }
+		playfieldToken[row][column].setIcon(tokenIcon);
     }
 }
