@@ -1,12 +1,11 @@
 package de.fhhn.viergewinnt.game;
 
-import java.util.*;
 import de.fhhn.viergewinnt.game.*;
 
 /**
  * Zustand des Spielfelds. Immutable.
- * @author $Author: malte $
- * @version $Revision: 1.14 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.15 $
  * @since IOC
  */
 public class GameState {

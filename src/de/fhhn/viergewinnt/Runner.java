@@ -2,8 +2,6 @@ package de.fhhn.viergewinnt;
 
 import de.fhhn.viergewinnt.ui.gui.SwingUI;
 import de.fhhn.viergewinnt.ui.textui.TextUI;
-import de.fhhn.viergewinnt.game.Game;
-
 /**
  * Beschreibung
  * 
