@@ -11,12 +11,13 @@ package de.fhhn.viergewinnt.game;
  * (<a href="http://www.javaworld.com/javaworld/javatips/jw-javatip122.html">Details</a>)!
  * 
  * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since LCA 
  */
 public class Token {
     public static final Token RED = new Token("red");
     public static final Token YELLOW = new Token("yellow");
+    public static final Token EMPTY = new Token("empty");
 
     private final String name;
 
