@@ -192,9 +192,9 @@ public class SwingUI extends JFrame implements MouseListener, View {
 
     public static void main(String[] args) {
         Game model = new Game(Token.RED); // rot fängt an
-        SwingUI view = new SwingUI(model);
-        HumanPlayer human = new HumanPlayer(view, model, Token.RED);
-        AIPlayer ai = new AIPlayer(model, Token.YELLOW);
+        SwingUI redView = new SwingUI(model);
+        Player redPlayer = new HumanPlayer(redView, model, Token.RED);
+        Player yellowPlayer = new AIPlayer(model, Token.YELLOW);
     }
 
     public void update(Observable o, Object arg) {
@@ -220,10 +220,10 @@ public class SwingUI extends JFrame implements MouseListener, View {
     public void removeMoveEventListener(MoveEventListener listener) {
         listenerList.remove(MoveEventListener.class, listener);
     }
-    // Notify all listeners that have registered interest for
+    // "Notify all listeners that have registered interest for
     // notification on this event type.  The event instance
     // is lazily created using the parameters passed into
-    // the fire method.
+    // the fire method."
 
     /** XXX: Besser ChangeEvent? */
     protected void fireMoveEventTokenMoved(int column) {
