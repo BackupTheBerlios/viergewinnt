@@ -8,10 +8,11 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: kathrin $
- * @version $Revision: 1.17 $
+ * @author $Author: malte $
+ * @version $Revision: 1.18 $
  * @since LCA
  * @stereotype Model
+ * @testcase test.de.fhhn.viergewinnt.game.TestGame
  */
 public class Game extends Observable {
     private static final int ROWS = 6;
