@@ -1,6 +1,8 @@
 package de.fhhn.viergewinnt.ui.gui;
 
 import java.awt.event.*;
+
+import javax.print.attribute.standard.Finishings;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
@@ -12,7 +14,7 @@ import de.fhhn.viergewinnt.ui.*;
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
  * @author $Author: p_herk $
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
 	
@@ -471,6 +473,9 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 		System.out.println("SwingUI.update(): " + o + " sagt " + arg);
 		// Spielbrett komplett neu zeichnen:
 		drawPlayfield();
+		if (!((Game) o).getWinner().equals(Token.EMPTY)) {
+			gameFinished();
+		}
 	}
 
 	/**
@@ -519,6 +524,14 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 				((MoveEventListener) listeners[i + 1]).tokenMoved(move);
 			}
 		}
+	}
+	
+	/**
+	 * wird ausgeführt, wenn 
+	 * 
+	 */
+	private void gameFinished() {
+		// 
 	}
 
 }
