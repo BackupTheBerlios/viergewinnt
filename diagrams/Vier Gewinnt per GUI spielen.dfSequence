@@ -44,9 +44,9 @@ class __options {
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.link11:oiref>=586,163,779,163:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6.link39:oiref>=641,381,134,13,0:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6.link39:oiref>=779,398,586,398:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.link28:oiref>=590,242,191,13,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.link28:oiref>=590,242,158,13,0:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node3:oiref>=359,30,90,612,1:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.link11:oiref>=590,146,146,13,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.link11:oiref>=590,146,152,13,0:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node3.link17:oiref>=415,126,165,13,0:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node3.link17:oiref>=411,143,572,143:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13.node:oiref>=572,143,14,50,1:oigroup>
@@ -54,7 +54,7 @@ class __options {
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node3.link18:oiref>=:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node13:oiref>=534,30,90,612,1:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node.link5:oiref>=:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6.link30:oiref>=806,275,251,13,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6.link30:oiref>=806,275,257,13,0:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6.link30:oiref>=793,269,793,263,833,263,833,275,802,275:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3loegd94e1i0xd94fib7h.node.link:oiref>=86,112,136,13,0:oigroup>
 <oigroup:<oiref:design#Class#id3loegd94e1i0xd94fib7h.node6:oiref>=741,30,90,612,1:oigroup>
