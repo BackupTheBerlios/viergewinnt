@@ -29,7 +29,7 @@ public class SwingUI
 	 */
 	private ImageIcon blankIcon = new ImageIcon("./img/blank.gif");
 	private ImageIcon redArrowIcon = new ImageIcon("./img/redarrow.gif");
-	//private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
+	private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
 	private ImageIcon emptyTokenIcon = new ImageIcon("./img/emptytoken.gif");
 	private ImageIcon redTokenIcon = new ImageIcon("./img/redtoken.gif");
 	private ImageIcon yellowTokenIcon = new ImageIcon("./img/yellowtoken.gif");
@@ -128,7 +128,6 @@ public class SwingUI
 		/*
 		 * allgemeine Fenstereigenschaften festlegen
 		 */
-		// :TODO:	exitGame() aufrufen lassen
 		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		setBounds(new java.awt.Rectangle(0, 0, 402, 437));
 		setBackground(new java.awt.Color(255, 255, 255));
@@ -230,10 +229,11 @@ public class SwingUI
 			model.addObserver(this);
 			View actualView = this;
 		
-			Player redPlayer;
+			Player redPlayer = null;
 			String redPlayerStrength;
-			Player yellowPlayer;
+			Player yellowPlayer = null;
 			String yellowPlayerStrength;
+			boolean aiStarts = false;
 			
 			playerColor = ngd.getLocalPlayerColor();
 			
@@ -242,19 +242,26 @@ public class SwingUI
 				redPlayer = new HumanPlayer(actualView, model, Token.RED);
 			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
 				yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
-				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);			
+				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
+				aiStarts = true;		
 			} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
 				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
+				aiStarts = true;
 				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
 				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
+				aiStarts = true;
 			} else {
 				// scheiﬂe
 			}
 			
 			// GUI fertigmachen
 			initPlayfield();
+			
+			if (aiStarts) {
+				((AIPlayer) redPlayer).update(model, new Object());
+			}
 			
 		}
 		
