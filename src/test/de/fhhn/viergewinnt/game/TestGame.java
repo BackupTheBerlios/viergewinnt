@@ -38,6 +38,39 @@ public class TestGame extends TestCase {
         assertTrue(play(moves) == Token.RED);
     }
 
+
+	public boolean compareBoards(Token[][] expectedBoard, Token[][] resultBoard) {
+        boolean valid = true;
+		for(int i=0; i < expectedBoard.length; i++) {
+			for(int j=0; j < expectedBoard[i].length; j++) {
+				if(expectedBoard[i][j] != resultBoard[i][j]) {
+					valid = false;
+                }
+            }
+        }
+        return valid;
+    }
+
+	public void testNegativeMoveIndex() {
+        int[] moves = {-1};
+		try {
+        	play(moves);
+			assertTrue(false); // wird nie erreicht
+        } catch (IllegalArgumentException ie) {
+			assertTrue(true);
+        }
+	}
+
+	public void testMoveIndexOutOfBounds() {
+        int[] moves = {10};
+		try {
+        	play(moves);
+       		assertTrue(false);
+        } catch (IllegalArgumentException ie) {
+			assertTrue(true);
+        }
+	}
+
     /** 
      * Spielt ein Spiel mit den übergeben Zügen nach und gibt den Gewinner
      * zurück. Rot fängt immer an.
