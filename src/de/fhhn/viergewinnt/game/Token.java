@@ -8,13 +8,13 @@ package de.fhhn.viergewinnt.game;
  * versenden), muss u.a. readResolve() implementiert werden
  * (<a href="http://www.javaworld.com/javaworld/javatips/jw-javatip122.html">Details</a>)!
  * @author $Author: malte $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since LCA
  */
 public class Token {
-    public static final Token RED = new Token("red");
-    public static final Token YELLOW = new Token("yellow");
-    public static final Token EMPTY = new Token("empty");
+    public static final Token RED = new Token("X");
+    public static final Token YELLOW = new Token("O");
+    public static final Token EMPTY = new Token(" ");
     private final String name;
 
     private Token(String name) {
