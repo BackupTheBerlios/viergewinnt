@@ -2,8 +2,8 @@ package de.fhhn.viergewinnt.game;
 
 /**
  * Enthält die Regeln des Spiels (Züge prüfen, Gewinner bestimmen).
- * @author Malte Knörr
- * @version 0.1
+ * @author $Author: malte $
+ * @version $Revision: 1.2 $
  * @since LCA 
  */
 public class Game {

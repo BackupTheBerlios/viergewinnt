@@ -1,7 +1,9 @@
 package de.fhhn.viergewinnt;
 
 /**
- * s. "Design Patterns" Seite 207
+ * Platzhalter für den AI-Proxy, s.&nbsp;"Design Patterns" Seite 207.
+ * @author $Author: malte $
+ * @version $Revision: 1.2 $
  */
 public interface aiProxy {
 }

@@ -3,9 +3,9 @@ package de.fhhn.viergewinnt.game;
 /**
  * Repräsentiert einen Spielstein. Enthält Position des Spielsteins
  * [Oder macht das Board/Hole?]
- * @author Malte Knörr
- * @version 0.1
- * @since LCA
+ * @author $Author: malte $
+ * @version $Revision: 1.2 $
+ * @since LCA 
  */
 public class Token {
     private Player owner;
