@@ -9,10 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.event.*;
 import java.util.*;
+import javax.swing.event.*;
 import de.fhhn.viergewinnt.game.*;
-import de.fhhn.viergewinnt.ui.View;
+import de.fhhn.viergewinnt.ui.*;
 
 public class SwingUI extends JFrame implements MouseListener, View {
     static final int ROWS = 6;
@@ -41,6 +41,9 @@ public class SwingUI extends JFrame implements MouseListener, View {
     /** Ein Move-Event. */
     private MoveEvent move = null;
 
+    /** Wird als Delegate benutzt, um das Interface View zu implementieren. */
+    //private DefaultView defaultView = new DefaultView();
+
     /** Farbe des Spielers. */
     private Token playerColor;
 
@@ -49,12 +52,12 @@ public class SwingUI extends JFrame implements MouseListener, View {
 
     SwingUI(Game game) {
         super();
-        initGUI();
-        setVisible(true);
-        listenerList = new EventListenerList();
+		listenerList = new EventListenerList();
         this.game = game;
         game.addObserver(this);
         playerColor = Token.RED; // FIXME
+        initGUI();
+        setVisible(true);
     }
 
     public void initGUI() {
@@ -188,9 +191,10 @@ public class SwingUI extends JFrame implements MouseListener, View {
      */
 
     public static void main(String[] args) {
-        Game model = new Game();
+        Game model = new Game(Token.RED); // rot fängt an
         SwingUI view = new SwingUI(model);
-        HumanPlayer controller = new HumanPlayer(view, model);
+        HumanPlayer human = new HumanPlayer(view, model, Token.RED);
+        AIPlayer ai = new AIPlayer(model, Token.YELLOW);
     }
 
     public void update(Observable o, Object arg) {
@@ -233,7 +237,8 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 // Lazily create the event:
                 if (move == null) {
                     //move = new Move(this);
-                    move = new MoveEvent (playerColor, column);
+                    //move = new MoveEvent (playerColor, column);
+                    move = new MoveEvent(this, column);
                 }
                 ((MoveEventListener) listeners[i + 1]).tokenMoved(move);
             }

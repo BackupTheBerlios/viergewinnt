@@ -1,25 +1,28 @@
 package de.fhhn.viergewinnt.game;
 
 /**
- * Controller. "If the user decides to interact, the controller takes charge.
+ * Spieler mit Farbe (Controller).
+ * "If the user decides to interact, the controller takes charge.
  * It watches for user input, such as clicking or moving the mouse or pressing
  * keyboard keys. It decides what the interaction means, and asks the model to
  * update its data and/or the view to change the way it displays the data."
  * Unterklassen als (Action)Listener bei SwingUI bzw. TextUI registrieren.
+ *
+ * 
  * @author $Author: malte $
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @since LCA
  * @stereotype Controller
  */
 public abstract class Player {
     /** @directed */
-    private Game game;
+    protected Game gameModel;
 
-    /**
-     * Nur um zu verdeutlichen, was die Klasse machen soll:
-     * Der Spieler macht einen Zug.
-     */
-    private void makeMove(MoveEvent m) {
-        game.accept(m);
+    /** Die Farbe des Spielers. */
+    protected Token color;
+
+    public Player(Game g, Token color) {
+        this.gameModel = g;
+        this.color = color;
     }
 }
