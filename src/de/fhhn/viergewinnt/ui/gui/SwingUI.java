@@ -17,7 +17,7 @@ import de.fhhn.viergewinnt.ui.*;
 /**
  * View für die grapfische Benutzerschnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  * @since LCA
  */
 public class SwingUI extends JFrame implements MouseListener, View {
@@ -190,15 +190,9 @@ public class SwingUI extends JFrame implements MouseListener, View {
         //
     }
 
-    /*
-     *
-     * Hier kommt Maltes Bastelecke:
-     *
-     */
-
     public static void main(String[] args) {
-        Game model = new Game(Token.RED); // rot fängt an
-        SwingUI redView = new SwingUI(model);
+        Game model = new Game(Token.RED); // FIXME rot fängt an
+        View redView = new SwingUI(model);
         Player redPlayer = new HumanPlayer(redView, model, Token.RED);
         Player yellowPlayer = new AIPlayer(model, Token.YELLOW);
     }
