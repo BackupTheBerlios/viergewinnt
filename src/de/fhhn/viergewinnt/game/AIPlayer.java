@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: p_herk $
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -26,6 +26,10 @@ public class AIPlayer extends Player implements View {
         g.addObserver(this); // als View registrieren
         root = new GraphNode(new AIGameState(Token.RED), null);
         list = new GraphNodeList();
+
+        // Wurzel initialisieren
+        root.getState().expand(root, list, 1);
+
     }
 
     /** Hier eigentlich überflüssig. */
@@ -89,7 +93,7 @@ public class AIPlayer extends Player implements View {
         ListIterator iter = successors.listIterator();
         while (iter.hasNext()) {
             GraphNode succ = (GraphNode) iter.next();
-            GameState state = succ.getState();
+            AIGameState state = succ.getState();
             //Token[][] board = state.getBoard();
             //if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
 			if (state.getLastMoveEvent().equals(m)) {

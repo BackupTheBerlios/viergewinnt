@@ -134,7 +134,7 @@ public class SwingUI
 		setResizable(false);
 		setTitle("Vier Gewinnt");
 		setIconImage((new ImageIcon("./img/titleicon.gif")).getImage());
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
 		
 		/*
 		 * Menüleiste anlegen

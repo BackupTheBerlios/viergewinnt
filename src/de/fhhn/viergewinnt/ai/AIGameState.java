@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: p_herk $
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -31,7 +31,7 @@ public class AIGameState extends GameState {
      * @param board Zustand des Spielbretts
      */
 	public AIGameState(Token whoseTurn, Token[][] board, MoveEvent last) {
-		super(whoseTurn, board);
+		super(whoseTurn, board, last);
 	}
 
     /**
@@ -54,7 +54,7 @@ public class AIGameState extends GameState {
      * @param list Container für bereits erzeugte Knoten
      * @param limit Suchtiefe (beeinflusst die Spielstärke)
      */
-	public void expand(GraphNode node, GraphNodeList list, int limit) {
+	public static void expand(GraphNode node, GraphNodeList list, int limit) {
 		// Abbruchbedingung
 		AIGameState state = node.getState();
 		if (state.isFinalState(node)) {
@@ -86,7 +86,7 @@ public class AIGameState extends GameState {
         }
 
 		// Nachfolgerzustände von state berechnen
-		ArrayList succStates = state.calculateSuccessors();
+		ArrayList succStates = calculateSuccessors(state);
 		ListIterator it = succStates.listIterator();
 
 
@@ -98,6 +98,9 @@ public class AIGameState extends GameState {
 				node.addSuccessor(succNode);
 				continue;
 			}
+
+            // neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
+            // als Vorgänger
 			GraphNode succNode = new GraphNode(succState, node);
 			node.addSuccessor(succNode);
 			list.add(succNode);
@@ -258,17 +261,16 @@ public class AIGameState extends GameState {
      * Berechnet die Nachfolgerzustände dieses Zustands.
      * @return Liste der Nachfolger
      */
-	private ArrayList calculateSuccessors() {
-		
+	private static ArrayList calculateSuccessors(AIGameState state) {
 		// alle Nachfolger-Zustände bauen
 		ArrayList successors = new ArrayList();
 		// für jede Spalte
-		for (int cols = 0; cols < board[0].length; cols++) {
+		for (int cols = 0; cols < state.board[0].length; cols++) {
 			// Zeile suchen, in der noch Platz frei ist
 			int row = -1;
 			do {
 				row++;
-			} while (!(board[row][cols] == Token.EMPTY) && (row < Game.ROWS)); 
+			} while (!(state.board[row][cols] == Token.EMPTY) && (row < Game.ROWS));
 
 			if (row == Game.ROWS - 1) { // Spalte voll?
 				continue;
@@ -276,23 +278,24 @@ public class AIGameState extends GameState {
 			
 			// (zweidimensionales Array kopieren)
 			Token[][] succ = new Token[Game.ROWS][Game.COLS];
-			for (int k = 0; k < board.length; k++) {
-				System.arraycopy(board[k], 0, succ[k], 0, board[k].length);
+			for (int k = 0; k < state.board.length; k++) {
+				System.arraycopy(state.board[k], 0, succ[k], 0, state.board[k].length);
 			}
 
 			// in den Nachfolgerzuständen ist der andere Spieler dran.
-			if (whoseTurn == Token.RED) {
-				whoseTurn = Token.YELLOW;
-			} else if (whoseTurn == Token.YELLOW) {
-				whoseTurn = Token.RED;
+            Token newWhoseTurn = Token.EMPTY;
+			if (state.whoseTurn == Token.RED) {
+				newWhoseTurn = Token.YELLOW;
+			} else if (state.whoseTurn == Token.YELLOW) {
+				newWhoseTurn = Token.RED;
 			} else {
 				// assert false
 			}
 			// neue Marke setzen
-			succ[row][cols] = whoseTurn;
-            MoveEvent move = new MoveEvent(this, cols);
+			succ[row][cols] = newWhoseTurn;
+            MoveEvent move = new MoveEvent(state, cols);
             move.setRow(row);
-            AIGameState succState = new AIGameState(whoseTurn, succ, move);
+            AIGameState succState = new AIGameState(newWhoseTurn, succ, move);
             //succState.setLastMoveEvent(move);
 			successors.add(succState);
 		}

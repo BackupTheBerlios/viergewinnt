@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: p_herk $
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  * @since IOC
  */
 public class GameState {
@@ -234,8 +234,16 @@ public class GameState {
 		return boardCopy;
 	}
 
+    /**
+     * @return den letzten Spielzug bzw. null, wenn es keinen letzten Spielzug
+     * gibt (weil dies der erste Spielzustand ist)
+     */
     public MoveEvent getLastMoveEvent() {
-        return new MoveEvent(lastMoveEvent);
+        if (lastMoveEvent != null) {
+	        return new MoveEvent(lastMoveEvent);
+        } else {
+            return null;
+        }
     }
 
     /*

@@ -6,7 +6,7 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: p_herk $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since IOC
  */
 public class GraphNode {
@@ -93,6 +93,10 @@ public class GraphNode {
             return null;
         }
 	}
+
+    public void setParent(GraphNode parent) {
+        this.parent = parent;
+    }
 
 	/**
      * Gibt den aktuellen Spielzustand zurück.
