@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: manuel $
- * @version $Revision: 1.10 $
+ * @author $Author: malte $
+ * @version $Revision: 1.11 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -20,7 +20,7 @@ public class TextUI implements View {
     // Macht es Sinn, das TextUI als Thread zu implementieren?
 
     /** Farbe des Spielers. */
-    private Token playerColor;
+    private static Token playerColor;
 
     /** Das Model. */
     private Game game;
@@ -182,7 +182,13 @@ public class TextUI implements View {
 				if(playerId == GameConfiguration.HUMANPLAYER) { //zyklus!!! argh
 					Player humanPlayer = new HumanPlayer(redView, model, availableTokens[i]);
 				} else if(playerId == GameConfiguration.AIPLAYER) {
-					Player aiPlayer = new AIPlayer(config.getStrength(), model, availableTokens[i]);
+					AIPlayer aiPlayer = new AIPlayer(config.getStrength(), model, availableTokens[i]);
+                    if (config.getFirstPlayer() == GameConfiguration.AIPLAYER) {
+                        aiPlayer.update(model, new Object());
+                        playerColor = Token.YELLOW;
+                    } else {
+                        playerColor = Token.RED;
+                    }
 				} else {
 					System.exit(1);
 				}
