@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since IOC
  */
 public class AIGameState extends GameState {
@@ -40,8 +40,8 @@ public class AIGameState extends GameState {
 		AIGameState state = node.getState();
 		if (state.isFinalState(node)) {
 			// Min-Max-Bewertung
-            int row = lastMoveEvent.getRow();
-            int col = lastMoveEvent.getColumn();
+            int row = state.getLastMoveEvent().getRow();
+            int col = state.getLastMoveEvent().getColumn();
             Token winner = state.checkWinner(row, col);
             if (winner == Token.RED) { // FIXME
                 node.setRating(Integer.MAX_VALUE);
@@ -60,7 +60,7 @@ public class AIGameState extends GameState {
 
 		// für die Min-Max-Bewertung
         int b;
-        if (whoseTurn == Token.RED) {
+        if (state.whoseTurn == Token.RED) {
             b = Integer.MIN_VALUE; // FIXME oder -1?
         } else {
             b = Integer.MAX_VALUE; // FIXME oder 1?
@@ -85,7 +85,7 @@ public class AIGameState extends GameState {
 			expand(succNode, list, limit - 1); // Rekursion!
 
 			// Min-Max-Bewertung
-            if (whoseTurn == Token.RED) {
+            if (state.whoseTurn == Token.RED) {
                 b = Math.max(b, succNode.getRating());
             } else {
                 b = Math.min(b, succNode.getRating());
