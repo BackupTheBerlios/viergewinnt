@@ -1,25 +1,28 @@
 package de.fhhn.viergewinnt.game;
 
 /**
- * Enthält alle benötigten Benutzer-Daten. Identifiziert einen Spieler.
+ * Controller. "If the user decides to interact, the controller takes charge.
+ * It watches for user input, such as clicking or moving the mouse or pressing
+ * keyboard keys. It decides what the interaction means, and asks the model to
+ * update its data and/or the view to change the way it displays the data."
+ *
+ * Unterklassen als (Action)Listener bei SwingUI bzw. TextUI registrieren.
+ * 
  * @author $Author: malte $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since LCA
+ * @stereotype Controller
  */
-public class Player {
+public abstract class Player {
     /**
-     * @bidirectional <{de.fhhn.viergewinnt.game.Game#lnkrevPlayer}>
-     * @clientCardinality 2
-     * @supplierCardinality 1
-     */
-    private Game lnkGame;
+     * @directed*/
+    private Game game;
 
     /**
-     * @supplierCardinality 0..*
-     * @directed
+     * Nur um zu verdeutlichen, was die Klasse machen soll:
+     * Der Spieler macht einen Zug.
      */
-    private Move lnkMove;
-
-    public void makeYourTurn() {
+    private void makeMove(Move m) {
+        game.accept(m);
     }
 }

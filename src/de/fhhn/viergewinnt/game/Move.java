@@ -1,12 +1,14 @@
 package de.fhhn.viergewinnt.game;
 
+import java.util.EventObject;
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
+ *
  * @author $Author: malte $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since LCA
  */
-public class Move {
+public class Move extends EventObject {
     private Token token;
     private int column;
 

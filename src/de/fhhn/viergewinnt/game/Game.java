@@ -1,33 +1,30 @@
 package de.fhhn.viergewinnt.game;
 
+import java.util.Observable;
 /**
- * Enthält die Regeln des Spiels (Züge prüfen, Gewinner bestimmen).
- * Enthält Daten, die vom Benutzer gesehen werden: Position der Spielsteine
- * (oder macht das Hole?), wer gerade am Zug ist, wer eventuell gewonnen hat.
- * Akzeptiert einen Zug des Benutzers und bereitet ihn zur Überprüfung vor.
+ * Modell des Spiels "Vier Gewinnt" mit Regeln (Züge prüfen, Gewinner bestimmen)
+ * und Zustand (Position der Spielsteine, wer gerade am Zug ist, wer eventuell
+ * gewonnen hat).
+ * 
+ * Akzeptiert Eingaben der beiden Player (z.B. einen Zug des Benutzers).
+ * Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn ein Spieler
+ * einen Zug macht, obwohl er nicht dran ist).
+ * 
  * @author $Author: malte $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since LCA
+ * @stereotype Model
  */
-public class Game {
+public class Game extends Observable {
     private static final int ROWS = 6;
     private static final int COLS = 7;
-
-    /**
-     * @supplierCardinality 0..*
-     * @directed
-     */
-    private Move lnkMove;
     private Token whoseTurn;
 
     /**
      * Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der
      * Zählung von unten.
      */
-    Token[][] board;
-
-    /** @bidirectional */
-    private Player lnkrevPlayer;
+    private Token[][] board;
 
     public Game() {
         board = new Token[ROWS][COLS];
@@ -38,7 +35,7 @@ public class Game {
         }
     }
 
-    void save(Move m) {
+    private void save(Move m) {
         int column = m.getColumn();
         Token token = m.getToken();
         int row;
@@ -46,7 +43,7 @@ public class Game {
         board[row][column] = token;
     }
 
-    boolean isValid(Move m) {
+    private boolean isValid(Move m) {
         int column = m.getColumn();
         // assert Wertebereich eingehalten (0 < column < 6)
         boolean valid = false;
@@ -65,7 +62,7 @@ public class Game {
         return valid;
     }
 
-    Token checkWinner() {
+    private Token checkWinner() {
         // Zeilen prüfen
         for (int i = 0; i < ROWS; i++) { // für jede Zeile
             // Scanline
