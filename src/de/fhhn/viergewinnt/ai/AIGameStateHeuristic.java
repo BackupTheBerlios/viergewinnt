@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 /** 
  * Die Bewetung der einzellen Stellungen
  *
- * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @author $Author: malte $
+ * @version $Revision: 1.6 $
  */
 public class AIGameStateHeuristic {
     // speicher der verwendeten leeren Tokens, gewinnen kann man nur einmal
@@ -52,23 +52,10 @@ public class AIGameStateHeuristic {
 		rating[0] = axisRating[0] + diagsRating[0];
 		rating[1] = axisRating[1] + diagsRating[1];
 
-        Token winnerToken = state.checkWinner();
-		boolean isWinner = false;
-		if (winnerToken == state.getWhoseTurn()) {
-			isWinner = true;
-        }
 
 		if (state.getWhoseTurn() == Token.RED) {
-			if (isWinner) {
-				return Integer.MAX_VALUE;
-            }
-
             return rating[0] - rating[1];
         } else {
-            if (isWinner) {
-				return Integer.MIN_VALUE;
-            }
-
             return rating[1] - rating[0];
         }
 	}
