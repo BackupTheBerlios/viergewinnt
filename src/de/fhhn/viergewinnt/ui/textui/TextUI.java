@@ -9,7 +9,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * View für die Kommandozeilen-Schnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -43,9 +43,16 @@ public class TextUI implements View {
     public void run() throws IOException {
         while (true) {
             drawBoard();
-            System.out.println("Spielstein in welche Spalte (0-6)?");
-            int col = Integer.parseInt(stdin.readLine()); // XXX IOException
-            fireMoveEventTokenMoved(col);
+            int col = 0;
+            while (col < 1 || col > 5) {
+                System.out.println("Spielstein in welche Spalte (1-5)?");
+                try {
+                    col = Integer.parseInt(stdin.readLine()); // XXX IOException
+                } catch (NumberFormatException e) {
+                    // keine Zahl einegegeben -> neuer Schleifendurchlauf
+                }
+            }
+            fireMoveEventTokenMoved(col - 1); // intern beginnen Spalten bei 0
         }
     }
 
@@ -55,11 +62,12 @@ public class TextUI implements View {
         for (int i = board.length - 1; i >= 0; i--) {
             //for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i] [j] + " ");
+                System.out.print(board[i][j] + " ");
             }
             System.out.print("\n");
         }
     }
+
     //////////////////////////////////////////////////////////////////////
     // Die folgenden Methoden dienen der Kommunikation zwischen Model,
     // View und Controller
@@ -89,7 +97,7 @@ public class TextUI implements View {
         listenerList.remove(MoveEventListener.class, listener);
     }
 
-	/** Gibt ein neues MoveEvent an alle Controller. */
+    /** Gibt ein neues MoveEvent an alle Controller. */
     protected void fireMoveEventTokenMoved(int column) {
         MoveEvent move = null; // XXX Warum ist das in SwingUI anders?
         // XXX Code-Duplikation (s. SwingUI.java)
