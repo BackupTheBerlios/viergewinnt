@@ -5,8 +5,8 @@ import java.util.EventObject;
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
  * Objekte dieser Klasse sind <em>nicht</em> immutable.
- * @author $Author: p_herk $
- * @version $Revision: 1.10 $
+ * @author $Author: malte $
+ * @version $Revision: 1.11 $
  * @since LCA
  */
 public class MoveEvent extends EventObject {
@@ -89,7 +89,9 @@ public class MoveEvent extends EventObject {
         if (other != null && getClass() == other.getClass()) {
 			MoveEvent otherMoveEvent = (MoveEvent) other;
 			// Identität hängt von row und column ab
-			return (row == otherMoveEvent.row && column == otherMoveEvent.column);
+			return (row == otherMoveEvent.row &&
+                    column == otherMoveEvent.column &&
+                    token == otherMoveEvent.token);
 		} else {
 			return false;
 		}
