@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage{a4wide}
+
+\setlength\parskip{\medskipamount}
+\setlength\parindent{0pt}
+
+
+\begin{document}
+\title{\begin{Huge}Pflichtenheft\end{Huge}\\ \vspace{1em} Projekt "`Vier Gewinnt"'}
+\author{Manuel Carrara\\ Katharina Grimme\\ Philipp Herk\\ Malte Knörr}
+\date{}
+\maketitle
+%\vfill{}
+
+\vspace{0,3cm}
+{\centering \begin{tabular}{|c|c|c|}
+\hline
+Version&
+Datum&
+Autor\\
+\hline
+\hline
+0.1&
+29.11.2002&
+Malte Knörr\\
+\hline
+\end{tabular}\par}
+\vspace{0,3cm}
+
+%\newpage
+
+%\tableofcontents{} \newpage
+
+\section{Einleitung}
+Als diese Version des Pflichtenhefts geschrieben wurde, befand sich das Projekt in der Anfangsphase. Die Anforderungen wurden aus der Aufgabenstellung von Prof. Dr. Stahl übernommen (ab und zu auf Änderungen überprüfen).
+
+\section{Produktfunktionen}
+\begin{quote}
+Das Ziel dieses zwei Personen Spiels ist es, vier gleichfarbige Steine vertikal, horizontal oder diagonal anzuordenen.
+\end{quote}
+
+Welche der optionalen Funktionen entwickeln wir? Planen wir das erst nach der Blockwoche oder schon vorher?
+
+\subsection{Grundlegende Funktionalität} 
+\begin{quote}
+Grundlegende Funktionalität, Implementierung des Minimax Algorithmus. Sowohl der Computer als auch der menschliche Spieler sollen den ersten Zug machen können. Variable Spielstärke. (max. 20 Punkte)
+\end{quote} 
+
+\subsection{UI}
+\begin{quote}
+Textbasierte und graphische Benutzerschnittstelle. Dokumentiertes API so dass auch zwei Computer gegeneinander spielen können. (max. 20 Punkte)
+\end{quote}
+
+\subsection{Alpha-Beta Pruning}
+\begin{quote}
+Effizienz durch Alpha-Beta Pruning. (max. 20 Punkte)
+\end{quote}
+
+\subsection{Heuristiken}
+\begin{quote}
+Heuristiken für eine gute Stellungsbewertung. (max. 20 Punkte)
+\end{quote}
+
+\subsection{Lernen (optional)}
+\begin{quote}
+Aus gespielten Partien lernen und sich dadurch selbständig verbessern. (max. 30 Punkte)
+\end{quote}
+
+\subsection{Nebenläufigkeit (optional)}
+\begin{quote}
+Die Zeit ausnutzen, in der der Gegner nachdenkt. (max. 30 Punkte)
+\end{quote}
+
+\subsection{Ergebnis-Wiederverwenung (optional)}
+\begin{quote}
+Teilergebnisse zur Berechnung eines Zuges im nächsten Zug wiederverwenden. (max. 20 Punkte)
+\end{quote}
+
+\subsection{Netz (optional)}
+\begin{quote}
+Über's Netz mit dem Programm einer anderen Gruppe spielen, Client Server Architektur. (max. 20 Punkte)
+\end{quote}
+Was meint "`Client-Server-Architektur"' hier genau?
+
+\section{Risiken}
+\subsection{Kooperation mit anderen Gruppen}
+Für die Funktion "`Netz"' muss mit den anderen Gruppen eine Schnittstelle vereinbart werden. Ansonsten besteht die Gefahr, dass wir aneinander vorbei entwickeln.
+
+\section{Nicht-funktionale Anforderungen}
+\subsection{Dokumentation}
+\begin{quote}
+Dokumentation des Quelltextes, der verwendeten Algorithmen und Heuristiken. (max. 20 Punkte) 
+[...] In der Dokumentation muss stehen welche Kriterien das Programm erfüllt und welche Klassen hierfür zuständig sind.
+\end{quote}
+
+\end{document}
