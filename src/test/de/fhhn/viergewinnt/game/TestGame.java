@@ -3,7 +3,7 @@ package test.de.fhhn.viergewinnt.game;
 import junit.framework.*;
 import de.fhhn.viergewinnt.game.*;
 
-/** JUnit TestCase. 
+/** JUnit TestCase für die Spiellogik.
  * @testfamily JUnit
  * @testkind testcase
  * @testsetup Default TestCase
@@ -32,7 +32,33 @@ public class TestGame extends TestCase {
         // Write your code here
     }
 
-    public void testAccept() {
-        fail("not implemented");
+    /** Rot legt 4 Steine horizontal nebeneinander und gewinnt. */
+    public void testRedWinsHorizontal() {
+        int[] moves = {0, 0, 1, 1, 2, 2, 3};
+        assertTrue(play(moves) == Token.RED);
     }
+
+    /** 
+     * Spielt ein Spiel mit den übergeben Zügen nach und gibt den Gewinner
+     * zurück. Rot fängt immer an.
+     * @param moves Abwechselnd rote und gelbe Spielzüge (bzw. die
+     * Spalten, in die ein Spielstein geworfen werden soll)
+     */
+    private Token play(int[] moves) {
+        MoveEvent e;
+        
+        for (int i = 0; i < moves.length; i++) {
+            e = new MoveEvent(this, moves[i]);
+            
+            if (i%2 == 0) { // Rot fängt an
+                e.setToken(Token.RED);
+            } else {
+                e.setToken(Token.YELLOW);
+            }
+            
+            game.accept(e);
+        }
+        return game.getWinner();
+    }
+    
 }
