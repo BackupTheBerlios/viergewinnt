@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.game.Token;
 /** 
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
- * @author $Author: malte $
- * @version $Revision: 1.12 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.13 $
  * @since IOC
  */
 public class GraphNode {
@@ -71,7 +71,7 @@ public class GraphNode {
 			return;
 		} else if (limit == 0) {
 			// heuristische Stellungsbewertung
-			int rating = AIGameState.ratePosition(state);
+			int rating = AIGameStateHeuristic.ratePosition(state);
 			node.setRating(rating);
 			return;
 		}
