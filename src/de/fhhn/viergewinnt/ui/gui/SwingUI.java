@@ -10,9 +10,11 @@ import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.event.*;
+import java.util.*;
 import de.fhhn.viergewinnt.game.*;
+import de.fhhn.viergewinnt.ui.View;
 
-public class SwingUI extends JFrame implements MouseListener {
+public class SwingUI extends JFrame implements MouseListener, View {
 	
 	static final int ROWS = 6;
 	static final int COLS = 7;
@@ -47,12 +49,16 @@ public class SwingUI extends JFrame implements MouseListener {
 
     /** Farbe des Spielers. */
     private Token playerColor;
+
+    /** Das Model. */
+    Game game;
 	
-	SwingUI() {
+	SwingUI(Game game) {
 		super();
 		initGUI();
 		setVisible(true);
         listenerList = new EventListenerList();
+        this.game = game;
         playerColor = Token.RED; // FIXME
 	}
 	
@@ -160,8 +166,7 @@ public class SwingUI extends JFrame implements MouseListener {
 					
 					
 					messageLabel.setText("Klick @ col. " + j);
-                    Move m = new Move(playerColor, j);
-
+					fireMoveTokenMoved(j); // XXX
 					
 					jumpout = true;
 				}
@@ -179,39 +184,52 @@ public class SwingUI extends JFrame implements MouseListener {
 		//
 	}
 
+    /*
+     *
+     * Hier kommt Maltes Bastelecke:
+     *
+     */
 	public static void main(String[] args) {
-		new SwingUI();
+        Game model = new Game();
+		SwingUI view = new SwingUI(model);
+        HumanPlayer controller = new HumanPlayer(view, model);
 	}
 
-	/**Fügt einen MoveListener hinzu. */
+	public void update(Observable o, Object arg) {
+        // Im Game hat sich etwas geändert -> neu zeichnen!
+        System.out.println("SwingUI.update(): " + o + " sagt " + arg);
+    }
+
+    /** Fügt einen MoveListener hinzu. */
     public void addMoveListener(MoveListener listener) {
-		listenerList.add(MoveListener.class, listener);
+        listenerList.add(MoveListener.class, listener);
     }
 
     /** Entfernt einen Move-Listener. */
     public void removeMoveListener(MoveListener listener) {
         listenerList.remove(MoveListener.class, listener);
     }
-
-	// Notify all listeners that have registered interest for
+    // Notify all listeners that have registered interest for
     // notification on this event type.  The event instance
     // is lazily created using the parameters passed into
     // the fire method.
 
     /** FIXME: Funktioniert das? Besser ChangeEvent? */
-	 protected void fireMoveTokenMoved(int column) {
-    	 // Guaranteed to return a non-null array
-	     Object[] listeners = listenerList.getListenerList();
-    	 // Process the listeners last to first, notifying
-	     // those that are interested in this event
-	     for (int i = listeners.length-2; i>=0; i-=2) {
-    	     if (listeners[i] == MoveListener.class) {
-        	     // Lazily create the event:
-            	 if (move == null)
-                	 //move = new Move(this);
-                	 move = new Move(playerColor, column);
-	             ((MoveListener)listeners[i+1]).tokenMoved();
-    	     }
-	     }
- 	}
+    protected void fireMoveTokenMoved(int column) {
+        System.out.println("SwingUI.fireMoveTokenMoved(): column=" + column);
+        // Guaranteed to return a non-null array
+        Object[] listeners = listenerList.getListenerList();
+        // Process the listeners last to first, notifying
+        // those that are interested in this event
+        for (int i = listeners.length - 2; i >= 0; i -= 2) {
+            if (listeners[i] == MoveListener.class) {
+                // Lazily create the event:
+                if (move == null)
+                    //move = new Move(this);
+                        move = new Move(playerColor, column);
+                ((MoveListener)listeners[i + 1]).tokenMoved(move);
+            }
+        }
+    }
+
 }

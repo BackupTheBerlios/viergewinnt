@@ -11,7 +11,7 @@ import java.util.Observable;
  * einen Zug macht, obwohl er nicht dran ist).
  * 
  * @author $Author: malte $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since LCA
  * @stereotype Model
  */
@@ -27,12 +27,15 @@ public class Game extends Observable {
     private Token[][] board;
 
     public Game() {
+		whoseTurn = Token.RED; // XXX
+
         board = new Token[ROWS][COLS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 board[i][j] = Token.EMPTY;
             }
         }
+
     }
 
     private void save(Move m) {
@@ -41,6 +44,10 @@ public class Game extends Observable {
         int row;
         for (row = 0; !(board[row][column] == Token.EMPTY); row++) { }
         board[row][column] = token;
+
+        // der View Bescheid geben, dass sich was geändert hat
+        setChanged();
+        notifyObservers();
     }
 
     private boolean isValid(Move m) {
@@ -102,10 +109,21 @@ public class Game extends Observable {
     }
 
     public void accept(Move m) {
+        System.out.println("Game.accept(): move=" + m);
         if (isValid(m)) {
+            System.out.println("Game.accept(): move ist gültig");
             save(m);
             checkWinner();
+            // XXX der andere ist dran:
+            if (whoseTurn == Token.RED) {
+                whoseTurn = Token.YELLOW;
+            } else if  (whoseTurn == Token.YELLOW) {
+                whoseTurn = Token.RED;
+            } else {
+                // assert false
+            }
         } else {
+            System.out.println("Game.accept(): move ist ungültig!");
             //Zug ungültig -> Fehler
         }
     }

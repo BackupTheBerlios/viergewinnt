@@ -4,9 +4,9 @@ import java.util.EventListener;
 
 /**
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since LCA
  */
 public interface MoveListener extends EventListener {
-    void tokenMoved();
+    void tokenMoved(Move m);
 }
