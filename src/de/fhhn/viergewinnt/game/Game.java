@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: p_herk $
- * @version $Revision: 1.42 $
+ * @author $Author: malte $
+ * @version $Revision: 1.43 $
  * @since LCA
  * @stereotype Model
  */
@@ -69,8 +69,6 @@ public class Game extends Observable {
         
         if (isValid(m)) { // MoveEvent gültig?
             System.out.println("Game.accept(): move ist gültig");
-            makeMove(m); // Zug ins interne Spielbrett eintragen
-            winner = checkWinner(); // prüfen, ob ein Spieler gewonnen hat
             // XXX der andere Spieler ist dran:
             if (whoseTurn == Token.RED) {
                 whoseTurn = Token.YELLOW;
@@ -79,12 +77,15 @@ public class Game extends Observable {
             } else {
                 // assert false
             }
+            makeMove(m); // Zug ins interne Spielbrett eintragen
+            winner = checkWinner(); // prüfen, ob ein Spieler gewonnen hat
+
+            System.out.println("Game.accept():" + whoseTurn + " ist dran");
 
             // Observer benachrichtigen
 	        setChanged();
     	    notifyObservers();
 
-            System.out.println("Game.accept():" + whoseTurn + " ist dran");
             return true;
         } else {
             System.out.println("Game.accept(): move ist ungültig!");
