@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since IOC
  */
 public class GraphNode {
@@ -82,23 +82,24 @@ public class GraphNode {
 		while (it.hasNext()) {
 			// Für alle Nachfolgerzustände von nodeState
 			AIGameState succState = (AIGameState) it.next();
+            GraphNode succNode = null;
 			if (list.contains(succState)) { // schon berechnet?
                 System.out.println("GraphNode.expand(): Nachfolger schon berechnet!");
-				GraphNode succNode = list.getNode(succState);
+				succNode = list.getNode(succState);
                 if (!node.successors.contains(succNode)) {
                     System.out.println("GraphNode.expand(): Nachfolger noch nicht verbunden");
 					node.addSuccessor(succNode);
                 } else {
 					System.out.println("GraphNode.expand(): Nachfolger schon verbunden");
                 }
-				continue;
-			}
-
-            // neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
-            // als Vorgänger
-			GraphNode succNode = new GraphNode(succState, node);
-			node.addSuccessor(succNode);
-			list.add(succNode);
+				//continue;
+			} else {
+				// neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
+				// als Vorgänger
+				succNode = new GraphNode(succState, node);
+				node.addSuccessor(succNode);
+				list.add(succNode);
+            }
 			expand(succNode, list, limit - 1); // Rekursion!
 
 			// Min-Max-Bewertung
@@ -117,9 +118,9 @@ public class GraphNode {
     private static int prepareMinMaxRating(AIGameState nodeState){
         int b;
         if (nodeState.getWhoseTurn() == Token.RED) {
-            b = Integer.MIN_VALUE; // FIXME oder -1?
+            b = Integer.MIN_VALUE;
         } else {
-            b = Integer.MAX_VALUE; // FIXME oder 1?
+            b = Integer.MAX_VALUE;
         }
         return b;
     }
