@@ -7,13 +7,13 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  * @since LCA
  * @stereotype View, Controller
  */
 public class AIPlayer extends Player implements View {
     /** Die Suchtiefe im Spielbaum. */
-    int limit;
+    private int limit;
 	
 	public static final int WEAK=2;
 	public static final int MEDIUM=3;
