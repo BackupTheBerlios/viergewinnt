@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: p_herk $
- * @version $Revision: 1.8 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.9 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -149,12 +149,35 @@ public class TextUI implements View {
 
     //
     //////////////////////////////////////////////////////////////////////
-
     public static void main(String[] args) throws IOException {
-        Game model = new Game(Token.RED); // FIXME: Rot fängt immer an
-        View redView = new TextUI(model);
-        Player redPlayer = new HumanPlayer(redView, model, Token.RED);
-        Player yellowPlayer = new AIPlayer(AIPlayer.MEDIUM, model, Token.YELLOW);
+		Token[] availableTokens = new Token[2];
+        availableTokens[0] = Token.RED;
+		availableTokens[1] = Token.YELLOW;
+
+		Game model = new Game(availableTokens[0]);
+		View redView = new TextUI(model); // was soll den das?
+
+		NewGameDialog dialog = new NewGameDialog();
+        GameConfiguration config = dialog.getGameConfiguration();
+
+		int playerId;
+
+		for(int i=0; i < 2; i++) {
+			if(i==0) {
+				playerId = config.getFirstPlayer();
+            } else {
+				playerId = config.getSecondPlayer();
+            }
+
+	        if(playerId == GameConfiguration.HUMANPLAYER) { //zyklus!!! argh
+				Player humanPlayer = new HumanPlayer(redView, model, availableTokens[i]);
+			} else if(playerId == GameConfiguration.AIPLAYER) {
+				Player aiPlayer = new AIPlayer(AIPlayer.MEDIUM, model, availableTokens[i]);
+            } else {
+				System.exit(1);
+            }
+        }
+
         // XXX Mangels Nebenläufigkeit kann View erst jetzt gestartet werden
         TextUI tui = (TextUI)redView;
         tui.run();
