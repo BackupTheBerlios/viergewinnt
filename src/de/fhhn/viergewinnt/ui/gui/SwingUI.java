@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.*;
+import de.fhhn.viergewinnt.game.*;
 
 public class SwingUI extends JFrame implements MouseListener {
 	
@@ -36,11 +38,22 @@ public class SwingUI extends JFrame implements MouseListener {
 	private JLabel[][] playfieldToken = new JLabel[ROWS][COLS];
 	
 	private JLabel messageLabel = new JLabel();
+
+	/** Hier werden die MoveListener verwaltet. */
+    private EventListenerList listenerList;
+
+    /** Ein Move-Event. */
+    private Move move = null;
+
+    /** Farbe des Spielers. */
+    private Token playerColor;
 	
 	SwingUI() {
 		super();
 		initGUI();
 		setVisible(true);
+        listenerList = new EventListenerList();
+        playerColor = Token.RED; // FIXME
 	}
 	
 	public void initGUI() {
@@ -147,7 +160,8 @@ public class SwingUI extends JFrame implements MouseListener {
 					
 					
 					messageLabel.setText("Klick @ col. " + j);
-					
+                    Move m = new Move(playerColor, j);
+
 					
 					jumpout = true;
 				}
@@ -168,4 +182,36 @@ public class SwingUI extends JFrame implements MouseListener {
 	public static void main(String[] args) {
 		new SwingUI();
 	}
+
+	/**Fügt einen MoveListener hinzu. */
+    public void addMoveListener(MoveListener listener) {
+		listenerList.add(MoveListener.class, listener);
+    }
+
+    /** Entfernt einen Move-Listener. */
+    public void removeMoveListener(MoveListener listener) {
+        listenerList.remove(MoveListener.class, listener);
+    }
+
+	// Notify all listeners that have registered interest for
+    // notification on this event type.  The event instance
+    // is lazily created using the parameters passed into
+    // the fire method.
+
+    /** FIXME: Funktioniert das? Besser ChangeEvent? */
+	 protected void fireMoveTokenMoved(int column) {
+    	 // Guaranteed to return a non-null array
+	     Object[] listeners = listenerList.getListenerList();
+    	 // Process the listeners last to first, notifying
+	     // those that are interested in this event
+	     for (int i = listeners.length-2; i>=0; i-=2) {
+    	     if (listeners[i] == MoveListener.class) {
+        	     // Lazily create the event:
+            	 if (move == null)
+                	 //move = new Move(this);
+                	 move = new Move(playerColor, column);
+	             ((MoveListener)listeners[i+1]).tokenMoved();
+    	     }
+	     }
+ 	}
 }
