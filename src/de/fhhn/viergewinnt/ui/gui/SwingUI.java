@@ -15,9 +15,9 @@ import de.fhhn.viergewinnt.game.*;
 import de.fhhn.viergewinnt.ui.*;
 
 /**
- * View für die grapfische Benutzerschnittstelle.
+ * View für die graphische Benutzerschnittstelle.
  * @author $Author: manuel $
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since LCA
  */
 public class SwingUI extends JFrame implements MouseListener, View {
