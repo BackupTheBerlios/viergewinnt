@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -63,6 +63,7 @@ public class AIPlayer extends Player implements View {
         MoveEvent bestMove = maxRated.getState().getLastMoveEvent();
         int col = bestMove.getColumn();
         MoveEvent m = new MoveEvent(this, col);
+        m.setRow(bestMove.getRow());
         m.setToken(color);
 
 		// den berechneten Spielzug an das Spiel übergeben. Falls er akzeptiert
