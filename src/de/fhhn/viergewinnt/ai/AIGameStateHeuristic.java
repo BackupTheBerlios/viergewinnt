@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
  * Die Bewetung der einzellen Stellungen
  *
  * @author $Author: kathrin $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class AIGameStateHeuristic {
     // speicher der verwendeten leeren Tokens, gewinnen kann man nur einmal
@@ -281,7 +281,7 @@ public class AIGameStateHeuristic {
 			localValues[1] = 0;
 			localValues[2] = 0;
 
-			for(int j=0; j < 3; j++) {	// vierer Tupel betrachten: scanline, aber
+			for(int j=0; j < 4; j++) {	// vierer Tupel betrachten: scanline, aber
                 						// nicht vergessen Startpunkt ist schon
                 						// dabei
 				position[0] = startPoints[i][0] + j; // Y
