@@ -7,8 +7,8 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
- * @author $Author: manuel $
- * @version $Revision: 1.17 $
+ * @author $Author: malte $
+ * @version $Revision: 1.18 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -112,12 +112,13 @@ public class AIGameState extends GameState {
 			} else if (state.getWhoseTurn() == Token.YELLOW) {
 				newWhoseTurn = Token.RED;
 			} else {
-				// assert false
+				throw new RuntimeException(); // assert false
 			}
 			// neue Marke setzen
 			succ[row][cols] = newWhoseTurn;
             MoveEvent move = new MoveEvent(state, cols);
             move.setRow(row);
+            move.setToken(newWhoseTurn);
             AIGameState succState = new AIGameState(newWhoseTurn, succ, move);
             //succState.setLastMoveEvent(move);
 			successors.add(succState);
