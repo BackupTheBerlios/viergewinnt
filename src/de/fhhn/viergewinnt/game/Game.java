@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: kathrin $
- * @version $Revision: 1.47 $
+ * @version $Revision: 1.48 $
  * @since LCA
  * @stereotype Model
  */
@@ -39,7 +39,7 @@ public class Game extends Observable {
 	 * Der Gewinner des Spiels. Solange noch niemand gewonnen hat, ist der
 	 * Wert Token.Empty.
 	 */
-	private String lastMessage="";
+	private String lastMessage= new String();
 
     /**
      * Konstruktor.
@@ -49,6 +49,7 @@ public class Game extends Observable {
         whoseTurn = beginner;
 		state = new GameState(whoseTurn);
 		board = state.getBoard();
+        setMessage("Spiel gestartet. Spieler "+ beginner + " beginnt!");
     }
 
 	/**
@@ -65,10 +66,10 @@ public class Game extends Observable {
 		 * MoveEvent mit Token.RED, und anschließend gleich ein zweites mit
 		 * Token.YELLOW übergibt, hat er das Spiel sabotiert.
 		 */
-        System.out.println("------\nGame.accept(): move=" + m);
+        //System.out.println("------\nGame.accept(): move=" + m);
 
         if (isValid(m)) { // MoveEvent gültig?
-            System.out.println("Game.accept(): move ist gültig");
+            //System.out.println("Game.accept(): move ist gültig");
             // XXX der andere Spieler ist dran:
             if (whoseTurn == Token.RED) {
                 whoseTurn = Token.YELLOW;
@@ -80,7 +81,13 @@ public class Game extends Observable {
             makeMove(m); // Zug ins interne Spielbrett eintragen
             winner = state.checkWinner(); // prüfen, ob ein Spieler gewonnen hat
 
-            System.out.println("Game.accept():" + whoseTurn + " ist dran");
+			if(winner != Token.EMPTY) {
+				setMessage("Spieler "+ winner + " hat gewonnen!");
+            } else {
+				setMessage(whoseTurn + " ist dran");
+            }
+
+            //System.out.println("Game.accept():" + whoseTurn + " ist dran");
 
             // Observer benachrichtigen
 	        setChanged();
@@ -116,6 +123,7 @@ public class Game extends Observable {
             valid = true;
         } else {
             valid = false;
+            setMessage("Wurf ist ungültig. Die Spalte ist voll!");
             System.out.println("Game.isValid(): falsche Spalte -> ungültiger Move");
         }
         // richtige Spielstein-Farbe?
@@ -123,6 +131,7 @@ public class Game extends Observable {
             valid = true;
         } else  if (valid) { // nur wenn der Zug nicht bereits ungültig ist
             valid = false;
+            setMessage("Wurf ist ungültig. Spieler ist nicht dran!");
             System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
         }
 		
@@ -192,6 +201,11 @@ public class Game extends Observable {
     public Token getWinner() {
         return winner;
     }
+
+	private void setMessage(String message) {
+		lastMessage = message;
+    }
+
 	/**
 	 * Returns the lastMessage.
 	 * @return String
@@ -199,5 +213,4 @@ public class Game extends Observable {
 	public String getLastMessage() {
 		return lastMessage;
 	}
-
 }
