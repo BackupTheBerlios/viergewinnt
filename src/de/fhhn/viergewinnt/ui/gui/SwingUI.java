@@ -12,8 +12,8 @@ import de.fhhn.viergewinnt.ui.*;
  * Die grafische Benutzeroberfläche für VierGewinnt.
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
- * @author $Author: manuel $
- * @version $Revision: 1.33 $
+ * @author $Author: malte $
+ * @version $Revision: 1.34 $
  */
 public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
 	
@@ -135,7 +135,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 		 * allgemeine Fenstereigenschaften festlegen
 		 */
 		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-		setBounds(new java.awt.Rectangle(0, 0, 402, 437));
+		setBounds(new java.awt.Rectangle(0, 0, 402, 450));
 		setBackground(new java.awt.Color(255, 255, 255));
 		setResizable(false);
 		setTitle("Vier Gewinnt");

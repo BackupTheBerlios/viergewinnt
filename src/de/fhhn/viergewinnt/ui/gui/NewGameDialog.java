@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Der Dialog zum Anlegen eines neuen Spiels.
  * 
- * @author $Author: p_herk $
- * @version $Revision: 1.8 $
+ * @author $Author: malte $
+ * @version $Revision: 1.9 $
  */
 public class NewGameDialog extends JDialog implements ActionListener {
 	
@@ -95,7 +95,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		/*
 		 * allgemeine Fenstereigenschaften festlegen
 		 */
-		setBounds(new java.awt.Rectangle(0, 0, 485, 168));
+		setBounds(new java.awt.Rectangle(0, 0, 485, 200));
 		setModal(true);
 		setTitle("Neues Spiel");
 		setResizable(false);
@@ -138,7 +138,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		redPlayerTypeSelector.addItem(SPIELER);
 		redPlayerTypeSelector.addItem(KI);
-		redPlayerTypeSelector.addItem(NETZ);
+		//redPlayerTypeSelector.addItem(NETZ);
 		redPlayerTypeSelector.addActionListener(this);
 		redPlayerTypeSelector.setActionCommand(SELECTEDREDPLAYER);
 		redPlayerTypeSelector.setSelectedItem(SPIELER);
@@ -176,7 +176,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		yellowPlayerTypeSelector.addItem(SPIELER);
 		yellowPlayerTypeSelector.addItem(KI);
-		yellowPlayerTypeSelector.addItem(NETZ);
+		//yellowPlayerTypeSelector.addItem(NETZ);
 		yellowPlayerTypeSelector.addActionListener(this);
 		yellowPlayerTypeSelector.setActionCommand(SELECTYELLOWPLAYER);
 		yellowPlayerTypeSelector.setSelectedItem(KI);
