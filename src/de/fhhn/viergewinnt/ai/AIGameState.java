@@ -8,12 +8,12 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: p_herk $
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
 public class AIGameState extends GameState {
-    private boolean[][] emptyTokenBoard; //XXX
+    private static boolean[][] emptyTokenBoard; //XXX
     
     
     /**
@@ -38,7 +38,7 @@ public class AIGameState extends GameState {
      * Kopierkonstruktor.
      */
     public AIGameState(AIGameState state) {
-        super(state.whoseTurn);
+        super(state.getWhoseTurn());
         if (lastMoveEvent != null) {
 	        lastMoveEvent = new MoveEvent(state.lastMoveEvent);
         }
@@ -72,14 +72,14 @@ public class AIGameState extends GameState {
 			return;
 		} else if (limit == 0) {
 			// heuristische Stellungsbewertung
-			int rating = state.ratePosition();
+			int rating = ratePosition(state);
 			node.setRating(rating);
 			return;
 		}
 
 		// für die Min-Max-Bewertung
         int b;
-        if (state.whoseTurn == Token.RED) {
+        if (state.getWhoseTurn() == Token.RED) {
             b = Integer.MIN_VALUE; // FIXME oder -1?
         } else {
             b = Integer.MAX_VALUE; // FIXME oder 1?
@@ -107,7 +107,7 @@ public class AIGameState extends GameState {
 			expand(succNode, list, limit - 1); // Rekursion!
 
 			// Min-Max-Bewertung
-            if (state.whoseTurn == Token.RED) {
+            if (state.getWhoseTurn() == Token.RED) {
                 b = Math.max(b, succNode.getRating());
             } else {
                 b = Math.min(b, succNode.getRating());
@@ -154,7 +154,8 @@ public class AIGameState extends GameState {
      * Heuristische Stellungsbewertung der aktuellen Zustandes.
      * @return rating Bewertung
      */
-	private int ratePosition() { //FIXME: bin nochnicht fertig!!!
+	private static int ratePosition(GameState state) { //FIXME: bin nochnicht fertig!!!
+		Token[][] board = state.getBoard();
 		emptyTokenBoard = new boolean[6][7];
 		
 		int[] finalRating = new int[2];
@@ -163,7 +164,7 @@ public class AIGameState extends GameState {
 		int[] leftDiagRating = new int[2];
 		int[] rightDiagRating = new int[2];
 		
-		rowRating = rateRows();
+		rowRating = rateRows(state);
 		//rateCols();
 		//rateLeftDiags();
 		//rateRightDiags();
@@ -194,14 +195,15 @@ public class AIGameState extends GameState {
 
 
 
-		if (whoseTurn == Token.RED) {
+		if (state.getWhoseTurn() == Token.RED) {
 			return finalRating[0] - finalRating[1];
         } else {
             return finalRating[1] - finalRating[0];
         }
 	}
 	
-	private int[] rateRows() {
+	private static int[] rateRows(GameState state) {
+        Token[][] board = state.getBoard();
 		int[] rating = new int[2];
 		int[] emptyTokenPos = new int[2]; //XXX
 		
@@ -241,21 +243,6 @@ public class AIGameState extends GameState {
 
 		return rating;	
 	}
-
-
-
-    /**
-     * @return true wenn in der obersten Spielbrettzeile kein Platz mehr ist
-     */
-	private boolean boardIsFull() {
-		// oberste Reihe voll?
-		for (int i = 0; i < board[Game.ROWS - 1].length; i++) {
-			if (board[Game.ROWS - 1][i] == Token.EMPTY) {
-				return false;
-			}
-		}
-		return true;
-	}
 	
 	/**
      * Berechnet die Nachfolgerzustände dieses Zustands.
@@ -284,9 +271,9 @@ public class AIGameState extends GameState {
 
 			// in den Nachfolgerzuständen ist der andere Spieler dran.
             Token newWhoseTurn = Token.EMPTY;
-			if (state.whoseTurn == Token.RED) {
+			if (state.getWhoseTurn() == Token.RED) {
 				newWhoseTurn = Token.YELLOW;
-			} else if (state.whoseTurn == Token.YELLOW) {
+			} else if (state.getWhoseTurn() == Token.YELLOW) {
 				newWhoseTurn = Token.RED;
 			} else {
 				// assert false
@@ -325,13 +312,5 @@ public class AIGameState extends GameState {
 		}
 		String s = sb.toString(); // XXX Umwandlung in String nötig?
 		return s.hashCode();
-	}
-
-    /** Nur zum Ausprobieren. */
-	public static void main(String[] args) {
-		GraphNode root = new GraphNode(new AIGameState(Token.RED), null);
-		GraphNodeList list = new GraphNodeList();
-		root.getState().expand(root, list, 4);
-		System.out.println((root.getSuccessorAmount() +  1) + " Knoten");
 	}
 }

@@ -6,13 +6,13 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: p_herk $
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  * @since IOC
  */
 public class GameState {
     protected MoveEvent lastMoveEvent;
 
-	protected Token whoseTurn = Token.EMPTY;
+	private Token whoseTurn = Token.EMPTY;
 
 	/** Zustand des Spielfelds. */
 	protected Token[][] board = new Token[Game.ROWS][Game.COLS];
@@ -246,6 +246,22 @@ public class GameState {
         }
     }
 
+    /**
+     * @return true wenn in der obersten Spielbrettzeile kein Platz mehr ist
+     */
+	protected boolean boardIsFull() { // XXX Warum  protected und nicht private?
+		// oberste Reihe voll?
+		for (int i = 0; i < board[Game.ROWS - 1].length; i++) {
+			if (board[Game.ROWS - 1][i] == Token.EMPTY) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+    public Token getWhoseTurn() {
+        return whoseTurn;
+    }
     /*
     public void setLastMoveEvent(MoveEvent lastMoveEvent) {
         this.lastMoveEvent = lastMoveEvent;
