@@ -45,7 +45,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
     private Token playerColor;
 
     /** Das Model. */
-    Game game;
+    private Game game;
 
     SwingUI(Game game) {
         super();
@@ -222,7 +222,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
                     //move = new Move(this);
                     move = new Move(playerColor, column);
                 }
-                ((MoveListener)listeners[i + 1]).tokenMoved(move);
+                ((MoveListener) listeners[i + 1]).tokenMoved(move);
             }
         }
     }
