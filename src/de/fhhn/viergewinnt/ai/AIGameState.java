@@ -5,20 +5,36 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
- * Berechnung der Nachfolgerzustände".
- * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * Berechnung der Nachfolgerzustände". erweitert
+ * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
+ * @author $Author: kathrin $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
 class AIGameState extends GameState {
+    /**
+     * Erzeugt einen neuen Anfangs-Spielzustand.
+     * @param whoseTurn der Spieler, der das Spiel beginnt
+     */
 	public AIGameState(Token whoseTurn) {
 		super(whoseTurn);
 	}
 
+    /**
+     * Erzeugt einen Spielzustand.
+     * @param whoseTurn der Spieler, der gerade am Zug ist
+     * @param board Zustand des Spielbretts
+     */
 	public AIGameState(Token whoseTurn, Token[][] board) {
 		super(whoseTurn, board);
 	}
 
+	/**
+     * Baut einen Spielgraphen auf.
+     * @param node Wurzel des Spielgraphen
+     * @param list Container für bereits erzeugte Knoten
+     * @param limit Suchtiefe (beeinflusst die Spielstärke)
+     */
 	public static void expand(GraphNode node, GraphNodeList list, int limit) {
 		// Abbruchbedingung
 		AIGameState state = node.getState();
@@ -40,7 +56,7 @@ class AIGameState extends GameState {
 		while (it.hasNext()) {
 			// Für alle Nachfolgerzustände von state
 			AIGameState succState = (AIGameState) it.next();
-			if (list.contains(succState)) {
+			if (list.contains(succState)) { // schon berechnet?
 				GraphNode succNode = list.getNode(succState);
 				node.addSuccessor(succNode);
 				continue;
@@ -52,6 +68,11 @@ class AIGameState extends GameState {
 		}
 	}
 
+    /**
+     * überprüft, ob der Knoten einen Endzustand enthält
+     * @return true wenn der Knoten einen Endzustand enthält
+     * @param node Knoten dessen Zustand überprüft werden soll
+     */
 	private boolean isFinalState(GraphNode node) {
 		GraphNode parent = node.getParent();
 
@@ -83,9 +104,16 @@ class AIGameState extends GameState {
 		}
 	}
 
+    /**
+     * Heuristische Stellungsbewertung der aktuellen Zustandes.
+     * @return rating[0] = Bewertung für rot, rating[1] = Bewertung für gelb
+     */
 	private int[] ratePosition() {
-		int[] rating = new int[2]; // rating[0] = red, rating[1] = yellow
-		
+		int[] rating = new int[2];
+
+        // sehr primitive Stellungsbewertung die nur überprüft, ob in einer
+        // Spalte 3 Tokens der selben Farbe übereinander liegen, und die
+        // Position darüber noch frei ist.
 		for (int i = 0; i < board.length - 4; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				if ((board[i][j] == board[i+1][j]) 
@@ -102,6 +130,9 @@ class AIGameState extends GameState {
 		return rating;
 	}
 
+    /**
+     * @return true wenn in der obersten Spielbrettzeile kein Platz mehr ist
+     */
 	private boolean boardIsFull() {
 		// oberste Reihe voll?
 		for (int i = 0; i < board[Game.ROWS - 1].length; i++) {
@@ -112,7 +143,10 @@ class AIGameState extends GameState {
 		return true;
 	}
 	
-	/** Berechnet die Nachfolgerzustände dieses Zustands. */
+	/**
+     * Berechnet die Nachfolgerzustände dieses Zustands.
+     * @return Liste der Nachfolger
+     */
 	private ArrayList calculateSuccessors() {
 		
 		// alle Nachfolger-Zustände bauen
@@ -134,7 +168,8 @@ class AIGameState extends GameState {
 			for (int k = 0; k < board.length; k++) {
 				System.arraycopy(board[k], 0, succ[k], 0, board[k].length);
 			}
-				
+
+			// in den Nachfolgerzuständen ist der andere Spieler dran.
 			if (whoseTurn == Token.RED) {
 				whoseTurn = Token.YELLOW;
 			} else if (whoseTurn == Token.YELLOW) {
