@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: kathrin $
- * @version $Revision: 1.38 $
+ * @author $Author: malte $
+ * @version $Revision: 1.39 $
  * @since LCA
  * @stereotype Model
  */
@@ -56,10 +56,11 @@ public class Game extends Observable {
 	/**
 	 * Verarbeitet den Spielzug eines Spielers. Wenn der Spielzug ungültig ist
 	 * (z.B. weil der enstpsrechende Spieler gerade nicht dran ist), wird er 
-	 * ignoriert.
+	 * ignoriert und.
 	 * @param m Spielzug mit Token des ziehenden Spielers.
+     * @returns false, wenn der Zug ungültig ist und ignoriert wird
 	 */
-    public void accept(MoveEvent m) {
+    public boolean accept(MoveEvent m) {
 		/*
 		 * XXX Wie können wir verhindern, dass ein Spieler für den _anderen_
 		 * einen Zug macht? Wenn beispielsweise der rote Spieler erst ein 
@@ -92,9 +93,10 @@ public class Game extends Observable {
     	    notifyObservers();
 
             System.out.println("Game.accept():" + whoseTurn + " ist dran");
+            return true;
         } else {
             System.out.println("Game.accept(): move ist ungültig!");
-            //Zug ungültig -> Fehler
+            return false;
         }
     }
 

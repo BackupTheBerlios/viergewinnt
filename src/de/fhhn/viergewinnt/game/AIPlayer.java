@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: kathrin $
- * @version $Revision: 1.10 $
+ * @author $Author: malte $
+ * @version $Revision: 1.11 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -64,11 +64,19 @@ public class AIPlayer extends Player implements View {
         int col = bestMove.getColumn();
         MoveEvent m = new MoveEvent(this, col);
         m.setToken(color);
-        gameModel.accept(m);
-        executeMove(m);
+
+		// den berechneten Spielzug an das Spiel übergeben. Falls er akzeptiert
+        // wird, diesen Zug im intern nachvollziehen
+        boolean isMoveEventValid = gameModel.accept(m);
+        if (isMoveEventValid) {
+	        executeMove(m);
+        }
     }
 
     private void executeMove(MoveEvent m) {
+        if (m.getRow() == -1) { // ungültiger Move?
+            throw new IllegalArgumentException("Move ungültig (row==-1)!");
+        }
         // richtigen Nachfolgernoten suchen
         ArrayList successors = root.getSuccessors();
         ListIterator iter = successors.listIterator();
