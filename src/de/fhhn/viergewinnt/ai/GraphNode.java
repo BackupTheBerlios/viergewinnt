@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: p_herk $
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  * @since IOC
  */
 public class GraphNode {
@@ -154,7 +154,7 @@ public class GraphNode {
 			rating = evalMax(workNode, limit-1, alpha, betaMin);
 			betaMin = Math.min(betaMin, rating);
 			if (betaMin <= alpha) {
-				System.err.println("pruned tree in evalMin");
+				//System.err.println("pruned tree in evalMin");
 				break;
 			}
 		}
@@ -196,7 +196,7 @@ public class GraphNode {
 			rating = evalMin(workNode, limit-1, alphaMax, beta);
 			alphaMax = Math.max(alphaMax, rating);
 			if (alphaMax >= beta) {
-				System.err.println("pruned tree in evalMax");
+				//System.err.println("pruned tree in evalMax");
 				break;
 			}
 		}
