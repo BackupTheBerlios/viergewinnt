@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: manuel $
- * @version $Revision: 1.26 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.27 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -47,7 +47,9 @@ public class AIPlayer extends Player implements View {
         if (gameModel.getWhoseTurn() == color) { // KI ist dran
             //  den letzten Zug des Spielers im Spielbaum nachvollziehen
 	        MoveEvent playerMove = gameModel.getLastMoveEvent();
-            executeMove(playerMove);
+			if (playerMove != null) {
+            	executeMove(playerMove);
+			}
 
             if (!AIGameState.isFinalState(root)) {// XXX wenn Spiel noch nicht zuende
 	   	        MoveEvent m = calculateMove();
