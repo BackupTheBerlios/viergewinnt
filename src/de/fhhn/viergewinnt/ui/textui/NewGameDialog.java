@@ -5,17 +5,36 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * Neuer Spiel Dialog
- * @author $Author: kathrin $
- * @version $Revision: 1.2 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
 
  public class NewGameDialog {
 	private GameConfiguration config;
-
-	public NewGameDialog() {
-		newDialog();
-    }
+	
+	public NewGameDialog(String[] args) {
+		config = new GameConfiguration();
+		IO.write("Neues Spiel beginnen:");
+		IO.write("\n---------------------");
+		
+		String selection = new String("magick");
+		
+		while(!selection.equals("") && !selection.equals("y") && !selection.equals("n")) {
+			try {
+				selection = IO.promptAndRead("\nOptionen bearbeiten (y/N)? ");
+				selection.toLowerCase();
+			} catch (Exception e) {}
+		}
+		
+		if(selection.equals("y")) {
+			askUser();
+		} else {
+			config.setFirstPlayer(GameConfiguration.HUMANPLAYER);
+			config.setSecondPlayer(GameConfiguration.AIPLAYER);
+			config.setStrength(GameConfiguration.AIMEDIUM);
+		}
+	}
 
 	private String arrayToString(String[] array, int selected) {
 		String arrayString = new String("\n");
@@ -29,23 +48,17 @@ import de.fhhn.viergewinnt.game.*;
         return arrayString;
     }
 
-	private void newDialog() {
-        /**
-         * schön prozedual und häßlich ;) daher XXX und nohmal XXX
-         */
+	private void askUser() {
+		askForPlayers();
+		askForStrength();
+	}
+	
+	private void askForPlayers() {
 		String[] players = new String[3];
-        String[] kiStrength = new String[3];
 
         players[0] = "Spieler";
 		players[1] = "KI";
 		players[2] = "Netz";
-
-		kiStrength[0] = "Schwach";
-		kiStrength[1] = "Mittel";
-		kiStrength[2] = "Stark";
-
-		IO.write("Neues Spiel beginnen:");
-		IO.write("\n---------------------");
 
 		int firstPlayer = -1;
 		int secondPlayer = -1;
@@ -80,6 +93,16 @@ import de.fhhn.viergewinnt.game.*;
             System.exit(1);
         }
 
+		config.setFirstPlayer(firstPlayer);
+		config.setSecondPlayer(secondPlayer);
+	}
+
+	private void askForStrength() {
+		String[] kiStrength = new String[3];
+		
+		kiStrength[0] = "Schwach";
+		kiStrength[1] = "Mittel";
+		kiStrength[2] = "Stark";
 
         int strength = -1;
 		while(strength < 0 || strength >= kiStrength.length) {
@@ -90,13 +113,10 @@ import de.fhhn.viergewinnt.game.*;
 				// neuer Durchlauf
             }
         }
-
-		config = new GameConfiguration();
-		config.setFirstPlayer(firstPlayer);
-		config.setSecondPlayer(secondPlayer);
-        config.setStrength(strength);
+		
+		config.setStrength(strength);
 	}
-
+	
     public GameConfiguration getGameConfiguration() {
 		return config;
     }
