@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -29,6 +29,19 @@ public class AIGameState extends GameState {
 	public AIGameState(Token whoseTurn, Token[][] board) {
 		super(whoseTurn, board);
 	}
+    /**
+     * Kopierkonstruktor.
+     */
+    public AIGameState(AIGameState state) {
+        super(state.whoseTurn);
+        if (lastMoveEvent != null) {
+	        lastMoveEvent = new MoveEvent(state.lastMoveEvent);
+        }
+		for (int i = 0; i < state.board.length; i++) {
+			System.arraycopy(state.board[i], 0, this.board[i], 0,
+                             state.board[i].length);
+		}
+    }
 
 	/**
      * Baut einen Spielgraphen auf.
@@ -112,6 +125,7 @@ public class AIGameState extends GameState {
          * ermittelt werden, da checkWinner den benötigt.
          */
 		if (parent != null) { // XXX lastMoveEvent benutzen!
+            /*
 			AIGameState parentState = parent.getState();
 			int row = 0;
 			int col = 0;
@@ -120,11 +134,15 @@ public class AIGameState extends GameState {
 				for (int j = 0; j < board[i].length; j++) {
 					if (board[i][j] != parent.getState().board[i][j]) {
 						row = i;
+                        System.out.println("row = " + row);
 						col = j;
+                        System.out.println("col = " + col);
 					}
 				}
 			}
-
+			*/
+            int row = lastMoveEvent.getRow();
+            int col = lastMoveEvent.getColumn();
 			if (node.getState().checkWinner(row, col) == Token.RED || node.getState().checkWinner(row, col) == Token.YELLOW) {
 				return true;
 			}

@@ -6,7 +6,7 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: kathrin $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @since IOC
  */
 public class GraphNode {
@@ -27,6 +27,24 @@ public class GraphNode {
 		this.state = state; // XXX Annahme: state unveränderbar
 		successors = new ArrayList();
 	}
+
+    /**
+     * Kopierkonstruktor.
+     * @param node Ein Knoten, darf nicht null sein
+     */
+    public GraphNode(GraphNode node) {
+        if (node == null) {
+            throw new IllegalArgumentException("node darf nicht null sein!");
+        }
+        if (this.parent != null) {
+	        this.parent = new GraphNode(node.parent);
+        }
+        this.state = new AIGameState(node.state);
+        if (successors != null) {
+	        this.successors = new ArrayList(successors);
+        }
+        this.rating = node.rating;
+    }
 
 	/**
      * Fügt dem Knoten einen Nachfolger hinzu.
@@ -49,7 +67,6 @@ public class GraphNode {
      * @param rating Bewertung
      */
 	public void setRating(int rating) {
-        // XXX Wertebereich prüfen
 		this.rating = rating;
 	}
 
@@ -58,7 +75,7 @@ public class GraphNode {
      * @return Bewertung
      */
 	public int getRating() {
-		return rating; // XXX Kopie zurück
+		return rating;
 	}
 
 	/**
@@ -66,7 +83,15 @@ public class GraphNode {
 	 * @return den Elternknoten, bzw. null, wenn das der Wurzelknoten ist
 	 */
 	public GraphNode getParent() {
-		return parent; // XXX Kopie zurückgeben
+        if (parent != null) {
+            //try {
+				return new GraphNode(parent); // Kopie zurückgeben
+            //} catch (IllegalArgumentException e) {
+            //    return null; // XXX Elternknoten ist der erste, deswegen die
+            //}                // Exception. Nicht schön, funktioniert aber
+        } else {
+            return null;
+        }
 	}
 
 	/**

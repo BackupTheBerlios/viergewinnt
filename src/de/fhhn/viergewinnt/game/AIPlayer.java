@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: kathrin $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -48,7 +48,7 @@ public class AIPlayer extends Player implements View {
     }
 
     private void calculateMove() {
-        root.getState().expand(root, list, 4);
+        root.getState().expand(root, list, 1);
         // Nachfolger mit höchster Bewertung suchen.
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();
