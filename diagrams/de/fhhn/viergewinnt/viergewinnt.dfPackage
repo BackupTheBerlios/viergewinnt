@@ -1,0 +1,78 @@
+package id3ekatd94e1i0xd94gtuo5;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id627kd95fvn02d95fxxuq.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn.viergewinnt.ai:oiref> 
+*/
+class reference1 {
+}/**
+@__ref <oiref:design#Class#id4541jd95p4kb6d95ruicg.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn.viergewinnt.net:oiref> 
+*/
+class reference8 {
+}/**
+@__ref <oiref:design#Class#id254jfd98czun1d98edle2.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn.viergewinnt.game:oiref> 
+*/
+class reference9 {
+}/**
+@__ref <oiref:design#Class#idgvz6d98czun1d98eg7r2.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn.viergewinnt.ui:oiref> 
+*/
+class reference {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.aiProxy:oiref><oihard>
+@__modelType reference 
+*/
+class reference17 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id627kd95fvn02d95fxxuq.diagram:oiref>=380,270,53,61,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#spielerMachtZug#(##)#:oiref>=462,268,194,13,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Move#confirm#(##)#:oiref>=-228,415,98,13,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Player:oiref>=230,330,83,79,1:oigroup>
+<oigroup:<oiref:design#Class#id254jfd98czun1d98edle2.diagram:oiref>=150,10,63,127,1:oigroup>
+<oigroup:<oiref:design#Class#idgvz6d98czun1d98eg7r2.diagram.link:oiref>=63,46,150,46:oigroup>
+<oigroup:<oiref:design#Class#id627kd95fvn02d95fxxuq.diagram.link20:oiref>=223,286,380,286:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref>=-30,200,127,79,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.aiProxy:oiref>=140,210,83,92,1:oigroup>
+<oigroup:<oiref:design#Class#id4541jd95p4kb6d95ruicg.diagram:oiref>=380,190,53,52,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Token:oiref>=250,550,113,108,1:oigroup>
+<oigroup:<oiref:design#Class#id254jfd98czun1d98edle2.diagram.link:oiref>=181,137,181,210:oigroup>
+<oigroup:BeanProperty#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#getOwner#(##)#:oiref>=268,631,91,13,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Board:oiref>=-70,550,130,79,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref>=460,190,200,105,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Token#$$constructor$$#(#de.fhhn.viergewinnt.game.Player#)#:oiref>=268,602,91,13,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#naechstenZugBerechnen#(##)#:oiref>=462,255,194,13,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#neueKI#(#int#)#:oiref>=462,242,194,13,1:oigroup>
+<oigroup:<oiref:design#Class#id4541jd95p4kb6d95ruicg.diagram.link:oiref>=223,220,380,220:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Hole#addToken#(#de.fhhn.viergewinnt.game.Token#)#:oiref>=92,602,111,13,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Move#$$constructor$$#(#de.fhhn.viergewinnt.game.Player#de.fhhn.viergewinnt.game.Hole#)#:oiref>=-228,402,98,13,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Hole:oiref>=90,550,117,79,1:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Board#insertToken#(#int#de.fhhn.viergewinnt.game.Player#)#:oiref>=-68,602,124,13,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#owner:oiref>=281,550,281,409:oigroup>
+<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Game#validate#(#de.fhhn.viergewinnt.game.Move#)#:oiref>=-28,252,121,13,1:oigroup>
+<oigroup:<oiref:design#Class#id7auwd95p4kb6d95ru0ui.diagram:oiref>=150,150,53,52,1:oigroup>
+<oigroup:<oiref:design#Class#idgvz6d98czun1d98eg7r2.diagram:oiref>=10,10,53,72,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Move:oiref>=-230,350,104,92,1:oigroup>
+*/
+class __positions {
+}

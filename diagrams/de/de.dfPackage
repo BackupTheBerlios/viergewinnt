@@ -1,0 +1,28 @@
+package id1apwld94e1i0xd94gte7d;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#idokh4d94e1i0xd94gtkb7.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn:oiref> 
+*/
+class reference {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#idokh4d94e1i0xd94gtkb7.diagram:oiref>=10,10,98,72,1:oigroup> 
+*/
+class __positions {
+}
