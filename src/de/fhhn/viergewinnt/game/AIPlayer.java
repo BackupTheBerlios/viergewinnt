@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -79,13 +79,7 @@ public class AIPlayer extends Player implements View {
                 maxRated = current;
             }
         }
-        MoveEvent bestMove = maxRated.getState().getLastMoveEvent();
-        int col = bestMove.getColumn();
-        MoveEvent m = new MoveEvent(this, col);
-        m.setRow(bestMove.getRow());
-        m.setToken(color);
-
-        return m;
+        return maxRated.getState().getLastMoveEvent();
     }
 
     private void executeMove(MoveEvent m) {
