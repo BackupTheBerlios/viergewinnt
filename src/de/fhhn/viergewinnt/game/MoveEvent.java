@@ -5,7 +5,7 @@ import java.util.EventObject;
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
  * @author $Author: kathrin $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  * @since LCA
  */
 public class MoveEvent extends EventObject {
@@ -41,11 +41,11 @@ public class MoveEvent extends EventObject {
         return "MoveEvent[token=" + token + ", column=" + column + "]";
     }
 
-    private int getRow() {
+    public int getRow() {
         return row;
     }
 
-    private void setRow(int row) {
+    public void setRow(int row) {
         this.row = row;
     }
 }
