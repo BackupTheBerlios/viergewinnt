@@ -7,8 +7,8 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
- * @author $Author: malte $
- * @version $Revision: 1.20 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.21 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -89,39 +89,42 @@ public class AIGameState extends GameState {
 		for (int cols = 0; cols < state.board[0].length; cols++) {
 			// Zeile suchen, in der noch Platz frei ist
 			int row = -1;
-			do {
+			boolean full = false;
+
+            do {
 				row++;
-			} while (!(state.board[row][cols] == Token.EMPTY) && (row < Game.ROWS));
+                if(row == Game.ROWS) {
+					full = true;
+				}
+            } while(!full && !(state.board[row][cols] == Token.EMPTY));
 
-			if (row == Game.ROWS - 1) { // Spalte voll?
-				continue;
+            if(!full) {
+				// (zweidimensionales Array kopieren)
+				Token[][] succ = new Token[Game.ROWS][Game.COLS];
+				for (int k = 0; k < state.board.length; k++) {
+					System.arraycopy(state.board[k], 0, succ[k], 0, state.board[k].length);
+				}
+	
+				// Marke setzen
+				succ[row][cols] = state.getWhoseTurn();
+				MoveEvent move = new MoveEvent(state, cols);
+				move.setRow(row);
+				move.setToken(state.getWhoseTurn());
+	
+				// im Nachfolgerzustand ist der andere Spieler dran.
+				Token newWhoseTurn = Token.EMPTY;
+				if (state.getWhoseTurn() == Token.RED) {
+					newWhoseTurn = Token.YELLOW;
+				} else if (state.getWhoseTurn() == Token.YELLOW) {
+					newWhoseTurn = Token.RED;
+				} else {
+					throw new RuntimeException(); // assert false
+				}
+	
+				AIGameState succState = new AIGameState(newWhoseTurn, succ, move);
+				//succState.setLastMoveEvent(move);
+				successors.add(succState);
 			}
-			
-			// (zweidimensionales Array kopieren)
-			Token[][] succ = new Token[Game.ROWS][Game.COLS];
-			for (int k = 0; k < state.board.length; k++) {
-				System.arraycopy(state.board[k], 0, succ[k], 0, state.board[k].length);
-			}
-
-			// Marke setzen
-			succ[row][cols] = state.getWhoseTurn();
-            MoveEvent move = new MoveEvent(state, cols);
-            move.setRow(row);
-            move.setToken(state.getWhoseTurn());
-
-			// im Nachfolgerzustand ist der andere Spieler dran.
-            Token newWhoseTurn = Token.EMPTY;
-			if (state.getWhoseTurn() == Token.RED) {
-				newWhoseTurn = Token.YELLOW;
-			} else if (state.getWhoseTurn() == Token.YELLOW) {
-				newWhoseTurn = Token.RED;
-			} else {
-				throw new RuntimeException(); // assert false
-			}
-
-            AIGameState succState = new AIGameState(newWhoseTurn, succ, move);
-            //succState.setLastMoveEvent(move);
-			successors.add(succState);
 		}
 		
 		return successors;
