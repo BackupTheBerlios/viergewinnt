@@ -4,13 +4,14 @@ import java.util.EventObject;
 
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
- * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.3 $
  * @since LCA
  */
 public class MoveEvent extends EventObject {
     private Token token;
     private int column;
+    private int row;
 
     /**
      * XXX Nachdem ein MoveEvent von der View erzeugt wurde, muss der Controller
@@ -35,7 +36,16 @@ public class MoveEvent extends EventObject {
         return column;
     }
 
+
     public String toString() {
         return "MoveEvent[token=" + token + ", column=" + column + "]";
+    }
+
+    private int getRow() {
+        return row;
+    }
+
+    private void setRow(int row) {
+        this.row = row;
     }
 }

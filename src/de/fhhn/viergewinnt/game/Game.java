@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: malte $
- * @version $Revision: 1.15 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.16 $
  * @since LCA
  * @stereotype Model
  */
@@ -17,7 +17,7 @@ public class Game extends Observable {
     private static final int ROWS = 6;
     private static final int COLS = 7;
     private Token whoseTurn;
-    private MoveEvent lastMove;
+    private MoveEvent lastMoveEvent;
 
     /** Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der Zählung von unten. */
     private Token[] [] board;
@@ -32,6 +32,7 @@ public class Game extends Observable {
         }
     }
 
+
     private void save(MoveEvent m) {
         int column = m.getColumn();
         Token token = m.getToken();
@@ -40,17 +41,18 @@ public class Game extends Observable {
         }
         board[row] [column] = token;
         // Move is valid and will be saved
-        lastMove = m;
+        m.setRow(row);
+        lastMoveEvent = m;
     }
 
 	/* This method will be called from the observers
 	 *
      */
 
-    public MoveEvent getLastMove() {
+    public MoveEvent getLastMoveEvent() {
         // we need this for remote and ai player
         // not checking
-        return lastMove; // do we need to clone() ?;
+        return lastMoveEvent; // do we need to clone() ?;
     }
 
 
@@ -74,6 +76,8 @@ public class Game extends Observable {
         }
         return valid;
     }
+
+
 
     private Token checkWinner() {
         // Zeilen prüfen
@@ -108,8 +112,9 @@ public class Game extends Observable {
                 }
             }
         }
-        // Diagonale prüfen
-        for (int i = 0, j = 0; (i < COLS) && (j < ROWS); i++, j++) { }
+        // Diagonale prüfen links unten nach rechts o
+
+
         return Token.EMPTY;
     }
 
