@@ -6,14 +6,16 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since IOC
  */
 class GraphNode {
-	private GameState state;
+	GraphNode parent;
+	private AIGameState state;
 	private ArrayList successors;
 
-	public GraphNode(GameState state) {
+	public GraphNode(AIGameState state, GraphNode parent) {
+		this.parent = parent;
 		this.state = state; // XXX Annahme: state unveränderbar
 		successors = new ArrayList();
 	}
@@ -25,11 +27,27 @@ class GraphNode {
 	public ArrayList getSuccessors() {
 		return new ArrayList(successors);
 	}
+
+	/**
+	 * @return den Elternknoten, bzw. null, wenn das der Wurzelknoten ist
+	 */
+	public GraphNode getParent() {
+		return parent; // XXX Kopie zurückgeben
+	}
 	
-	public GameState getState() {
+	public AIGameState getState() {
 		return state; // XXX Annahme: state unveränderbar
 	}
-
+	
+	public int getSuccessorAmount() {
+		int amount = successors.size();
+		ListIterator iter = successors.listIterator();
+		while (iter.hasNext()) {
+			GraphNode succ = (GraphNode) iter.next();
+			amount += succ.getSuccessorAmount();
+		}
+		return amount;
+	}
 
 	/** Wird für's Hashen benötigt. */
 	public boolean equals(Object other) {

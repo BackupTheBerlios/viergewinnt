@@ -6,7 +6,7 @@ import java.util.*;
  * Container für bereits erzeugte Knoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since IOC
  */
 class GraphNodeList {
@@ -28,12 +28,12 @@ class GraphNodeList {
 	/** 
 	 * Gibt true zurück, wenn der Zustand aState im Container enthalten ist.
 	 */
-	public boolean contains(GameState aState) {
+	public boolean contains(AIGameState aState) {
 		return nodeList.containsKey(new Integer(aState.hashCode()));
 	}
 	
 	/** Gibt den Knoten zurückt, der den Zustand aState enthält. */
-	public GraphNode getNode(GameState aState) {
+	public GraphNode getNode(AIGameState aState) {
 		return (GraphNode) nodeList.get(new Integer(aState.hashCode()));
 	}
 	

@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
 public class GameState {
@@ -36,10 +36,10 @@ public class GameState {
     public Token checkWinner(int lastMoveRow, int lastMoveCol) {
         // Diagonale prüfen links unten nach rechts oben
         int row = lastMoveRow;
-        System.out.println("checkWinner(): row=" + row);
+        //System.out.println("checkWinner(): row=" + row);
         int col = lastMoveCol;
 
-        System.out.println("checkWinner(): col=" + col);
+        //System.out.println("checkWinner(): col=" + col);
         Token token = whoseTurn;
 
         int counterHorizontal = 1;
@@ -58,7 +58,7 @@ public class GameState {
         while (col < Game.COLS - 1) {
             col++;
 			if (token == board[row][col]) {
-                System.out.println("Game.checkWinner(): horizontales gleiches Token gefunden: " + board[row][col]);
+                //System.out.println("Game.checkWinner(): horizontales gleiches Token gefunden: " + board[row][col]);
 				counterHorizontal += 1;
             }
         }
@@ -136,13 +136,15 @@ public class GameState {
 				break; // s.o.
             }
         }
+		/*
 		System.out.println("counterRupLdown=" + counterRupLdown);
 		System.out.println("counterLupRdown=" + counterLupRdown);
 		System.out.println("counterVertical=" + counterVertical);
 		System.out.println("counterHorizontal=" + counterHorizontal);
+		*/
         if ((counterRupLdown >= 4) || (counterLupRdown >= 4)
             	|| (counterVertical >= 4) || (counterHorizontal >= 4)) {
-            System.out.println(token + " hat gewonnen!");
+            //System.out.println(token + " hat gewonnen!");
 			return token;
         } else {
 			return Token.EMPTY;
