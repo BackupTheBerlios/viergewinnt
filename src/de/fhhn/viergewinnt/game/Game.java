@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.44 $
+ * @version $Revision: 1.45 $
  * @since LCA
  * @stereotype Model
  */
@@ -121,7 +121,7 @@ public class Game extends Observable {
         // richtige Spielstein-Farbe?
         if (valid && (whoseTurn == m.getToken())) {
             valid = true;
-        } else  if (valid != false) { // wenn der Zug nicht bereits ungültig ist
+        } else  if (valid) { // nur wenn der Zug nicht bereits ungültig ist
             valid = false;
             System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
         }
@@ -129,7 +129,7 @@ public class Game extends Observable {
 		// gibt es schon einen Gewinner?
 		if (valid && (!(winner == Token.RED)) && (!(winner == Token.YELLOW))) {
 			valid = true;
-		} else if (valid != false) { // wenn der Zug nicht bereits ungültig ist
+		} else if (valid) { // nur wenn der Zug nicht bereits ungültig ist
 			valid = false;
 			System.out.println("Game.isValid(): es gibt schon einen Gewinner " +
                                "(" + winner + ") -> ungültiger Move");
