@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Neuer Spiel Dialog
  * @author $Author: malte $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since IOC
  */
 
@@ -90,9 +90,9 @@ import de.fhhn.viergewinnt.game.*;
 		}
 
         if(firstPlayer == 2 || secondPlayer == 2) {
-			IO.write("Fehler: Netzcode noch nicht vollständig implementiert. Beende mich jetzt!");
-            //System.exit(1);
-            throw new RuntimeException();
+			IO.write("Netzcode noch nicht implementiert. Spiel wird beendet.\n");
+            System.exit(1);
+            //throw new RuntimeException();
         }
 
 		config.setFirstPlayer(firstPlayer);
