@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: kathrin $
- * @version $Revision: 1.29 $
+ * @author $Author: malte $
+ * @version $Revision: 1.30 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -48,6 +48,7 @@ public class AIPlayer extends Player implements View {
             //  den letzten Zug des Spielers im Spielbaum nachvollziehen
 	        MoveEvent playerMove = gameModel.getLastMoveEvent();
 			if (playerMove != null) {
+                //System.out.println("AIPlayer.update(): Spielerzug wird nachvollzogen: " + playerMove);
             	executeMove(playerMove);
 			}
 
@@ -58,6 +59,7 @@ public class AIPlayer extends Player implements View {
         		boolean isMoveEventValid = gameModel.accept(m);
 		        if (isMoveEventValid) {
 	    		    executeMove(m);
+	                //System.out.println("AIPlayer.update(): KI-zug wird nachvollzogen: " + m);
 		        }
             } else {
              //   System.out.println("AIPlayer.update(): Spiel zuende");
@@ -68,6 +70,7 @@ public class AIPlayer extends Player implements View {
     }
 
     private MoveEvent calculateMove() {
+        root.deleteSuccessors(); // XXX Ergebnisse wegschmeiﬂen
         GraphNode.expand(root, list, limit);
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();

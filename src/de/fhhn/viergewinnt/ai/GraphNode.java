@@ -1,13 +1,13 @@
 package de.fhhn.viergewinnt.ai;
 
 import java.util.*;
-import de.fhhn.viergewinnt.game.Token;
+import de.fhhn.viergewinnt.game.*;
 
 /** 
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
- * @author $Author: manuel $
- * @version $Revision: 1.23 $
+ * @author $Author: malte $
+ * @version $Revision: 1.24 $
  * @since IOC
  */
 public class GraphNode {
@@ -84,44 +84,31 @@ public class GraphNode {
 			// Für alle Nachfolgerzustände von nodeState
 			AIGameState succState = (AIGameState) it.next();
 			GraphNode succNode = null;
-			if (list.contains(succState)) { // schon berechnet?
-				//System.out.println(
-				//	"GraphNode.expand(): Nachfolger schon berechnet!");
-				succNode = list.getNode(succState);
-				if (!node.successors.contains(succNode)) {
-				//	System.out.println(
-				//		"GraphNode.expand(): Nachfolger noch nicht verbunden");
-					node.addSuccessor(succNode);
-				} else {
-				//	System.out.println(
-				//		"GraphNode.expand(): Nachfolger schon verbunden");
-				}
-				//continue;
-			} else {
-				// neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
-				// als Vorgänger
-				succNode = new GraphNode(succState, node);
-				node.addSuccessor(succNode);
-				list.add(succNode);
-			}
+
+			// neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
+			// als Vorgänger
+			succNode = new GraphNode(succState, node);
+			node.addSuccessor(succNode);
+			list.add(succNode);
+
 			expand(succNode, list, limit - 1); // Rekursion!
+
+			//	Min-Max-Bewertung
+			if (nodeState.getWhoseTurn() == Token.RED) {
+				  b = Math.max(b, succNode.getRating());
+				//	b = evalMax(node, limit, Integer.MIN_VALUE, Integer.MAX_VALUE);
+			} else {
+				b = Math.min(b, succNode.getRating());
+				//	b = evalMin(node, limit, Integer.MIN_VALUE, Integer.MAX_VALUE);
+			}	
+			
+			node.setRating(b);
 		}
 		
-//		Min-Max-Bewertung
-		if (nodeState.getWhoseTurn() == Token.RED) {
-			 // b = Math.max(b, succNode.getRating());
-			b = evalMax(node, limit, Integer.MIN_VALUE, Integer.MAX_VALUE);
-		} else {
-			//b = Math.min(b, succNode.getRating());
-			b = evalMin(node, limit, Integer.MIN_VALUE, Integer.MAX_VALUE);
-		}	
-		
-		node.setRating(b);
 		//
 		///////////////////////////////////////////////////////////////////////
 
 	}
-
 	private static int evalMin(
 		GraphNode node,
 		int limit,
@@ -316,4 +303,20 @@ public class GraphNode {
 		// Hash-Wert hängt von state ab
 		return state.hashCode();
 	}
+
+	public void deleteSuccessors() {
+        successors = new ArrayList();
+    }
+
+    /** Nur zum testen. */
+    public static void main(String[] args) {
+        GraphNode root = new GraphNode(new AIGameState(Token.RED), null); // FIXME: RED fängt immer an
+        GraphNodeList list = new GraphNodeList();
+        int limit = de.fhhn.viergewinnt.game.AIPlayer.MEDIUM;
+        // Wurzel initialisieren
+        GraphNode.expand(root, list, limit);
+		root.deleteSuccessors();
+        GraphNode.expand(root, list, limit);
+        System.out.println("Alles wird gut.");
+    }
 }

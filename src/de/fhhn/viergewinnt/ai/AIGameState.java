@@ -7,8 +7,8 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
- * @author $Author: kathrin $
- * @version $Revision: 1.22 $
+ * @author $Author: malte $
+ * @version $Revision: 1.23 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -89,15 +89,31 @@ public class AIGameState extends GameState {
 		// für jede Spalte
 		for (int cols = 0; cols < state.board[0].length; cols++) {
 			// Zeile suchen, in der noch Platz frei ist
+
+/*            int row = 0;
+            boolean full = true;
+            //System.out.println("" + state.board.length);
+            for (row = 0; row < state.board.length; row++) {
+                //System.out.println(row);
+                if (state.board[row][cols] == Token.EMPTY) {
+					full = false;
+                }
+            }
+*/
 			int row = -1;
 			boolean full = false;
 
             do {
 				row++;
-                if(row == Game.ROWS) {
+                if (row == Game.ROWS) {
 					full = true;
 				}
-            } while(!full && !(state.board[row][cols] == Token.EMPTY));
+            } while (!full && !(state.board[row][cols] == Token.EMPTY));
+
+            if (state.board[Game.ROWS - 1][cols] != Token.EMPTY) {
+                //System.out.println("AIGameState.calculateSuccessors(): Spalte " + (cols + 1) + " voll");
+                full = true;
+            }
 
             if(!full) {
 				// (zweidimensionales Array kopieren)
@@ -135,7 +151,8 @@ public class AIGameState extends GameState {
 	public boolean equals(Object other) {
 		if (other != null && getClass() == other.getClass()) {
 			AIGameState otherAIGameState = (AIGameState) other;
-			return (other.hashCode() == hashCode()); // XXX Legal?
+			return (other.hashCode() == hashCode() &&
+                    otherAIGameState.lastMoveEvent.equals(lastMoveEvent)); // XXX Legal?
 		} else {
 			return false;
 		}

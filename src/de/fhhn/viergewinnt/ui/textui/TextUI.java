@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: kathrin $
- * @version $Revision: 1.12 $
+ * @author $Author: malte $
+ * @version $Revision: 1.13 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -190,7 +190,8 @@ public class TextUI implements View {
                         playerColor = Token.RED;
                     }
 				} else {
-					System.exit(1);
+                    throw new RuntimeException();
+					//System.exit(1);
 				}
 			}
 	
