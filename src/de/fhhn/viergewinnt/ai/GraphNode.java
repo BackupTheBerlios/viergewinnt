@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.game.Token;
 /** 
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
- * @author $Author: p_herk $
- * @version $Revision: 1.22 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.23 $
  * @since IOC
  */
 public class GraphNode {
@@ -85,16 +85,16 @@ public class GraphNode {
 			AIGameState succState = (AIGameState) it.next();
 			GraphNode succNode = null;
 			if (list.contains(succState)) { // schon berechnet?
-				System.out.println(
-					"GraphNode.expand(): Nachfolger schon berechnet!");
+				//System.out.println(
+				//	"GraphNode.expand(): Nachfolger schon berechnet!");
 				succNode = list.getNode(succState);
 				if (!node.successors.contains(succNode)) {
-					System.out.println(
-						"GraphNode.expand(): Nachfolger noch nicht verbunden");
+				//	System.out.println(
+				//		"GraphNode.expand(): Nachfolger noch nicht verbunden");
 					node.addSuccessor(succNode);
 				} else {
-					System.out.println(
-						"GraphNode.expand(): Nachfolger schon verbunden");
+				//	System.out.println(
+				//		"GraphNode.expand(): Nachfolger schon verbunden");
 				}
 				//continue;
 			} else {

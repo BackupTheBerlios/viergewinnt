@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: malte $
- * @version $Revision: 1.25 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.26 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -58,10 +58,10 @@ public class AIPlayer extends Player implements View {
 	    		    executeMove(m);
 		        }
             } else {
-                System.out.println("AIPlayer.update(): Spiel zuende");
+             //   System.out.println("AIPlayer.update(): Spiel zuende");
             }
         } else {
-            System.out.println("AIPlayer.update(): KI nicht dran");
+           // System.out.println("AIPlayer.update(): KI nicht dran");
         }
     }
 
@@ -88,7 +88,7 @@ public class AIPlayer extends Player implements View {
      * ihn als neuen root.
      * */
     private void executeMove(MoveEvent m) {
-        System.out.println("\tAIPlayer.executeMove(): m=" + m);
+        //System.out.println("\tAIPlayer.executeMove(): m=" + m);
         if (m.getRow() == -1) { // ungültiger Move?
             throw new IllegalArgumentException("Move ungültig (row==-1)!");
         }
@@ -105,19 +105,19 @@ public class AIPlayer extends Player implements View {
         ListIterator iter = successors.listIterator();
 
         while (iter.hasNext()) {
-            System.out.println("\tAIPlayer.executeMove(): suche passenden Nachfolgerknoten...");
+            //System.out.println("\tAIPlayer.executeMove(): suche passenden Nachfolgerknoten...");
             GraphNode succ = (GraphNode) iter.next();
             AIGameState state = succ.getState();
 
 			if (state.equals(successorsState)) {
-				System.out.println("\tAIPlayer.executeMove(): passender Nachfolger gefunden");
+				//System.out.println("\tAIPlayer.executeMove(): passender Nachfolger gefunden");
                 root = succ;
                 foundSuccessor = true;
                 break;
             }
         }
         if (!foundSuccessor) {
-			System.out.println("\tAIPlayer.executeMove(): kein passender Nachfolger gefunden -> Fehler!");
+			System.err.println("\tAIPlayer.executeMove(): kein passender Nachfolger gefunden -> Fehler!");
 			throw new RuntimeException(); // besser assert false
         }
     }

@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.ui.View;
 /**
  * Controller für einen menschlichen Spieler.
  * 
- * @author $Author: malte $
- * @version $Revision: 1.5 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.6 $
  * @since LCA
  * @stereotype Controller
  */
@@ -22,7 +22,7 @@ public class HumanPlayer extends Player implements MoveEventListener {
 
     public void tokenMoved(MoveEvent m) {
         m.setToken(color); // dem Token die richtige Farbe geben
-        System.out.println("HumanPlayer.tokenMoved(): move=" + m);
+        //System.out.println("HumanPlayer.tokenMoved(): move=" + m);
         gameModel.accept(m);
     }
 }

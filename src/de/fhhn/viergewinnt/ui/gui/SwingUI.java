@@ -12,8 +12,8 @@ import de.fhhn.viergewinnt.ui.*;
  * Die grafische Benutzeroberfläche für VierGewinnt.
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
- * @author $Author: kathrin $
- * @version $Revision: 1.32 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.33 $
  */
 public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
 	
@@ -469,7 +469,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 	 * :TODO:	echte Nachricht des Spiels ausgeben
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println("SwingUI.update(): " + o + " sagt " + arg);
+		//System.out.println("SwingUI.update(): " + o + " sagt " + arg);
 		// Spielbrett komplett neu zeichnen:
 		drawPlayfield();
 		if (!((Game) o).getWinner().equals(Token.EMPTY)) {
@@ -507,7 +507,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 	 */
 	protected void fireMoveEventTokenMoved(int column) {
 		MoveEvent move = null;
-		System.out.println("SwingUI.fireMoveEventTokenMoved(): column=" + column);
+		//System.out.println("SwingUI.fireMoveEventTokenMoved(): column=" + column);
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
 		// Process the listeners last to first, notifying

@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: kathrin $
- * @version $Revision: 1.48 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.49 $
  * @since LCA
  * @stereotype Model
  */
@@ -95,7 +95,7 @@ public class Game extends Observable {
 
             return true;
         } else {
-            System.out.println("Game.accept(): move ist ungültig!");
+            //System.out.println("Game.accept(): move ist ungültig!");
             return false;
         }
     }
@@ -124,7 +124,7 @@ public class Game extends Observable {
         } else {
             valid = false;
             setMessage("Wurf ist ungültig. Die Spalte ist voll!");
-            System.out.println("Game.isValid(): falsche Spalte -> ungültiger Move");
+            //System.out.println("Game.isValid(): falsche Spalte -> ungültiger Move");
         }
         // richtige Spielstein-Farbe?
         if (valid && (whoseTurn == m.getToken())) {
@@ -132,7 +132,7 @@ public class Game extends Observable {
         } else  if (valid) { // nur wenn der Zug nicht bereits ungültig ist
             valid = false;
             setMessage("Wurf ist ungültig. Spieler ist nicht dran!");
-            System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
+            //System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
         }
 		
 		// gibt es schon einen Gewinner?
@@ -140,8 +140,9 @@ public class Game extends Observable {
 			valid = true;
 		} else if (valid) { // nur wenn der Zug nicht bereits ungültig ist
 			valid = false;
-			System.out.println("Game.isValid(): es gibt schon einen Gewinner " +
-                               "(" + winner + ") -> ungültiger Move");
+			setMessage("Es gibt schon einen Gewinner: "+ winner);
+			//System.out.println("Game.isValid(): es gibt schon einen Gewinner " +
+            //                   "(" + winner + ") -> ungültiger Move");
 		}
         return valid;
     }
