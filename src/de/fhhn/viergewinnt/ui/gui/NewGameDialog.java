@@ -8,17 +8,37 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Der Dialog zum Anlegen eines neuen Spiels.
  * 
- * @author		p.herk
- * @version	06.01.2003 / 14:38:30
+ * @author $Author: p_herk $
+ * @version $Revision: 1.8 $
  */
 public class NewGameDialog extends JDialog implements ActionListener {
 	
 	/*
+	 * einige oft verwendete Stringliterale (verhindert vertippen)
+	 */
+	// Spielertypen
+	public static final String SPIELER			= "Spieler";
+	public static final String KI				= "KI";
+	public static final String NETZ				= "Netz";
+	// mögliche Stärken der KI
+	public static final String SCHWACH			= "schwach";
+	public static final String MITTEL			= "mittel";
+	public static final String STARK				= "stark";
+	// ActionCommands für ComboBoxen
+	public static final String SELECTEDREDPLAYER	= "selectedRedPlayer";
+	public static final String SELECTEDREDPLAYERSTRENGTH		= "selectRedPlayerStrength";
+	public static final String SELECTYELLOWPLAYER			= "selectYellowPlayer";
+	public static final String SELECTEDYELLOWPLAYERSTRENGTH	= "selectYellowPlayerStrength";
+	//ActionCommands für Buttons
+	public static final String STARTNEWGAME		= "startNewGame";
+	public static final String CANCELSTARTNEWGAME = "cancelStartNewGame";
+	
+	/*
 	 * GUI Elemente
 	 */
-	// Inhalt des Fensters
+	// Inhalt des Fensters ...
 	private JPanel dialogDesktop = new JPanel();
-	// linke Seite (roter Spieler)
+	// ... linke Seite (roter Spieler) ...
 	private JPanel redDialogPane1 = new JPanel();
 	private JPanel redDialogPane2 = new JPanel();
 	private JPanel redPlayerTypePane = new JPanel();
@@ -28,7 +48,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	private JLabel redPlayerHostLabel = new JLabel();
 	private JTextField redPlayerHostTextField = new JTextField();
 	private JComboBox redPlayerStrengthSelector = new JComboBox();
-	// rechte Seite (gelber Spieler)
+	// ... rechte Seite (gelber Spieler) ...
 	private JPanel yellowDialogPane1 = new JPanel();
 	private JPanel yellowDialogPane2 = new JPanel();
 	private JPanel yellowPlayerTypePane = new JPanel();
@@ -38,22 +58,24 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	private JLabel yellowPlayerHostLabel = new JLabel();
 	private JTextField yellowPlayerHostTextField = new JTextField();
 	private JComboBox yellowPlayerStrengthSelector = new JComboBox();
-	// unterer Teil (Buttons)
+	// ... unterer Teil (Buttons)
 	private JPanel dialogButtonPane = new JPanel();
 	private JButton okButton = new JButton();
 	private JButton cancelButton = new JButton();
 	
 	// zeigt an, ob auch wirklich ein neues Spiel angelegt werden soll,
-	// Wird entsprechend des Klicks auf nen Button gesetzt
+	// Wird entsprechend des Klicks auf 'nen Button gesetzt
 	private boolean isNewGameInitialized = false;
 	
 	/**
 	 * Konstruktor
 	 */
 	NewGameDialog() {
+		
 		super();
 		initGUI();
 		setVisible(true);
+		
 	}
 
 	/**
@@ -114,19 +136,19 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		redPlayerHostTextField.setText("");
 		redPlayerHostTextField.setPreferredSize(new java.awt.Dimension(118, 20));
 		
-		redPlayerTypeSelector.addItem("Spieler");
-		redPlayerTypeSelector.addItem("KI");
-		redPlayerTypeSelector.addItem("Netz");
+		redPlayerTypeSelector.addItem(SPIELER);
+		redPlayerTypeSelector.addItem(KI);
+		redPlayerTypeSelector.addItem(NETZ);
 		redPlayerTypeSelector.addActionListener(this);
-		redPlayerTypeSelector.setActionCommand("selectRedPlayer");
-		redPlayerTypeSelector.setSelectedItem("Spieler");
+		redPlayerTypeSelector.setActionCommand(SELECTEDREDPLAYER);
+		redPlayerTypeSelector.setSelectedItem(SPIELER);
 		
-		redPlayerStrengthSelector.addItem("schwach");
-		redPlayerStrengthSelector.addItem("mittel");
-		redPlayerStrengthSelector.addItem("stark");
+		redPlayerStrengthSelector.addItem(SCHWACH);
+		redPlayerStrengthSelector.addItem(MITTEL);
+		redPlayerStrengthSelector.addItem(STARK);
 		redPlayerStrengthSelector.addActionListener(this);
-		redPlayerStrengthSelector.setActionCommand("selectRedPlayerStrength");
-		redPlayerStrengthSelector.setSelectedItem("mittel");
+		redPlayerStrengthSelector.setActionCommand(SELECTEDREDPLAYERSTRENGTH);
+		redPlayerStrengthSelector.setSelectedItem(MITTEL);
 		
 		/*
 		 * gelbe Seite anlegen
@@ -152,19 +174,19 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		yellowPlayerHostTextField.setText("");
 		yellowPlayerHostTextField.setPreferredSize(new java.awt.Dimension(118, 20));
 		
-		yellowPlayerTypeSelector.addItem("Spieler");
-		yellowPlayerTypeSelector.addItem("KI");
-		yellowPlayerTypeSelector.addItem("Netz");
+		yellowPlayerTypeSelector.addItem(SPIELER);
+		yellowPlayerTypeSelector.addItem(KI);
+		yellowPlayerTypeSelector.addItem(NETZ);
 		yellowPlayerTypeSelector.addActionListener(this);
-		yellowPlayerTypeSelector.setActionCommand("selectYellowPlayer");
-		yellowPlayerTypeSelector.setSelectedItem("KI");
+		yellowPlayerTypeSelector.setActionCommand(SELECTYELLOWPLAYER);
+		yellowPlayerTypeSelector.setSelectedItem(KI);
 		
-		yellowPlayerStrengthSelector.addItem("schwach");
-		yellowPlayerStrengthSelector.addItem("mittel");
-		yellowPlayerStrengthSelector.addItem("stark");
+		yellowPlayerStrengthSelector.addItem(SCHWACH);
+		yellowPlayerStrengthSelector.addItem(MITTEL);
+		yellowPlayerStrengthSelector.addItem(STARK);
 		yellowPlayerStrengthSelector.addActionListener(this);
-		yellowPlayerStrengthSelector.setActionCommand("selectYellowPlayerStrength");
-		yellowPlayerStrengthSelector.setSelectedItem("mittel");
+		yellowPlayerStrengthSelector.setActionCommand(SELECTEDYELLOWPLAYERSTRENGTH);
+		yellowPlayerStrengthSelector.setSelectedItem(MITTEL);
 		
 		/*
 		 * Buttonleiste anlegen
@@ -174,41 +196,44 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		okButton.setText("Ok");
 		okButton.setPreferredSize(new java.awt.Dimension(130, 27));
-		okButton.setActionCommand("startNewGame");
+		okButton.setActionCommand(STARTNEWGAME);
 		okButton.addActionListener(this);
 		
 		cancelButton.setText("Abbrechen");
 		cancelButton.setPreferredSize(new java.awt.Dimension(130, 27));
-		cancelButton.setActionCommand("cancelStartNewGame");
+		cancelButton.setActionCommand(CANCELSTARTNEWGAME);
 		cancelButton.addActionListener(this);
 
 	}
 
 	/**
 	 * Behandelt das Klicken eines Buttons und Änderungen an der Selektion des
-	 * Spielertyps
+	 * "Spielertyp"s und der Stärke der KI
 	 * 
 	 * Existenz dieser Methode wird durch "ActionListener" bedingt.
 	 * 
 	 * @param	e	Event der erzeugt wurde
 	 */
 	public void actionPerformed(ActionEvent e) {
+		
 		String actionCommand = e.getActionCommand();
 		String selectedItem = "";
+		
+		/*
+		 * falls der ActionEvent nicht durch eine Combobox ausgelöst wurde gibt
+		 * es eine ClassCastException -> hier abfangen
+		 */
 		try {
 			selectedItem =
 				(((JComboBox) e.getSource()).getSelectedItem()).toString();
-		} catch (Exception ex) {
-			//
+		} catch (ClassCastException ex) {
+			// this line has been intentionally left blank :)
 		}
 		
-		System.out.println("actionCommand: " + actionCommand);
-		System.out.println("selectedItem: " + selectedItem);
-		
-		// roter Spielertyp wurde verändert
-		if (actionCommand.equalsIgnoreCase("selectRedPlayer")) {
+		// entweder der rote "Spielertyp" wurde verändert ...
+		if (actionCommand.equalsIgnoreCase(SELECTEDREDPLAYER)) {
 
-			if (selectedItem.equalsIgnoreCase("Spieler")) {
+			if (selectedItem.equalsIgnoreCase(SPIELER)) {
 				
 				if (redPlayerHostPane.isAncestorOf(redPlayerHostTextField)) {
 					redPlayerHostLabel.setText("");
@@ -218,7 +243,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 					redPlayerHostPane.remove(redPlayerStrengthSelector);
 				}
 				
-			} else if (selectedItem.equalsIgnoreCase("KI")) {
+			} else if (selectedItem.equalsIgnoreCase(KI)) {
 				
 				if (redPlayerHostPane.isAncestorOf(redPlayerHostTextField)) {
 					redPlayerHostLabel.setText("");
@@ -228,7 +253,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 				redPlayerHostLabel.setText("Stärke");
 				redPlayerHostPane.add(redPlayerStrengthSelector);
 				
-			} else if (selectedItem.equalsIgnoreCase("Netz")) {
+			} else if (selectedItem.equalsIgnoreCase(NETZ)) {
 				
 				if (redPlayerHostPane.isAncestorOf(redPlayerStrengthSelector)) {
 					redPlayerHostLabel.setText("");
@@ -240,10 +265,10 @@ public class NewGameDialog extends JDialog implements ActionListener {
 				
 			}
 
-		// gelber Spielertyp wurde verändert
-		} else if (actionCommand.equalsIgnoreCase("selectYellowPlayer")) {
+		// ... oder der gelbe ...
+		} else if (actionCommand.equalsIgnoreCase(SELECTYELLOWPLAYER)) {
 			
-			if (selectedItem.equalsIgnoreCase("Spieler")) {
+			if (selectedItem.equalsIgnoreCase(SPIELER)) {
 				
 				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerHostTextField)) {
 					yellowPlayerHostLabel.setText("");
@@ -253,7 +278,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 					yellowPlayerHostPane.remove(yellowPlayerStrengthSelector);
 				}
 				
-			} else if (selectedItem.equalsIgnoreCase("KI")) {
+			} else if (selectedItem.equalsIgnoreCase(KI)) {
 				
 				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerHostTextField)) {
 					yellowPlayerHostLabel.setText("");
@@ -263,7 +288,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 				yellowPlayerHostLabel.setText("Stärke");
 				yellowPlayerHostPane.add(yellowPlayerStrengthSelector);
 				
-			} else if (selectedItem.equalsIgnoreCase("Netz")) {
+			} else if (selectedItem.equalsIgnoreCase(NETZ)) {
 				
 				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerStrengthSelector)) {
 					yellowPlayerHostLabel.setText("");
@@ -275,57 +300,63 @@ public class NewGameDialog extends JDialog implements ActionListener {
 				
 			}
 		
-		// OK-Button wurde angeklickt
-		} else if (actionCommand.equalsIgnoreCase("startNewGame")) {
+		// ... oder der OK-Button wurde angeklickt ...
+		} else if (actionCommand.equalsIgnoreCase(STARTNEWGAME)) {
 			startNewGame();
 		
-		// Abbrechen-Button wurde angeklickt
-		} else if (actionCommand.equalsIgnoreCase("cancelStartNewGame")) {
-			cancelStartNewGame();
+		// ... oder der Abbrechen-Button ...
+		} else if (actionCommand.equalsIgnoreCase(CANCELSTARTNEWGAME)) {
+			cancelNewGame();
 		
-		// Stärkeeinstellung des roten KI-Spielers wurde verändert
-		} else if (actionCommand.equalsIgnoreCase("selectRedPlayerStrength")) {
-			//
+		// ... oder die Stärkeeinstellung des roten KI-Spielers wurde verändert ...
+		} else if (actionCommand.equalsIgnoreCase(SELECTEDREDPLAYERSTRENGTH)) {
+			// this line has been intentionally left blank :)
 		
-		// Stärkeeinstellung des gelben KI-Spielers wurde verändert
-		} else if (actionCommand.equalsIgnoreCase("selectYellowPlayerStrength")) {
-			//
+		// ...oder die des gelben KI-Spielers
+		} else if (actionCommand.equalsIgnoreCase(SELECTEDYELLOWPLAYERSTRENGTH)) {
+			// this line has been intentionally left blank :)
 		}
+		
 	}
 	
 	/**
-	 * Kombination der Spielertypen prüfen und wenn ok Dialog beenden, sonst
+	 * Kombination der "Spielertyp"en prüfen und wenn ok Dialog beenden, sonst
 	 * Dialog offen lassen
+	 * 
+	 * :TODO:	evtl. Möglickeit für K-K einbauen (siehe getLocalPlayerColor())
 	 */
 	private void startNewGame() {
-		System.out.println("starting new Game");
+		
 		boolean isKombinationOk = false;
 		
 		String redPlayer = redPlayerTypeSelector.getSelectedItem().toString();
 		String yellowPlayer = yellowPlayerTypeSelector.getSelectedItem().toString();
 		
-		// mögliche Kombis prüfen, sonst Fehler: S-K, K-S, S-N, N-S, K-N, N-K
-		if ((redPlayer.equalsIgnoreCase("Spieler") && yellowPlayer.equalsIgnoreCase("KI")) ||
-				(redPlayer.equalsIgnoreCase("KI") && yellowPlayer.equalsIgnoreCase("Spieler")) ||
-				(redPlayer.equalsIgnoreCase("Spieler") && yellowPlayer.equalsIgnoreCase("Netz")) ||
-				(redPlayer.equalsIgnoreCase("Netz") && yellowPlayer.equalsIgnoreCase("Spieler")) ||
-				(redPlayer.equalsIgnoreCase("KI") && yellowPlayer.equalsIgnoreCase("Netz")) ||
-				(redPlayer.equalsIgnoreCase("Netz") && yellowPlayer.equalsIgnoreCase("KI"))) {
+		// zulässige Spielerkombinationen prüfen: S-K, K-S, S-N, N-S, K-N, N-K
+		if ((redPlayer.equalsIgnoreCase(SPIELER) && yellowPlayer.equalsIgnoreCase(KI)) ||
+				(redPlayer.equalsIgnoreCase(KI) && yellowPlayer.equalsIgnoreCase(SPIELER)) ||
+				(redPlayer.equalsIgnoreCase(SPIELER) && yellowPlayer.equalsIgnoreCase(NETZ)) ||
+				(redPlayer.equalsIgnoreCase(NETZ) && yellowPlayer.equalsIgnoreCase(SPIELER)) ||
+				(redPlayer.equalsIgnoreCase(KI) && yellowPlayer.equalsIgnoreCase(NETZ)) ||
+				(redPlayer.equalsIgnoreCase(NETZ) && yellowPlayer.equalsIgnoreCase(KI))) {
 			isKombinationOk = true;
 		}
 		
+		// wenn Kombination ok ist, dann Flag entsprechend setzen
+		// und den Dialog beenden
 		if (isKombinationOk) {
-			this.dispose();
 			isNewGameInitialized = true;
+			this.dispose();
 		}
 	}
 
 	/**
-	 * "NeuesSpiel"-Dialog abbrechen
+	 * "NeuesSpiel"-Dialog verwerfen
 	 */
-	private void cancelStartNewGame() {
-		System.out.println("exiting dialog");
+	private void cancelNewGame() {
+		
 		this.dispose();
+		
 	}
 
 	/**
@@ -335,33 +366,39 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	 * hofft, dass seine KI gewinnt ;)
 	 * 
 	 * @return	"Farbe" des lokalen Spielers
+	 * 
+	 * :TODO:	evtl. Möglickeit für K-K einbauen (siehe startNewGame())
 	 */
 	public Token getLocalPlayerColor() {
-		if (redPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase("Spieler")) {
+		
+		if (redPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase(SPIELER)) {
 			return Token.RED;
-		} else if (yellowPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase("Spieler")) {
+		} else if (yellowPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase(SPIELER)) {
 			return Token.YELLOW;
-		} else if (redPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase("KI")) {
+		} else if (redPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase(KI)) {
 			return Token.RED;
-		} else if (yellowPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase("KI")) {
+		} else if (yellowPlayerTypeSelector.getSelectedItem().toString().equalsIgnoreCase(KI)) {
 			return Token.YELLOW;
 		} else {
 			return Token.EMPTY;
 		}
+		
 	}
 	
 	/**
 	 * Typ (Human/AI/Remote) des Spielers einer bestimmten Farbe ermitteln
 	 * 
 	 * @param	color	"Farbe" des Spielers dessen Typ ermittelt werden soll
-	 * @return			Typ des Spielers ("Spieler"/"KI"/"Netz")
+	 * @return			Typ des Spielers (SPIELER/KI/NETZ)
 	 */
 	public String getPlayerType(Token color) {
+		
 		if (color == Token.RED) {
 			return redPlayerTypeSelector.getSelectedItem().toString();
 		} else {
 			return yellowPlayerTypeSelector.getSelectedItem().toString();
 		}
+		
 	}
 	
 	/**
@@ -369,24 +406,26 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	 * zur Verfügung
 	 * 
 	 * @param	color	"Farbe" des Spielers dessen Stärke ermittelt werden soll
-	 * @return			Stärke des Spielers ("schwach"/"mittel"/"stark"))
+	 * @return			Stärke des Spielers (SCHWACH/MITTEL/STARK))
 	 */
 	public int getPlayerStrength(Token color) {
+		
 		int strength=AIPlayer.MEDIUM;
 		if (color == Token.RED) {
-			if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("stark")) {
+			if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
 				strength = AIPlayer.STRONG;
-			} else if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("schwach")) {
+			} else if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
 				strength = AIPlayer.WEAK;
 			}
 		} else {
-			if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("stark")) {
+			if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
 				strength = AIPlayer.STRONG;
-			} else if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("schwach")) {
+			} else if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
 				strength = AIPlayer.WEAK;
 			}
 		}
 		return strength;
+		
 	}
 	
 	/**
@@ -399,9 +438,4 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		return isNewGameInitialized;
 	}
 	
-	
-	/** nur zu Testzwecken */
-	public static void main(String[] args) {
-		new NewGameDialog();
-	}
 }
