@@ -11,6 +11,11 @@ import javax.swing.JButton;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author $Author: malte $
+ * @version $Revision: 1.3 $
+ * @since LCA
+ */
 public class NewGameDialog extends JDialog implements ActionListener {
     private JPanel dialogDesktop = new JPanel();
     private JPanel redDialogPane1 = new JPanel();

@@ -14,6 +14,12 @@ import javax.swing.event.*;
 import de.fhhn.viergewinnt.game.*;
 import de.fhhn.viergewinnt.ui.*;
 
+/**
+ * View für die grapfische Benutzerschnittstelle.
+ * @author $Author: malte $
+ * @version $Revision: 1.15 $
+ * @since LCA
+ */
 public class SwingUI extends JFrame implements MouseListener, View {
     static final int ROWS = 6;
     static final int COLS = 7;
