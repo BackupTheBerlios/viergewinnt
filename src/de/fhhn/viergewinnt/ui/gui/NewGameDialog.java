@@ -296,14 +296,23 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	/**
 	 * Kombination der Spielertypen prüfen und wenn ok Dialog beenden, sonst
 	 * Dialog offen lassen
-	 * 
-	 * :TODO:	Kombis prüfen
 	 */
 	private void startNewGame() {
 		System.out.println("starting new Game");
-		boolean isKombinationOk = true;
+		boolean isKombinationOk = false;
+		
+		String redPlayer = redPlayerTypeSelector.getSelectedItem().toString();
+		String yellowPlayer = yellowPlayerTypeSelector.getSelectedItem().toString();
 		
 		// mögliche Kombis prüfen, sonst Fehler: S-K, K-S, S-N, N-S, K-N, N-K
+		if ((redPlayer.equalsIgnoreCase("Spieler") && yellowPlayer.equalsIgnoreCase("KI")) ||
+				(redPlayer.equalsIgnoreCase("KI") && yellowPlayer.equalsIgnoreCase("Spieler")) ||
+				(redPlayer.equalsIgnoreCase("Spieler") && yellowPlayer.equalsIgnoreCase("Netz")) ||
+				(redPlayer.equalsIgnoreCase("Netz") && yellowPlayer.equalsIgnoreCase("Spieler")) ||
+				(redPlayer.equalsIgnoreCase("KI") && yellowPlayer.equalsIgnoreCase("Netz")) ||
+				(redPlayer.equalsIgnoreCase("Netz") && yellowPlayer.equalsIgnoreCase("KI"))) {
+			isKombinationOk = true;
+		}
 		
 		if (isKombinationOk) {
 			this.dispose();
