@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: malte $
- * @version $Revision: 1.12 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.13 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -75,6 +75,7 @@ public class AIPlayer extends Player implements View {
     }
 
     private void executeMove(MoveEvent m) {
+        System.out.println("\tAIPlayer.executeMove(): 1. m=" + m);
         if (m.getRow() == -1) { // ungültiger Move?
             throw new IllegalArgumentException("Move ungültig (row==-1)!");
         }
@@ -84,8 +85,10 @@ public class AIPlayer extends Player implements View {
         while (iter.hasNext()) {
             GraphNode succ = (GraphNode) iter.next();
             GameState state = succ.getState();
-            Token[][] board = state.getBoard();
-            if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
+            //Token[][] board = state.getBoard();
+            //if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
+			if (state.getLastMoveEvent().equals(m)) {
+		        System.out.println("\tAIPlayer.executeMove(): 2. m=" + m);
                 root = succ;
                 break;
             }

@@ -7,8 +7,8 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
- * @author $Author: kathrin $
- * @version $Revision: 1.9 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.10 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -22,13 +22,15 @@ public class AIGameState extends GameState {
 	}
 
     /**
+     * 
      * Erzeugt einen Spielzustand.
      * @param whoseTurn der Spieler, der gerade am Zug ist
      * @param board Zustand des Spielbretts
      */
-	public AIGameState(Token whoseTurn, Token[][] board) {
+	public AIGameState(Token whoseTurn, Token[][] board, MoveEvent last) {
 		super(whoseTurn, board);
 	}
+
     /**
      * Kopierkonstruktor.
      */
@@ -124,23 +126,7 @@ public class AIGameState extends GameState {
          * Hat jemand gewonnen? Um das zu überprüfen, muss der letzte Zug
          * ermittelt werden, da checkWinner den benötigt.
          */
-		if (parent != null) { // XXX lastMoveEvent benutzen!
-            /*
-			AIGameState parentState = parent.getState();
-			int row = 0;
-			int col = 0;
-			
-			for (int i = 0; i < board.length; i++) {
-				for (int j = 0; j < board[i].length; j++) {
-					if (board[i][j] != parent.getState().board[i][j]) {
-						row = i;
-                        System.out.println("row = " + row);
-						col = j;
-                        System.out.println("col = " + col);
-					}
-				}
-			}
-			*/
+		if (parent != null) {
             int row = lastMoveEvent.getRow();
             int col = lastMoveEvent.getColumn();
 			if (node.getState().checkWinner(row, col) == Token.RED || node.getState().checkWinner(row, col) == Token.YELLOW) {
@@ -240,10 +226,10 @@ public class AIGameState extends GameState {
 			}
 			// neue Marke setzen
 			succ[row][cols] = whoseTurn;
-            AIGameState succState = new AIGameState(whoseTurn, succ);
             MoveEvent move = new MoveEvent(this, cols);
             move.setRow(row);
-            succState.setLastMoveEvent(move);
+            AIGameState succState = new AIGameState(whoseTurn, succ, move);
+            //succState.setLastMoveEvent(move);
 			successors.add(succState);
 		}
 		

@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * Zustand des Spielfelds. Immutable.
- * @author $Author: kathrin $
- * @version $Revision: 1.9 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.10 $
  * @since IOC
  */
 public class GameState {
@@ -38,12 +38,22 @@ public class GameState {
     /**
      * Konstruktor für die Spielzustände nach dem ersten Zug.
      */
-	public GameState(Token whoseTurn, Token[][] board) {
+	protected GameState(Token whoseTurn, Token[][] board) {
 		this.whoseTurn = whoseTurn;
 		for (int i = 0; i < board.length; i++) {
 			System.arraycopy(board[i], 0, this.board[i], 0, board[i].length);
 		}
 	}
+
+    /**
+     * Konstruktor für die Spielzustände nach dem ersten Zug.
+     * @param last der Zug, der zu diesem Zustand geführt hat
+     */
+	public GameState(Token whoseTurn, Token[][] board, MoveEvent last) {
+		this(whoseTurn, board);
+    	lastMoveEvent = new MoveEvent(last);
+	}
+
 
 	/** zählt wie viele Steine horizotal aneinanderliegen.
 	* @return Anzahl der Steine die horizontal aneinanderliegen
@@ -228,9 +238,11 @@ public class GameState {
         return new MoveEvent(lastMoveEvent);
     }
 
+    /*
     public void setLastMoveEvent(MoveEvent lastMoveEvent) {
         this.lastMoveEvent = lastMoveEvent;
     }
+    */
 /*
     public boolean isFirstState(){
 		return isFirstState;

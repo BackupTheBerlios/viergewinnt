@@ -5,8 +5,8 @@ import java.util.*;
 /** 
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
- * @author $Author: kathrin $
- * @version $Revision: 1.7 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.8 $
  * @since IOC
  */
 public class GraphNode {
@@ -99,7 +99,7 @@ public class GraphNode {
      * @return Spielzustand
      */
 	public AIGameState getState() {
-		return state; // XXX Annahme: state unveränderbar
+		return new AIGameState(state); //XXX  kopieren nötig?
 	}
 	
 	public int getSuccessorAmount() {
@@ -114,7 +114,6 @@ public class GraphNode {
 
 	/** Wird für's Hashen benötigt. */
 	public boolean equals(Object other) {
-		
 		if (other != null && getClass() == other.getClass()) {
 			GraphNode otherGraphNode = (GraphNode) other;
 			// Identität hängt von state ab
