@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.43 $
+ * @version $Revision: 1.44 $
  * @since LCA
  * @stereotype Model
  */
@@ -78,7 +78,7 @@ public class Game extends Observable {
                 // assert false
             }
             makeMove(m); // Zug ins interne Spielbrett eintragen
-            winner = checkWinner(); // prüfen, ob ein Spieler gewonnen hat
+            winner = state.checkWinner(); // prüfen, ob ein Spieler gewonnen hat
 
             System.out.println("Game.accept():" + whoseTurn + " ist dran");
 
@@ -149,7 +149,7 @@ public class Game extends Observable {
         int column = m.getColumn();
         Token token = m.getToken();
 		
-        // die Zeile berechnen, in die der Spielstein landen soll
+        // die Zeile berechnen, in der der Spielstein landen soll
         int row = 0;
         while (!(board[row][column] == Token.EMPTY)) {
             row++;
@@ -159,18 +159,6 @@ public class Game extends Observable {
         m.setRow(row);
 
 		state = new GameState(whoseTurn, board, m);
-        //state.setLastMoveEvent(m);
-    }
-
-	/**
-	 * Prüft, ob ein Spieler gewonnen hat. XXX Was ist mit unentschieden? Was
-	 * wird da zurückgegeben, wo wird das geprüft?
-	 * @return die Farbe des Spielers, der gewonnen hat, oder Token.EMPTY, wenn
-	 * noch niemand gewonnen hat
-	 */
-    private Token checkWinner() {
-        MoveEvent last = state.getLastMoveEvent();
-        return state.checkWinner(last.getRow(), last.getColumn());
     }
 
     /**

@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  * @since IOC
  */
 public class GraphNode {
@@ -58,9 +58,7 @@ public class GraphNode {
 		AIGameState nodeState = node.getState();
 		if (AIGameState.isFinalState(node)) {
 			// Min-Max-Bewertung
-            int row = nodeState.getLastMoveEvent().getRow();
-            int col = nodeState.getLastMoveEvent().getColumn();
-            Token winner = nodeState.checkWinner(row, col);
+            Token winner = nodeState.checkWinner();
             if (winner == Token.RED) { // FIXME
                 node.setRating(Integer.MAX_VALUE);
             } else if (winner == Token.YELLOW) { // FIXME
