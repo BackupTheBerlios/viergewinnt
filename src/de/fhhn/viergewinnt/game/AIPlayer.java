@@ -6,22 +6,21 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * 
  * @author $Author: kathrin $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since LCA
  * @stereotype View, Controller
  */
 public class AIPlayer extends Player implements View {
-	// Spielbaum
+    /** Der Knoten im Spielbaum, an dem das Spiel gerade ist. */
     private GraphNode root;
     private GraphNodeList list;
-	
+
     public AIPlayer(Game g, Token color) {
         super(g, color);
         g.addObserver(this); // als View registrieren
         root = new GraphNode(new AIGameState(Token.RED), null);
-		list = new GraphNodeList();
+        list = new GraphNodeList();
     }
 
     /** Hier eigentlich überflüssig. */
@@ -33,27 +32,49 @@ public class AIPlayer extends Player implements View {
     }
 
     public void update(Observable observable, Object obj) {
-		if (gameModel.getWhoseTurn() == color) {
-            root.getState().expand(root, list, 4);
+        if (gameModel.getWhoseTurn() == color) { // KI ist dran
+            //  den letzten Zug des Spielers im Spielbaum nachvollziehen
+	        MoveEvent playerMove = gameModel.getLastMoveEvent();
+            executeMove(playerMove);
 
-            // Nachfolger mit höchster Bewertung suchen.
-            ArrayList succNodes = root.getSuccessors();
-            ListIterator iter = succNodes.listIterator();
-			GraphNode maxRated;
-			maxRated = (GraphNode) iter.next();
+            // eigenen Zug machen
+            calculateMove();
+        }
+    }
 
-            while (iter.hasNext()) {
-				GraphNode current = (GraphNode) iter.next();
-                if (maxRated.getRating() < current.getRating()) {
-					maxRated = current;
-                }
+    private void calculateMove() {
+        root.getState().expand(root, list, 4);
+        // Nachfolger mit höchster Bewertung suchen.
+        ArrayList succNodes = root.getSuccessors();
+        ListIterator iter = succNodes.listIterator();
+        GraphNode maxRated;
+        maxRated = (GraphNode)iter.next();
+        while (iter.hasNext()) {
+            GraphNode current = (GraphNode)iter.next();
+            if (maxRated.getRating() < current.getRating()) {
+                maxRated = current;
             }
-            MoveEvent bestMove = maxRated.getState().getLastMoveEvent();
-            int col = bestMove.getColumn();
-			MoveEvent m = new MoveEvent(this, col); 
-    	    m.setToken(color);
-        	gameModel.accept(m);
+        }
+        MoveEvent bestMove = maxRated.getState().getLastMoveEvent();
+        int col = bestMove.getColumn();
+        MoveEvent m = new MoveEvent(this, col);
+        m.setToken(color);
+        gameModel.accept(m);
+        executeMove(m);
+    }
 
+    private void executeMove(MoveEvent m) {
+        // richtigen Nachfolgernoten suchen
+        ArrayList successors = root.getSuccessors();
+        ListIterator iter = successors.listIterator();
+        while (iter.hasNext()) {
+            GraphNode succ = (GraphNode) iter.next();
+            GameState state = succ.getState();
+            Token[][] board = state.getBoard();
+            if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
+                root = succ;
+                break;
+            }
         }
     }
 }

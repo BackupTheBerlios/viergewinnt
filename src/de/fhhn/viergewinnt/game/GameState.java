@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: kathrin $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since IOC
  */
 public class GameState {
@@ -195,12 +195,12 @@ public class GameState {
 		int counterLupRdown = getCounterLupRdown(row, col);
         // Counter für Diagonale rechts oben nach links unten.
 		int counterRupLdown = getCounterRupLdown(row, col);
-
+/*
 		System.out.println("counterRupLdown=" + counterRupLdown);
 		System.out.println("counterLupRdown=" + counterLupRdown);
 		System.out.println("counterVertical=" + counterVertical);
 		System.out.println("counterHorizontal=" + counterHorizontal);
-
+*/
         if ((counterRupLdown >= 4) || (counterLupRdown >= 4)
             	|| (counterVertical >= 4) || (counterHorizontal >= 4)) {
             System.out.println(token + " hat gewonnen!");

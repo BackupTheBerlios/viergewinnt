@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: kathrin $
- * @version $Revision: 1.36 $
+ * @version $Revision: 1.37 $
  * @since LCA
  * @stereotype Model
  */
@@ -181,9 +181,9 @@ public class Game extends Observable {
      *
 	 * Gibt den zuletzt gemachten Spielzug als MoveEvent zurück.
 	 */
-	/*public MoveEvent getLastMoveEvent() {
+	public MoveEvent getLastMoveEvent() {
 		return state.getLastMoveEvent();
-    }*/
+    }
 
 	/**
 	 * Gibt eine Kopie des Spielfelds zurück.
