@@ -7,16 +7,21 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: p_herk $
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  * @since LCA
  * @stereotype View, Controller
  */
 public class AIPlayer extends Player implements View {
+	
+	public static final int WEAK=2;
+	public static final int MEDIUM=3;
+	public static final int STRONG=4;
+	
     /** Der Knoten im Spielbaum, an dem das Spiel gerade ist. */
     private GraphNode root;
     private GraphNodeList list;
 
-    public AIPlayer(Game g, Token color) {
+    public AIPlayer(int strength, Game g, Token color) {
         super(g, color);
         g.addObserver(this); // als View registrieren
         root = new GraphNode(new AIGameState(Token.RED), null);
