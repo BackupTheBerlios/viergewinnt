@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project default="default" name="Test Suite" runConfiguration="Test Suite - No GUI" stop="true">
+  <taskdef classname="com.togethersoft.testing.internal.host.plugin.taskdefs.ReferencedStepRunner" name="refstep">
+  </taskdef>
+  <refid value="test1039693215203_0.04682980927365599_">
+  </refid>
+  <target name="default">
+    <refid value="target_1039693215281_0.0691086283136585">
+    </refid>
+    <refstep exitOnError="true" exitOnFailure="true" iterations="1" referencedStepRefid="test1039693126106_0.5718446532670426_">
+      <refid value="task_1039693246138_0.4651300913557279">
+      </refid>
+    </refstep>
+  </target>
+  <category>
+    <identifier value="project">
+    </identifier>
+    <identifier value="Suite">
+    </identifier>
+  </category>
+</project>

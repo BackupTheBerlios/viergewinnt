@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test_step file="test.de.fhhn.viergewinnt.game.TestGame" launch="true" loader="" name="JUnit step" runConfiguration="JUnit" runDialog="false" stop="false" testedclass="de.fhhn.viergewinnt.game.Game" testfamily="JUnit" testkind="testcase" testsetup="Default TestCase">
+  <refid value="test1039693126106_0.5718446532670426_">
+  </refid>
+  <category>
+    <identifier value="test_step">
+    </identifier>
+    <identifier value="JUnit">
+    </identifier>
+  </category>
+  <userObject name="hyperlink.rwiElement" value="&lt;oiref:java#Class#test.de.fhhn.viergewinnt.game.TestGame:oiref&gt;">
+  </userObject>
+</test_step>
