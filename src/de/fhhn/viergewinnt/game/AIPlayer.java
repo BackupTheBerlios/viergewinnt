@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: p_herk $
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -69,20 +69,24 @@ public class AIPlayer extends Player implements View {
 
     private MoveEvent calculateMove() {
         GraphNode.expand(root, list, limit);
-        // Nachfolger mit niedrigster Bewertung suchen (weil KI Min ist)
-        // FIXME: Wenn KI Max ist, muss der mit der höchsten Bewertung gexucth werden
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();
-        GraphNode maxRated;
-        maxRated = (GraphNode) iter.next();
+        GraphNode lastRated;
+        lastRated = (GraphNode) iter.next();
         while (iter.hasNext()) {
             GraphNode current = (GraphNode) iter.next();
-            // FIXME: wenn KI Max ist, dann "<" statt ">"
-            if (maxRated.getRating() > current.getRating()) {
-                maxRated = current;
+            if (this.color == Token.RED) {
+				if (lastRated.getRating() < current.getRating()) {
+					lastRated = current;
+				}
+            } else {
+				if (lastRated.getRating() > current.getRating()) {
+					lastRated = current;
+				}
             }
+            
         }
-        return maxRated.getState().getLastMoveEvent();
+        return lastRated.getState().getLastMoveEvent();
     }
 
     /**
