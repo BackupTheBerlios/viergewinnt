@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  * @since LCA
  * @stereotype Model
  */
@@ -174,119 +174,8 @@ public class Game extends Observable {
 	 * noch niemand gewonnen hat
 	 */
     private Token checkWinner() {
-        // Diagonale prüfen links unten nach rechts oben
-		MoveEvent last = getLastMoveEvent();
-        int row = last.getRow();
-        System.out.println("checkWinner(): row=" + row);
-        int col = last.getColumn();
-        System.out.println("checkWinner(): col=" + col);
-        Token token = last.getToken();
-
-        int counterHorizontal = 1;
-
-        // Auswertung horizontal linke Hälfte
-        while (col > 0) {
-            col--;
-			if (token == board[row][col]) {
-				counterHorizontal += 1;
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-		// Auswertung horizontal rechte Hälfte
-        while (col < COLS - 1) {
-            col++;
-			if (token == board[row][col]) {
-                System.out.println("Game.checkWinner(): horizontales gleiches Token gefunden: " + board[row][col]);
-				counterHorizontal += 1;
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-        int counterVertical = 1;
-
-		// Auswertung vertikal
-        while (row > 0) {
-            row--;
-			if (token == board[row] [col]) {
-				counterVertical += 1;
-            } else {
-                break;
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-		 // zählt ob vier Tokens von einer Farbe in einer Diagonalen links
-        //oben nach rechts unten liegen.
-		int counterLupRdown = 1;
-
-		// linker oberer Teil der Diagonale von links oben nach rechts unten.
-        while (row < ROWS - 1 && col > 0) {
-            row++;
-            col--;
-			if (token == board[row] [col]) {
-				counterLupRdown += 1;
-            } else {
-				break; //eventuell Variable continue einführen, damit man aus
-                		// for Schleife kommt sobald das if nicht mehr stimmt.
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-		// rechter unterer Teil der Diagonale links oben nach rechts unten.
-        while (row > 0 && col < COLS - 1) {
-            row--;
-            col++;
-			if (token == board[row] [col]) {
-				counterLupRdown += 1;
-            } else {
-				break; //s.o.
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-        // Counter für Diagonale rechts oben nach links unten.
-		int counterRupLdown = 1;
-
-        // rechter oberer Teil der Diagonalen von links unten nach rchts oben.
-		while (row < ROWS - 1 && col < COLS - 1) {
-            row++;
-            col++;
-			if (token == board[row] [col]) {
-				counterRupLdown += 1;
-            } else {
-				break; // s.o.
-            }
-        }
-		row = last.getRow();
-        col = last.getColumn();
-
-        // linker unterer Teil der Diagonalen links unten nach rechts oben.
-        while (row > 0 && col > 0) {
-            row--;
-            col--;
-			if (token == board[row] [col]) {
-				counterRupLdown += 1;
-            } else {
-				break; // s.o.
-            }
-        }
-		System.out.println("counterRupLdown=" + counterRupLdown);
-		System.out.println("counterLupRdown=" + counterLupRdown);
-		System.out.println("counterVertical=" + counterVertical);
-		System.out.println("counterHorizontal=" + counterHorizontal);
-        if ((counterRupLdown >= 4) || (counterLupRdown >= 4)
-            	|| (counterVertical >= 4) || (counterHorizontal >= 4)) {
-            System.out.println(token + " hat gewonnen!");
-			return token;
-        } else {
-			return Token.EMPTY;
-        }
+        MoveEvent last = getLastMoveEvent();
+        return state.checkWinner(last.getRow(), last.getColumn());
     }
 
     /**
