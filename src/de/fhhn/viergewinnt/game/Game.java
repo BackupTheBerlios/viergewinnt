@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  * @since LCA
  * @stereotype Model
  */
@@ -21,6 +21,12 @@ public class Game extends Observable {
 
     /** Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der Zählung von unten. */
     private Token[] [] board;
+
+    /** 
+     * Der Gewinner des Spiels. Solange noch niemand gewonnen hat, ist der
+     * Wert Token.Empty.
+     */
+    private Token winner;
 
     public Game(Token beginner) {
         whoseTurn = beginner;
@@ -219,7 +225,7 @@ public class Game extends Observable {
         if (isValid(m)) {
             System.out.println("Game.accept(): move ist gültig");
             save(m); // Reihenfolge wichtig!
-            checkWinner(); // s.o.
+            winner = checkWinner(); // s.o.
             // XXX der andere ist dran:
             if (whoseTurn == Token.RED) {
                 whoseTurn = Token.YELLOW;
@@ -251,5 +257,10 @@ public class Game extends Observable {
     /** Welcher Spieler ist jetzt am Zug? */
     public Token getWhoseTurn() {
         return whoseTurn;
+    }
+
+    /** Wer hat gewonnen? Gibt Token.EMPTY zurück, wenn noch niemand gewonnen hat. */
+    public Token getWinner() {
+        return winner;
     }
 }
