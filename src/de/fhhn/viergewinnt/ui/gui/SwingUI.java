@@ -197,7 +197,15 @@ public class SwingUI extends JFrame implements MouseListener, View {
         Player yellowPlayer = new AIPlayer(model, Token.YELLOW);
     }
 
-    public void update(Observable o, Object arg) {
+    /**
+     * XXX Bin mir nicht sicher, ob das nötig ist: Component.update(Graphics)
+     * überladen, wegen "konflikt" mit View.update(Observable, Object).
+     */
+	public void update(java.awt.Graphics g) {
+        super.update(g);
+    }
+
+    public void update(Observable o, Object arg) { // XXX Konflikt mit
         // Im Game hat sich etwas geändert -> neu zeichnen!
         System.out.println("SwingUI.update(): " + o + " sagt " + arg);
 
