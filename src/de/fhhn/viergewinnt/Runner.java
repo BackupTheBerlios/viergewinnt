@@ -23,13 +23,13 @@ public class Runner {
 		
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("-t")) {
-				tuiRunner();
+				tuiRunner(args);
 			} else if (args[0].equalsIgnoreCase("-g")) {
 				guiRunner();
 			} else {
 				System.out.println("USAGE: java VierGewinnt.jar [-t|-g]");
-				System.out.println("       /t TextUI");
-				System.out.println("       /g SwingUI (default)");
+				System.out.println("       -t TextUI");
+				System.out.println("       -g SwingUI (default)");
 			}
 		} else {
 			guiRunner();	// Gui als Standard
@@ -52,8 +52,12 @@ public class Runner {
 	 * @author		p.herk
 	 * @version	06.01.2003 / 13:30:55
 	 */
-	private void tuiRunner() {
-		//
+	private void tuiRunner(String[] args) {
+		try {
+      TextUI.main(args);
+    } catch (Exception e) {
+      //nothing
+    }
 	}
 	
 	/**
