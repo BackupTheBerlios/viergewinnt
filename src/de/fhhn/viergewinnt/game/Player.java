@@ -7,7 +7,7 @@ package de.fhhn.viergewinnt.game;
  * update its data and/or the view to change the way it displays the data."
  * Unterklassen als (Action)Listener bei SwingUI bzw. TextUI registrieren.
  * @author $Author: malte $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since LCA
  * @stereotype Controller
  */
@@ -19,7 +19,7 @@ public abstract class Player {
      * Nur um zu verdeutlichen, was die Klasse machen soll:
      * Der Spieler macht einen Zug.
      */
-    private void makeMove(Move m) {
+    private void makeMove(MoveEvent m) {
         game.accept(m);
     }
 }

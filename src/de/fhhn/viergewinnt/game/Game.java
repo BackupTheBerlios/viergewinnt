@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @since LCA
  * @stereotype Model
  */
@@ -34,7 +34,7 @@ public class Game extends Observable {
         }
     }
 
-    private void save(Move m) {
+    private void save(MoveEvent m) {
         int column = m.getColumn();
         Token token = m.getToken();
         int row;
@@ -45,7 +45,7 @@ public class Game extends Observable {
         notifyObservers();
     }
 
-    private boolean isValid(Move m) {
+    private boolean isValid(MoveEvent m) {
         int column = m.getColumn();
         // assert Wertebereich eingehalten (0 < column < 6)
         boolean valid = false;
@@ -102,7 +102,7 @@ public class Game extends Observable {
         return Token.EMPTY;
     }
 
-    public void accept(Move m) {
+    public void accept(MoveEvent m) {
         System.out.println("Game.accept(): move=" + m);
         if (isValid(m)) {
             System.out.println("Game.accept(): move ist gültig");

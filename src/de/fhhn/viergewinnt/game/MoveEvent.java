@@ -5,14 +5,14 @@ import java.util.EventObject;
 /**
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
  * @author $Author: malte $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.1 $
  * @since LCA
  */
-public class Move extends EventObject {
+public class MoveEvent extends EventObject {
     private Token token;
     private int column;
 
-    public Move(Token t, int column) {
+    public MoveEvent(Token t, int column) {
         super(t);
         this.token = t;
         this.column = column;
@@ -28,6 +28,6 @@ public class Move extends EventObject {
     }
 
     public String toString() {
-        return "Move[token=" + token + ", column=" + column + "]";
+        return "MoveEvent[token=" + token + ", column=" + column + "]";
     }
 }
