@@ -67,10 +67,34 @@ public class SwingUI
 	 * Konstruktor
 	 */
 	public SwingUI() {
+		
 		super();
 		listenerList = new EventListenerList();
 		initGUI();
-		startNewGame();
+		
+		/* 
+		 * alternativ zu startNewGame(); wird hier das Spiel
+		 * mit Standardwerten Spieler-KI
+		 * gestartet
+		 */
+		Game model = new Game(Token.RED);
+		setModel(model);
+		model.addObserver(this);
+
+		View actualView = this;
+		
+		Player redPlayer;
+		Player yellowPlayer;
+		
+		playerColor = Token.RED;
+		
+		redPlayer = new HumanPlayer(actualView, model, Token.RED);
+		yellowPlayer = new AIPlayer(model, Token.YELLOW);
+		
+		initPlayfield();
+		this.setVisible(true);
+		// Ende Spiel anlegen
+		
 	}
 
 	/**
@@ -111,6 +135,7 @@ public class SwingUI
 		setResizable(false);
 		setTitle("Vier Gewinnt");
 		setIconImage((new ImageIcon("./img/titleicon.gif")).getImage());
+		setLocationRelativeTo(null);
 		
 		/*
 		 * Menüleiste anlegen
@@ -195,39 +220,42 @@ public class SwingUI
 	 */
 	private void startNewGame() {
 		
-		
-		// neues Spiel, rot beginnt
-		Game model = new Game(Token.RED);
-		setModel(model);
-		model.addObserver(this);
-
-		View actualView = this;
-		
 		NewGameDialog ngd = new NewGameDialog();
 		
-		Player redPlayer;
-		Player yellowPlayer;
+		if (ngd.isNewGameInitialized()) {
+			
+			// neues Spiel, rot beginnt
+			Game model = new Game(Token.RED);
+			setModel(model);
+			model.addObserver(this);
+			View actualView = this;
 		
-		playerColor = ngd.getLocalPlayerColor();
-		
-		if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("Spieler")) {
-			redPlayer = new HumanPlayer(actualView, model, Token.RED);
-			yellowPlayer = new AIPlayer(model, Token.YELLOW);
-		} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
-			yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
-			redPlayer = new AIPlayer(model, Token.RED);
-		} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
-			redPlayer = new AIPlayer(model, Token.RED);
-			yellowPlayer = new AIPlayer(model, Token.YELLOW);
-		} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
-			yellowPlayer = new AIPlayer(model, Token.YELLOW);
-			redPlayer = new AIPlayer(model, Token.RED);
-		} else {
-			// scheiße
+			Player redPlayer;
+			Player yellowPlayer;
+			
+			playerColor = ngd.getLocalPlayerColor();
+			
+			if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("Spieler")) {
+				redPlayer = new HumanPlayer(actualView, model, Token.RED);
+				yellowPlayer = new AIPlayer(model, Token.YELLOW);
+			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
+				yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
+				redPlayer = new AIPlayer(model, Token.RED);
+			} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
+				redPlayer = new AIPlayer(model, Token.RED);
+				yellowPlayer = new AIPlayer(model, Token.YELLOW);
+			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
+				yellowPlayer = new AIPlayer(model, Token.YELLOW);
+				redPlayer = new AIPlayer(model, Token.RED);
+			} else {
+				// scheiße
+			}
+			
+			// GUI fertigmachen
+			initPlayfield();
+			
 		}
 		
-		// GUI fertigmachen
-		initPlayfield();
 		this.setVisible(true);
 
 	}
