@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * Zustand des Spielfelds. Immutable.
- * @author $Author: malte $
- * @version $Revision: 1.3 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.4 $
  * @since IOC
  */
 public class GameState {
@@ -49,7 +49,9 @@ public class GameState {
             col--;
 			if (token == board[row][col]) {
 				counterHorizontal += 1;
-            }
+            } else {
+				break;
+			}
         }
 		row = lastMoveRow;
         col = lastMoveCol;
@@ -60,7 +62,9 @@ public class GameState {
 			if (token == board[row][col]) {
                 //System.out.println("Game.checkWinner(): horizontales gleiches Token gefunden: " + board[row][col]);
 				counterHorizontal += 1;
-            }
+            } else {
+				break;
+			}
         }
 		row = lastMoveRow;
         col = lastMoveCol;
@@ -136,15 +140,15 @@ public class GameState {
 				break; // s.o.
             }
         }
-		/*
+
 		System.out.println("counterRupLdown=" + counterRupLdown);
 		System.out.println("counterLupRdown=" + counterLupRdown);
 		System.out.println("counterVertical=" + counterVertical);
 		System.out.println("counterHorizontal=" + counterHorizontal);
-		*/
+
         if ((counterRupLdown >= 4) || (counterLupRdown >= 4)
             	|| (counterVertical >= 4) || (counterHorizontal >= 4)) {
-            //System.out.println(token + " hat gewonnen!");
+            System.out.println(token + " hat gewonnen!");
 			return token;
         } else {
 			return Token.EMPTY;
