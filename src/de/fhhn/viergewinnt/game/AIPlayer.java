@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -82,22 +82,33 @@ public class AIPlayer extends Player implements View {
         return maxRated.getState().getLastMoveEvent();
     }
 
+    /**
+     * Sucht im Spielbaum nach dem passenden nächsten Zustand und setzt
+     * ihn als neuen root.
+     * */
     private void executeMove(MoveEvent m) {
         System.out.println("\tAIPlayer.executeMove(): m=" + m);
         if (m.getRow() == -1) { // ungültiger Move?
             throw new IllegalArgumentException("Move ungültig (row==-1)!");
         }
-        // richtigen Nachfolgernoten suchen
+
+        // gesuchter Zustand = root.state + neuer Zug
+        Token[][] successorsBoard = root.getState().getBoard();
+        successorsBoard[m.getRow()][m.getColumn()] = m.getToken();
+        Token nextTurn = root.getState().getWhoseTurn() == Token.RED ?
+            Token.YELLOW : Token.RED;
+        AIGameState successorsState = new AIGameState(nextTurn, successorsBoard, m);
+
         boolean foundSuccessor = false;
         ArrayList successors = root.getSuccessors();
         ListIterator iter = successors.listIterator();
+
         while (iter.hasNext()) {
             System.out.println("\tAIPlayer.executeMove(): suche passenden Nachfolgerknoten...");
             GraphNode succ = (GraphNode) iter.next();
             AIGameState state = succ.getState();
-            //Token[][] board = state.getBoard();
-            //if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
-			if (state.getLastMoveEvent().equals(m)) {
+
+			if (state.equals(successorsState)) {
 				System.out.println("\tAIPlayer.executeMove(): passender Nachfolger gefunden");
                 root = succ;
                 foundSuccessor = true;
