@@ -7,11 +7,13 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  * @since LCA
  * @stereotype View, Controller
  */
 public class AIPlayer extends Player implements View {
+    /** Die Suchtiefe im Spielbaum. */
+    int limit;
 	
 	public static final int WEAK=2;
 	public static final int MEDIUM=3;
@@ -27,8 +29,9 @@ public class AIPlayer extends Player implements View {
         root = new GraphNode(new AIGameState(Token.RED), null);
         list = new GraphNodeList();
 
+        limit = 4; // XXX Wert aus UI übernehmen
         // Wurzel initialisieren
-        GraphNode.expand(root, list, 1);
+        GraphNode.expand(root, list, limit);
 
     }
 
@@ -57,7 +60,7 @@ public class AIPlayer extends Player implements View {
     }
 
     private void calculateMove() {
-        GraphNode.expand(root, list, 1);
+        GraphNode.expand(root, list, limit);
         // Nachfolger mit höchster Bewertung suchen.
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();
