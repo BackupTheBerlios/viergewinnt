@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  * @since IOC
  */
 public class GraphNode {
@@ -54,38 +54,30 @@ public class GraphNode {
      * @param limit Suchtiefe (beeinflusst die Spielstärke)
      */
 	public static void expand(GraphNode node, GraphNodeList list, int limit) {
-		// Abbruchbedingung
+        ///////////////////////////////////////////////////////////////////////
+		// Abbruchbedingungen für die Rekursion
 		AIGameState nodeState = node.getState();
-		if (AIGameState.isFinalState(node)) {
-			// Min-Max-Bewertung
-            Token winner = nodeState.checkWinner();
-            if (winner == Token.RED) { // FIXME
-                node.setRating(Integer.MAX_VALUE);
-            } else if (winner == Token.YELLOW) { // FIXME
-                node.setRating(Integer.MIN_VALUE);
-            } else if (winner == Token.EMPTY) { // FIXME
-                node.setRating(0);
-            }
+		if (AIGameState.isFinalState(node)) { // Endzustand erreicht?
+            // Min-Max-Bewertung
+            rateFinalState(nodeState, node);
 			return;
-		} else if (limit == 0) {
+		} else if (limit == 0) { // noch kein Endzustand erreicht, aber Baum zuende?
 			// heuristische Stellungsbewertung
 			int nodeRating = AIGameStateHeuristic.ratePosition(nodeState);
 			node.setRating(nodeRating);
 			return;
 		}
+        //
+        ///////////////////////////////////////////////////////////////////////
 
-		// für die Min-Max-Bewertung
-        int b;
-        if (nodeState.getWhoseTurn() == Token.RED) {
-            b = Integer.MIN_VALUE; // FIXME oder -1?
-        } else {
-            b = Integer.MAX_VALUE; // FIXME oder 1?
-        }
+		// Vorbereitung für die Min-Max-Bewertung
+        int b = prepareMinMaxRating(nodeState);
 
-		// Nachfolgerzustände von nodeState berechnen
+        ///////////////////////////////////////////////////////////////////////
+		// Nachfolgerzustände von nodeState berechnen und nodeState mit
+        // Min-Max bewerten
 		ArrayList succStates = AIGameState.calculateSuccessors(nodeState);
 		ListIterator it = succStates.listIterator();
-
 
 		while (it.hasNext()) {
 			// Für alle Nachfolgerzustände von nodeState
@@ -117,8 +109,34 @@ public class GraphNode {
             }
             node.setRating(b);
 		}
+        //
+        ///////////////////////////////////////////////////////////////////////
+
 	}
 
+    private static int prepareMinMaxRating(AIGameState nodeState){
+        int b;
+        if (nodeState.getWhoseTurn() == Token.RED) {
+            b = Integer.MIN_VALUE; // FIXME oder -1?
+        } else {
+            b = Integer.MAX_VALUE; // FIXME oder 1?
+        }
+        return b;
+    }
+
+    /**
+     *  Min-Max-Bewertung eines Endzustandes.
+     */
+    private static void rateFinalState(AIGameState nodeState, GraphNode node){
+        Token winner = nodeState.checkWinner();
+        if (winner == Token.RED) { // FIXME
+            node.setRating(Integer.MAX_VALUE);
+        } else if (winner == Token.YELLOW) { // FIXME
+            node.setRating(Integer.MIN_VALUE);
+        } else if (winner == Token.EMPTY) { // FIXME
+            node.setRating(0);
+        }
+    }
 
 	/**
      * Fügt dem Knoten einen Nachfolger hinzu.
