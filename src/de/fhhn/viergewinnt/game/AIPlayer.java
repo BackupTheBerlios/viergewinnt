@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: p_herk $
- * @version $Revision: 1.15 $
+ * @author $Author: malte $
+ * @version $Revision: 1.16 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -28,7 +28,7 @@ public class AIPlayer extends Player implements View {
         list = new GraphNodeList();
 
         // Wurzel initialisieren
-        root.getState().expand(root, list, 1);
+        GraphNode.expand(root, list, 1);
 
     }
 
@@ -57,7 +57,7 @@ public class AIPlayer extends Player implements View {
     }
 
     private void calculateMove() {
-        root.getState().expand(root, list, 1);
+        GraphNode.expand(root, list, 1);
         // Nachfolger mit höchster Bewertung suchen.
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();

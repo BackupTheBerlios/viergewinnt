@@ -7,8 +7,8 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
- * @author $Author: p_herk $
- * @version $Revision: 1.14 $
+ * @author $Author: malte $
+ * @version $Revision: 1.15 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -48,73 +48,6 @@ public class AIGameState extends GameState {
 		}
     }
 
-	/**
-     * Baut einen Spielgraphen auf.
-     * @param node Wurzel des Spielgraphen
-     * @param list Container für bereits erzeugte Knoten
-     * @param limit Suchtiefe (beeinflusst die Spielstärke)
-     */
-	public static void expand(GraphNode node, GraphNodeList list, int limit) {
-		// Abbruchbedingung
-		AIGameState state = node.getState();
-		if (state.isFinalState(node)) {
-			// Min-Max-Bewertung
-            int row = state.getLastMoveEvent().getRow();
-            int col = state.getLastMoveEvent().getColumn();
-            Token winner = state.checkWinner(row, col);
-            if (winner == Token.RED) { // FIXME
-                node.setRating(Integer.MAX_VALUE);
-            } else if (winner == Token.YELLOW) { // FIXME
-                node.setRating(Integer.MIN_VALUE);
-            } else if (winner == Token.EMPTY) { // FIXME
-                node.setRating(0);
-            }
-			return;
-		} else if (limit == 0) {
-			// heuristische Stellungsbewertung
-			int rating = ratePosition(state);
-			node.setRating(rating);
-			return;
-		}
-
-		// für die Min-Max-Bewertung
-        int b;
-        if (state.getWhoseTurn() == Token.RED) {
-            b = Integer.MIN_VALUE; // FIXME oder -1?
-        } else {
-            b = Integer.MAX_VALUE; // FIXME oder 1?
-        }
-
-		// Nachfolgerzustände von state berechnen
-		ArrayList succStates = calculateSuccessors(state);
-		ListIterator it = succStates.listIterator();
-
-
-		while (it.hasNext()) {
-			// Für alle Nachfolgerzustände von state
-			AIGameState succState = (AIGameState) it.next();
-			if (list.contains(succState)) { // schon berechnet?
-				GraphNode succNode = list.getNode(succState);
-				node.addSuccessor(succNode);
-				continue;
-			}
-
-            // neuer Nachfolger mit Nachfolgerzustand und aktuellem Knoten
-            // als Vorgänger
-			GraphNode succNode = new GraphNode(succState, node);
-			node.addSuccessor(succNode);
-			list.add(succNode);
-			expand(succNode, list, limit - 1); // Rekursion!
-
-			// Min-Max-Bewertung
-            if (state.getWhoseTurn() == Token.RED) {
-                b = Math.max(b, succNode.getRating());
-            } else {
-                b = Math.min(b, succNode.getRating());
-            }
-            node.setRating(b);
-		}
-	}
 
     /**
      * Überprüft, ob der Knoten einen Endzustand enthält
@@ -154,7 +87,7 @@ public class AIGameState extends GameState {
      * Heuristische Stellungsbewertung der aktuellen Zustandes.
      * @return rating Bewertung
      */
-	private static int ratePosition(GameState state) { //FIXME: bin nochnicht fertig!!!
+	static int ratePosition(GameState state) { //FIXME: bin nochnicht fertig!!!
 		Token[][] board = state.getBoard();
 		emptyTokenBoard = new boolean[6][7];
 		
@@ -248,7 +181,7 @@ public class AIGameState extends GameState {
      * Berechnet die Nachfolgerzustände dieses Zustands.
      * @return Liste der Nachfolger
      */
-	private static ArrayList calculateSuccessors(AIGameState state) {
+	static ArrayList calculateSuccessors(AIGameState state) {
 		// alle Nachfolger-Zustände bauen
 		ArrayList successors = new ArrayList();
 		// für jede Spalte
