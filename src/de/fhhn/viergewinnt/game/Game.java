@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: malte $
- * @version $Revision: 1.22 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.23 $
  * @since LCA
  * @stereotype Model
  */
@@ -19,7 +19,10 @@ public class Game extends Observable {
     private Token whoseTurn;
     private MoveEvent lastMoveEvent;
 
-    /** Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der Zählung von unten. */
+    /** 
+	 * Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der 
+	 * Zählung von unten. 
+	 */
     private Token[] [] board;
 
     /** 
@@ -87,42 +90,6 @@ public class Game extends Observable {
 
 
     private Token checkWinner() {
-
-        /*
-        // Zeilen prüfen
-        for (int i = 0; i < ROWS; i++) { // für jede Zeile
-            // Scanline
-            for (int j = 0; j < COLS - 3; j++) { // für alle n-4 Elemente
-                if (board[i] [j] != Token.EMPTY) {
-                    boolean equal = false;
-                    for (int k = 0; k < 4; k++) {
-                        equal = (board[i] [j] == board[i] [j + k]);
-                        if (!equal) {
-                            break;
-                        }
-                    }
-                    return board[i] [j];
-                }
-            }
-        }
-        // Spalten prüfen
-        for (int j = 0; j < COLS; j++) { // für jede Spalte
-            // Scanline
-            for (int i = 0; i < ROWS - 3; i++) { // für alle n-3 Elemente
-                if (board[i] [j] != Token.EMPTY) {
-                    boolean equal = false;
-                    for (int k = 0; k < 4; k++) {
-                        equal = (board[i] [j] == board[i] [j + k]); //FIXME
-                        if (!equal) {
-                            break;
-                        }
-                    }
-                    return board[i] [j];
-                }
-            }
-        }
-        */
-
         // Diagonale prüfen links unten nach rechts oben
 		MoveEvent last = getLastMoveEvent();
         int row = last.getRow();
@@ -262,7 +229,10 @@ public class Game extends Observable {
         return whoseTurn;
     }
 
-    /** Wer hat gewonnen? Gibt Token.EMPTY zurück, wenn noch niemand gewonnen hat. */
+    /** 
+	 * Wer hat gewonnen? Gibt Token.EMPTY zurück, wenn noch niemand 
+	 * gewonnen hat. 
+	 */
     public Token getWinner() {
         return winner;
     }
