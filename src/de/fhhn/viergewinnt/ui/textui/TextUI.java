@@ -9,7 +9,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * View für die Kommandozeilen-Schnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -58,14 +58,41 @@ public class TextUI implements View {
 
     /** Gibt das aktuelle Spielbrett auf die Kommandozeile aus. */
     private void drawBoard() {
+        /* 
+        Die Ausgabe sieht so aus:
+
+         1 2 3 4 5 6 7
+        | | | | | | | |
+        | | | | | | | |
+        | | | | | | | |
+        |O| | | | | | |
+        |O| | | | | | |
+        |X|X| | | | | |
+        ---------------
+        
+        Eine schönere Ausgabe könnte man mit Unicode (bzw. diesen
+        Rahmen-Symbolen) hinkriegen.
+        */
+
         Token[][] board = game.getBoard();
-        for (int i = board.length - 1; i >= 0; i--) {
-            //for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.print("\n");
+        StringBuffer sb = new StringBuffer();
+
+        // Spalten-Nummerierung
+        for (int i = 0; i < board[0].length; i++) {
+            sb.append(" " + (i + 1));
         }
+        sb.append("\n");
+
+        // Spielfeld 
+        for (int i = board.length - 1; i >= 0; i--) {
+            sb.append("|");
+            for (int j = 0; j < board[0].length; j++) {
+                sb.append(board[i][j] + "|");
+            }
+            sb.append("\n");
+        }
+        sb.append("---------------");
+        System.out.println(sb);
     }
 
     //////////////////////////////////////////////////////////////////////
