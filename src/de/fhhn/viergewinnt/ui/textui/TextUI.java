@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @author $Author: malte $
+ * @version $Revision: 1.6 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -41,7 +41,8 @@ public class TextUI implements View {
     }
 
     public void run() throws IOException {
-        while (true) {
+        //while (game.getWinner() == Token.EMPTY) {
+		do {
             drawBoard();
             int col = 0;
             while (col < 1 || col > 6) {
@@ -53,7 +54,8 @@ public class TextUI implements View {
                 }
             }
             fireMoveEventTokenMoved(col - 1); // intern beginnen Spalten bei 0
-        }
+        } while (game.getWinner() == Token.EMPTY);
+		System.out.println(game.getWinner() + " hat gewonnen!");
     }
 
     /** Gibt das aktuelle Spielbrett auf die Kommandozeile aus. */
