@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: kathrin $
- * @version $Revision: 1.34 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.35 $
  * @since LCA
  * @stereotype Model
  */
@@ -19,17 +19,16 @@ public class Game extends Observable {
     private Token whoseTurn;
     private MoveEvent lastMoveEvent;
 
-	/**
-	 * Zustand des Spiels mit Spielbrett.
-	 */
-	private GameState state;
+    /**
+    * Zustand des Spiels mit Spielbrett.
+    */	
+    private GameState state;
 	
     /** 
-	 * Hilfs-Spielbrett mit 6 Zeilen und 7 Spalten. Die Zeilen beginnen mit der 
-	 * Zählung von unten. Wird bei Änderungen aus state in makeMove aktualisiert.
-	 */
+    * Hilfs-Spielbrett mit 6 Zeilen und 7 Spalten. Die Zeilen beginnen mit der 
+    * Zählung von unten. Wird bei Änderungen aus state in makeMove aktualisiert.
+    */
     private Token[][] board;
-
 
     /** 
      * Der Gewinner des Spiels. Solange noch niemand gewonnen hat, ist der
@@ -37,10 +36,10 @@ public class Game extends Observable {
      */
     private Token winner = Token.EMPTY;
 
-	/**
-	 * Konstruktor.
-	 * @param beginner der Spieler, der den ersten Zug machen darf
-	 */
+    /**
+     * Konstruktor.
+     * @param beginner der Spieler, der den ersten Zug machen darf
+     */
     public Game(Token beginner) {
         whoseTurn = beginner;
 		state = new GameState(whoseTurn);

@@ -16,19 +16,24 @@ import de.fhhn.viergewinnt.ui.*;
 
 /**
  * View für die grapfische Benutzerschnittstelle.
- * @author $Author: malte $
- * @version $Revision: 1.18 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.19 $
  * @since LCA
  */
 public class SwingUI extends JFrame implements MouseListener, View {
-    static final int ROWS = 6;
-    static final int COLS = 7;
-    private ImageIcon blankIcon = new ImageIcon("./img/blank.gif");
+    static final int ROWS = Game.ROWS;
+    static final int COLS = Game.COLS;
+	
+    /**
+	 * Einzelne Spielsteine der Spieler
+	 */
+	private ImageIcon blankIcon = new ImageIcon("./img/blank.gif");
     private ImageIcon redArrowIcon = new ImageIcon("./img/redarrow.gif");
     //private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
     private ImageIcon emptyTokenIcon = new ImageIcon("./img/emptytoken.gif");
     private ImageIcon redTokenIcon = new ImageIcon("./img/redtoken.gif");
     private ImageIcon yellowTokenIcon = new ImageIcon("./img/yellowtoken.gif");
+	
     private JPanel applicationDesktop = new JPanel();
     private JPanel playField = new JPanel();
     private JMenuBar mainMenuBar = new JMenuBar();
@@ -61,12 +66,29 @@ public class SwingUI extends JFrame implements MouseListener, View {
     }
 
     public void initGUI() {
-        for (int i = 0; i < COLS; i++) {
+        // Mauspfeil-Feld
+		for (int i = 0; i < COLS; i++) {
             insertToken[i] = new JLabel();
             insertToken[i].setIcon(blankIcon);
             insertToken[i].addMouseListener(this);
             playField.add(insertToken[i]);
         }
+		
+		// Spielfeld von Game holen und aufbauen
+		Token[][] board = game.getBoard();
+		
+		for(int i=(board.length -1); i >= 0; i--) {
+			for(int j=0; j < board[i].length; j++) {
+				playfieldToken[i] [j] = new JLabel();
+				setToken(i, j, board[i][j]);
+				playfieldToken[i] [j].addMouseListener(this);
+				playField.add(playfieldToken[i][j]);
+			}
+		}
+		
+		/*
+		// "alte" Routine
+		//
         for (int i = ROWS - 1; i >= 0; i--) {
             for (int j = 0; j < COLS; j++) {
                 playfieldToken[i] [j] = new JLabel();
@@ -76,14 +98,15 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 playField.add(playfieldToken[i] [j]);
             }
         }
+		*/
+		
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         setJMenuBar(mainMenuBar);
         setBounds(new java.awt.Rectangle(0, 0, 402, 437));
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         setTitle("Vier Gewinnt");
-        setIconImage((new javax.swing.ImageIcon("./img/titleicon.gif"))
-            .getImage());
+        setIconImage((new ImageIcon("./img/titleicon.gif")).getImage());
         gameMenu.setText("Spiel");
         gameMenu.add(gameMenuNew);
         gameMenu.add(gameMenuExit);
@@ -99,8 +122,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
         applicationDesktop.setPreferredSize(new java.awt.Dimension(400, 400));
         applicationDesktop.setSize(new java.awt.Dimension(400, 400));
         applicationDesktop.setMinimumSize(new java.awt.Dimension(400, 400));
-        applicationDesktop.setMaximumSize(
-            new java.awt.Dimension(32767, 32767));
+        applicationDesktop.setMaximumSize(new java.awt.Dimension(32767, 32767));
         applicationDesktop.setBackground(new java.awt.Color(255, 255, 255));
         applicationDesktop.add(playField);
         applicationDesktop.add(messageLabel);
@@ -121,11 +143,11 @@ public class SwingUI extends JFrame implements MouseListener, View {
     }
 
     public void mouseEntered(MouseEvent e) {
-        boolean jumpout = false;
+		boolean jumpout = false;
         for (int i = ROWS - 1; i >= 0; i--) {
             for (int j = 0; j < COLS; j++) {
-                if (e.getSource().equals(playfieldToken[i] [j])) {
-                    insertToken[j].setIcon(redArrowIcon);
+                if (e.getSource().equals(playfieldToken[i][j])) {
+					insertToken[j].setIcon(redArrowIcon);
                     jumpout = true;
                 }
                 if (jumpout) { // XXX wäre hier ein "labeled break" angemessen?
