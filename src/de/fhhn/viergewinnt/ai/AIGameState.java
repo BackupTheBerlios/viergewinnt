@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @since IOC
  */
 public class AIGameState extends GameState {
@@ -214,7 +214,11 @@ public class AIGameState extends GameState {
 			}
 			// neue Marke setzen
 			succ[row][cols] = whoseTurn;
-			successors.add(new AIGameState(whoseTurn, succ));
+            AIGameState succState = new AIGameState(whoseTurn, succ);
+            MoveEvent move = new MoveEvent(this, cols);
+            move.setRow(row);
+            succState.setLastMoveEvent(move);
+			successors.add(succState);
 		}
 		
 		return successors;

@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.ai.*;
  * Gleichzeitig Controller und View.
  * 
  * @author $Author: kathrin $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -34,7 +34,6 @@ public class AIPlayer extends Player implements View {
 
     public void update(Observable observable, Object obj) {
 		if (gameModel.getWhoseTurn() == color) {
-			/* FIXME Funktioniert noch nicht
             root.getState().expand(root, list, 4);
 
             // Nachfolger mit höchster Bewertung suchen.
@@ -48,12 +47,13 @@ public class AIPlayer extends Player implements View {
                 if (maxRated.getRating() < current.getRating()) {
 					maxRated = current;
                 }
-
             }
-			MoveEvent m = new MoveEvent(this, -1); //FIXME
+            MoveEvent bestMove = maxRated.getState().getLastMoveEvent();
+            int col = bestMove.getColumn();
+			MoveEvent m = new MoveEvent(this, col); 
     	    m.setToken(color);
         	gameModel.accept(m);
-            */
+
         }
     }
 }

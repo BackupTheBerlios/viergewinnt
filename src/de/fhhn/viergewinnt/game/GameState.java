@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: kathrin $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @since IOC
  */
 public class GameState {
@@ -16,6 +16,9 @@ public class GameState {
 
 	/** Zustand des Spielfelds. */
 	protected Token[][] board = new Token[Game.ROWS][Game.COLS];
+
+    /** Ist dieser Zustand der erste? */
+    // private boolean isFirstState = false;
 
     /**
      * Konstruktor für den ersten Spielzustand ohne Vorgänger.
@@ -29,7 +32,7 @@ public class GameState {
 			}
 		}
 
-        //lastMoveEvent = null;
+		// isFirstState = true;
 	}
 
     /**
@@ -223,4 +226,9 @@ public class GameState {
     public void setLastMoveEvent(MoveEvent lastMoveEvent) {
         this.lastMoveEvent = lastMoveEvent;
     }
+/*
+    public boolean isFirstState(){
+		return isFirstState;
+	}
+*/
 }
