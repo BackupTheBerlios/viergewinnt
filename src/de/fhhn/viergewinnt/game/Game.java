@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  * @since LCA
  * @stereotype Model
  */
@@ -250,8 +250,11 @@ public class Game extends Observable {
      */
 
     public Token[] [] getBoard() {
-        // return no reference, copy the array!
-        return board;
+		Token[][] boardCopy = new Token[ROWS][COLS];
+    	for (int i = 0; i < board.length; i++) {
+			System.arraycopy(board[i], 0, boardCopy[i], 0, board[i].length);
+		}
+        return boardCopy;
     }
 
     /** Welcher Spieler ist jetzt am Zug? */
