@@ -11,8 +11,8 @@ import de.fhhn.viergewinnt.ui.*;
  * Die grafische Benutzeroberfläche für VierGewinnt.
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
- * @author $Author: manuel $
- * @version $Revision: 1.29 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.30 $
  */
 public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
 	
@@ -199,8 +199,6 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 		playField.setSize(new java.awt.Dimension(200, 200));
 		playField.setBackground(new java.awt.Color(255, 255, 255));
 		
-		messageLabel.setText("");
-
 	}
 	
 	/**
@@ -214,6 +212,9 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 				setToken(i, j, board[i][j]);
 			}
 		}
+		// Nachricht des Spiels ausgeben (Leerzeichen, damit ein Umbruch
+		// erzwungen wird und das Design damit stimmt)
+		messageLabel.setText("     " + game.getLastMessage() + "     ");
 	}
 
 	/**
@@ -398,7 +399,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 		for (int i = ROWS - 1; i >= 0; i--) {
 			for (int j = 0; j < COLS; j++) {
 				if (e.getSource().equals(playfieldToken[i][j])) {
-					messageLabel.setText("Klick @ col. " + j);
+					//messageLabel.setText("Klick @ col. " + j);
 					fireMoveEventTokenMoved(j);
 					jumpout = true;
 				}
@@ -470,8 +471,6 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 		System.out.println("SwingUI.update(): " + o + " sagt " + arg);
 		// Spielbrett komplett neu zeichnen:
 		drawPlayfield();
-		// Nachricht des Spiels ausgeben
-		messageLabel.setText(game.toString());	// :TODO:	echte "Message" verarbeiten
 	}
 
 	/**
