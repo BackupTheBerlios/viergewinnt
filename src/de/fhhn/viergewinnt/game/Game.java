@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: malte $
- * @version $Revision: 1.28 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.29 $
  * @since LCA
  * @stereotype Model
  */
@@ -99,6 +99,8 @@ public class Game extends Observable {
 	 *   <li>der Spielstein die Farbe des Spielers hat, der gerade am Zug
 	 *       ist
 	 *   </li>
+	 *   <li>noch niemand gewonnen hat
+	 *   </li>
 	 * </ul>
 	 */
     private boolean isValid(MoveEvent m) {
@@ -107,7 +109,7 @@ public class Game extends Observable {
 		
         boolean valid = false;
         // in Spalte noch ein Platz frei?
-        if (board[5][column] == Token.EMPTY) {
+        if (board[ROWS - 1][column] == Token.EMPTY) {
             valid = true;
         } else {
             valid = false;
@@ -120,6 +122,13 @@ public class Game extends Observable {
             valid = false;
             System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
         }
+		
+		// gibt es schon einen Gewinner?
+		if (valid && (winner == Token.EMPTY)) {
+			valid = true;
+		} else {
+			valid = false;
+		}
         return valid;
     }
 
