@@ -7,12 +7,14 @@ package de.fhhn.viergewinnt.game;
  * (z.B. um es im Rahmen des Design Patterns "Command" über's Netz zu
  * versenden), muss u.a. readResolve() implementiert werden
  * (<a href="http://www.javaworld.com/javaworld/javatips/jw-javatip122.html">Details</a>)!
- * @author $Author: malte $
- * @version $Revision: 1.9 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.10 $
  * @since LCA
  */
 public class Token {
+    /** Max-Spieler. */
     public static final Token RED = new Token("X");
+    /** Min-Spieler. */
     public static final Token YELLOW = new Token("O");
     public static final Token EMPTY = new Token(" ");
     private final String name;

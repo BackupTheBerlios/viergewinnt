@@ -6,7 +6,7 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: kathrin $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @since IOC
  */
 class GraphNode {
@@ -15,7 +15,7 @@ class GraphNode {
 	private ArrayList successors;
 
     /** Stellungsbewertung. */
-	private int[] rating = new int[2]; // 0=red, 1=yellow
+	private int rating = 0;
 
     /**
      * Erzeugt einen neuen Knoten für den Spielgraph
@@ -46,19 +46,18 @@ class GraphNode {
 
     /**
      * Setzt die Bewertung des Spielzustands dieses Knotens.
-     * @param rating[0] = Bewertung für rot, rating[1] = Bewertung für gelb
+     * @param rating Bewertung
      */
-	public void setRating(int[] rating) {
+	public void setRating(int rating) {
         // XXX Wertebereich prüfen
-		this.rating[0] = rating[0];
-		this.rating[1] = rating[1];
+		this.rating = rating;
 	}
 
 	/**
      * Gibt die Bewertung für den aktuellen Spielzustand zurück.
-     * @return rating[0] = Bewertung für rot, rating[1] = Bewertung für gelb
+     * @return Bewertung
      */
-	public int[] getRating() {
+	public int getRating() {
 		return rating; // XXX Kopie zurück
 	}
 

@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  * @since IOC
  */
 class AIGameState extends GameState {
@@ -40,13 +40,28 @@ class AIGameState extends GameState {
 		AIGameState state = node.getState();
 		if (state.isFinalState(node)) {
 			// Min-Max-Bewertung
+            if (checkWinner() == Token.RED) {
+                node.setRating(Integer.MAX_VALUE);
+            } else if (checkWinner() == Token.YELLOW) {
+                node.setRating(Integer.MIN_VALUE);
+            } else if (checkWinner() == Token.EMPTY) {
+                node.setRating(0);
+            }
 			return;
 		} else if (limit == 0) {
 			// heuristische Stellungsbewertung
-			int[] rating = state.ratePosition();
+			int rating = state.ratePosition();
 			node.setRating(rating);
 			return;
 		}
+
+		// für die Min-Max-Bewertung
+        int b;
+        if (whoseTurn == Token.RED) {
+            b = Integer.MIN_VALUE; // FIXME oder -1?
+        } else if (whoseTurn ==Token.YELLOW) {
+            b = Integer.MAX_VALUE; // FIXME oder 1?
+        }
 
 		// Nachfolgerzustände von state berechnen
 		ArrayList succStates = state.calculateSuccessors();
@@ -65,6 +80,14 @@ class AIGameState extends GameState {
 			node.addSuccessor(succNode);
 			list.add(succNode);
 			expand(succNode, list, limit - 1); // Rekursion!
+
+			// Min-Max-Bewertung
+            if (whoseTurn == Token.RED) {
+                b = Math.max(b, succNode.getRating());
+            } else if (whoseTurn == Token.YELLOW) {
+                b = Math.min(b, succNode.getRating());
+            }
+            node.setRating(b);
 		}
 	}
 
@@ -106,9 +129,13 @@ class AIGameState extends GameState {
 
     /**
      * Heuristische Stellungsbewertung der aktuellen Zustandes.
-     * @return rating[0] = Bewertung für rot, rating[1] = Bewertung für gelb
+     * @return rating Bewertung
      */
-	private int[] ratePosition() {
+	private int ratePosition() {
+        /*
+         * XXX Soll nur noch für Min _oder_ Max funktionieren, wird dann
+         * zweimal ausfgerufen
+         */
 		int[] rating = new int[2];
 
         // sehr primitive Stellungsbewertung die nur überprüft, ob in einer
@@ -127,7 +154,12 @@ class AIGameState extends GameState {
 				}
 			}
 		}
-		return rating;
+
+		if (whoseTurn == Token.RED) {
+			return rating[0] - rating[1];
+        } else {
+            return rating[1] - rating[0];
+        }
 	}
 
     /**
