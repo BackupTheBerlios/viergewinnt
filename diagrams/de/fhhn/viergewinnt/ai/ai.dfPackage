@@ -7,17 +7,27 @@ package id627kd95fvn02d95fxxuq;
 */
 class diagram {
 /**
-@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref><oihard>
-@__modelType reference 
-*/
-class reference {
-}/**
 @shapeType DependencyLink
 @__modelType link
 @__ref <oiref:java#Class#de.fhhn.viergewinnt.aiProxy:oiref><oihard>
 @__reversed 
 */
 class link20 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.AIGameState:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNodeList:oiref><oihard>
+@__modelType reference 
+*/
+class reference1 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNode:oiref><oihard>
+@__modelType reference 
+*/
+class reference2 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -28,7 +38,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref>=10,10,200,105,1:oigroup> 
+@__positions 
 */
 class __positions {
 }

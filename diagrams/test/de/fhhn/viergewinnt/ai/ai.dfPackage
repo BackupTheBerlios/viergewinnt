@@ -1,4 +1,4 @@
-package id3x5zxd9mkyatyd9mmfzc5;
+package id24dx1dans6isodanttdp5;
 
 /**
 @version 2.0
@@ -7,7 +7,7 @@ package id3x5zxd9mkyatyd9mmfzc5;
 */
 class diagram {
 /**
-@__ref <oiref:java#Class#test.de.fhhn.viergewinnt.game.TestGame:oiref><oihard>
+@__ref <oiref:java#Class#test.de.fhhn.viergewinnt.ai.TestAIGameState:oiref><oihard>
 @__modelType reference 
 */
 class reference {
@@ -21,7 +21,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:java#Class#test.de.fhhn.viergewinnt.game.TestGame:oiref>=10,10,200,215,1:oigroup> 
+@__positions 
 */
 class __positions {
 }

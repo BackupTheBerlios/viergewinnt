@@ -6,7 +6,7 @@ import java.util.EventObject;
  * Enthält die durch den Zug eines Spielers entstandenen Änderungen im Spiel.
  * Objekte dieser Klasse sind <em>nicht</em> immutable.
  * @author $Author: p_herk $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since LCA
  */
 public class MoveEvent extends EventObject {

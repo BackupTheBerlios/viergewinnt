@@ -1,0 +1,804 @@
+package id3vwqkdatfbt2jdatgqbal;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node7:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@__modelType reference 
+*/
+class reference13 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19:oiref><oihard>
+@__modelType reference 
+*/
+class reference20 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard>
+@__modelType reference 
+*/
+class reference27 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33:oiref><oihard>
+@__modelType reference 
+*/
+class reference34 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node37:oiref><oihard>
+@__modelType reference 
+*/
+class reference38 {
+}/**
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node48:oiref><oihard>
+@__modelType reference 
+*/
+class reference49 {
+}}/**
+
+@__tags
+@shapeType SequenceDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions 
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33:oiref>=1297,444,90,786,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link29:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link10:oiref>=1046,1021,232,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link50:oiref>=613,665,221,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link35:oiref>=1033,479,1297,479:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link5:oiref>=82,116,224,116:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node63:oiref>=271,827,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link8:oiref>=776,970,239,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link39:oiref>=1037,514,28,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link28:oiref>=86,390,175,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link9:oiref>=280,139,155,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33.node14:oiref>=1335,1070,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node37.node:oiref>=1450,534,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link10:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link14:oiref>=82,235,548,235:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link13:oiref>=1042,1070,1335,1070:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link41:oiref>=82,600,586,600:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link40:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node61:oiref>=271,802,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link54:oiref>=906,770,276,770:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node9:oiref>=271,990,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link56:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link21:oiref>=82,318,868,318:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link3:oiref>=280,940,233,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link59:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node44:oiref>=595,610,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link25:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link35:oiref>=1037,459,260,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.node:oiref>=906,318,14,73,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link57:oiref>=276,776,276,770,316,770,316,782,285,782:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link64:oiref>=276,852,276,846,316,846,316,858,285,858:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node42:oiref>=586,600,14,550,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link23:oiref>=906,361,600,361:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node24:oiref>=586,361,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.node11:oiref>=1028,1015,14,85,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33.node:oiref>=1335,479,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node51:oiref>=595,659,14,481,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link9:oiref>=276,159,435,159:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node:oiref>=586,235,14,78,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link13:oiref>=1046,1050,231,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link54:oiref>=695,750,207,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link36:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node7:oiref>=435,124,90,1106,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link62:oiref>=276,827,276,821,316,821,316,833,285,833:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link6:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link57:oiref>=289,782,216,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node7.node:oiref>=473,159,14,50,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node:oiref>=30,30,90,1200,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link28:oiref>=82,410,981,410:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link23:oiref>=600,341,302,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref>=548,200,90,1030,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node55:oiref>=262,770,14,350,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref>=224,81,90,1149,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link60:oiref>=276,802,276,796,316,796,316,808,285,808:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link15:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link22:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node17:oiref>=262,283,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link3:oiref>=276,960,1019,960:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link62:oiref>=289,833,177,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link64:oiref>=289,858,179,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link16:oiref>=586,283,276,283:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link18:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link43:oiref>=600,610,600,604,640,604,640,616,609,616:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link45:oiref>=:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link5:oiref>=86,96,138,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link30:oiref>=1019,454,276,454:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link32:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node31:oiref>=262,454,14,20,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link14:oiref>=86,215,138,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link12:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link52:oiref>=609,700,906,700:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link41:oiref>=86,580,72,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link21:oiref>=86,298,204,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.node4:oiref>=1019,960,14,150,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link60:oiref>=289,808,211,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19:oiref>=868,283,90,947,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node48:oiref>=750,620,76,40,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link10:oiref>=1033,1015,1033,1009,1073,1009,1073,1021,1042,1021:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link50:oiref>=600,659,600,653,640,653,640,665,609,665:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node37:oiref>=1410,499,95,731,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.node53:oiref>=906,700,14,430,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link52:oiref>=613,680,197,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link8:oiref>=1019,990,285,990:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node58:oiref>=271,776,14,20,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node48.link:oiref>=750,640,600,640:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link39:oiref>=1033,534,1410,534:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.node:oiref>=1019,410,14,184,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref>=981,375,90,855,1:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node:oiref>=262,116,14,103,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link16:oiref>=344,263,238,16,0:oigroup>
+<oigroup:<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.node65:oiref>=271,852,14,93,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link43:oiref>=613,616,124,16,0:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link30:oiref>=777,434,238,16,0:oigroup>
+*/
+class __positions {
+}/**
+@shapeType Object
+@__modelType node
+@name model
+@created true 
+*/
+class node3 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation1
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link5:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node7:oiref><oihard>
+@sendingInstant 159
+@processingDuration 50
+@sequenceNumber 1.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.GameState#$$constructor$$#(#de.fhhn.viergewinnt.game.Token#)#:oiref>
+@operationNameAsText '<constructor>(Token)'
+*/
+class link9 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node7:oiref><oihard> 
+*/
+class link10 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation4
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link16:oiref> 
+*/
+class node17 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation8
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link30:oiref> 
+*/
+class node31 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation16
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link54:oiref> 
+*/
+class node55 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 776
+@processingDuration 20 
+@sequenceNumber 5.2.1.1.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#isValid#(#de.fhhn.viergewinnt.game.MoveEvent#)#:oiref>
+@operationNameAsText 'isValid(MoveEvent):boolean'
+*/
+class link57 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation17
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link57:oiref> 
+*/
+class node58 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard> 
+*/
+class link59 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 802
+@processingDuration 20 
+@sequenceNumber 5.2.1.1.2
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#makeMove#(#de.fhhn.viergewinnt.game.MoveEvent#)#:oiref>
+@operationNameAsText 'makeMove(MoveEvent):void'
+*/
+class link60 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation18
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link60:oiref> 
+*/
+class node61 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 827
+@processingDuration 20 
+@sequenceNumber 5.2.1.1.3
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#checkWinner#(##)#:oiref>
+@operationNameAsText 'checkWinner():Token'
+*/
+class link62 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation19
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link62:oiref> 
+*/
+class node63 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 852
+@processingDuration 93
+@sequenceNumber 5.2.1.1.4
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#java.util.Observable#notifyObservers#(##)#:oiref>
+@operationNameAsText 'notifyObservers():void'
+@minProcessingDuration 93
+*/
+class link64 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation20
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link64:oiref> 
+*/
+class node65 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard>
+@sendingInstant 960
+@processingDuration 150
+@sequenceNumber 5.2.1.1.5
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.AIPlayer#update#(#java.util.Observable#java.lang.Object#)#:oiref>
+@operationNameAsText 'update(Observable,Object):void'
+@minProcessingDuration 20
+*/
+class link3 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation23
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link8:oiref> 
+*/
+class node9 {
+}}/**
+@shapeType Object
+@__modelType node*/
+class node {
+/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 116
+@processingDuration 103
+@sequenceNumber 1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#$$constructor$$#(#de.fhhn.viergewinnt.game.Token#)#:oiref>
+@operationNameAsText '<constructor>(Token)' 
+*/
+class link5 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard> 
+*/
+class link6 {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ui.textui.TextUI:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@sendingInstant 235
+@processingDuration 78
+@sequenceNumber 2
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ui.textui.TextUI#$$constructor$$#(#de.fhhn.viergewinnt.game.Game#)#:oiref>
+@operationNameAsText '<constructor>(Game)' 
+*/
+class link14 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard> 
+*/
+class link15 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19:oiref><oihard>
+@sendingInstant 318
+@processingDuration 73
+@sequenceNumber 3
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.HumanPlayer#$$constructor$$#(#de.fhhn.viergewinnt.ui.View#de.fhhn.viergewinnt.game.Game#de.fhhn.viergewinnt.game.Token#)#:oiref>
+@operationNameAsText '<constructor>(View,Game,Token)' 
+*/
+class link21 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19:oiref><oihard> 
+*/
+class link22 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard>
+@sendingInstant 410
+@processingDuration 184
+@sequenceNumber 4
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.AIPlayer#$$constructor$$#(#de.fhhn.viergewinnt.game.Game#de.fhhn.viergewinnt.game.Token#)#:oiref>
+@operationNameAsText '<constructor>(Game,Token)'
+@minProcessingDuration 184 
+*/
+class link28 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard> 
+*/
+class link29 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@sendingInstant 600
+@processingDuration 550
+@sequenceNumber 5
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ui.textui.TextUI#run#(##)#:oiref>
+@operationNameAsText 'run():void'
+@minProcessingDuration 20 
+*/
+class link41 {
+}}/**
+@shapeType Object
+@__modelType node
+@name state
+@created true 
+*/
+class node7 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.GameState:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation2
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link9:oiref> 
+*/
+class node {
+}}/**
+@shapeType Object
+@__modelType node
+@name redView
+@created true 
+*/
+class node12 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ui.textui.TextUI:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation3
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link14:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 283
+@processingDuration 20 
+@sequenceNumber 2.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#java.util.Observable#addObserver#(#java.util.Observer#)#:oiref>
+@operationNameAsText 'addObserver(java.util.Observer):void'
+*/
+class link16 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard> 
+*/
+class link18 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation6
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19.link23:oiref> 
+*/
+class node24 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation11
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link41:oiref> 
+*/
+class node42 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@sendingInstant 610
+@processingDuration 20
+@sequenceNumber 5.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ui.textui.TextUI#drawBoard#(##)#:oiref>
+@operationNameAsText 'drawBoard():void'
+@minProcessingDuration 20
+*/
+class link43 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard> 
+*/
+class link45 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation12
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link43:oiref> */
+class node44 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@sendingInstant 659
+@processingDuration 481
+@sequenceNumber 5.2
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ui.textui.TextUI#fireMoveEventTokenMoved#(#int#)#:oiref>
+@operationNameAsText 'fireMoveEventTokenMoved(int):void'
+*/
+class link50 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation14
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link50:oiref> 
+*/
+class node51 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node19:oiref><oihard>
+@sendingInstant 700
+@processingDuration 430
+@sequenceNumber 5.2.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.HumanPlayer#tokenMoved#(#de.fhhn.viergewinnt.game.MoveEvent#)#:oiref>
+@operationNameAsText 'tokenMoved(MoveEvent):void'
+*/
+class link52 {
+}}/**
+@shapeType Object
+@__modelType node
+@name redPlayer
+@created true 
+*/
+class node19 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.HumanPlayer:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation5
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link21:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard>
+@sendingInstant 361
+@processingDuration 20 
+@sequenceNumber 3.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ui.textui.TextUI#addMoveEventListener#(#de.fhhn.viergewinnt.game.MoveEventListener#)#:oiref>
+@operationNameAsText 'addMoveEventListener(MoveEventListener):void'
+*/
+class link23 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12:oiref><oihard> 
+*/
+class link25 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation15
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.link52:oiref> 
+*/
+class node53 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 770
+@processingDuration 350
+@sequenceNumber 5.2.1.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#accept#(#de.fhhn.viergewinnt.game.MoveEvent#)#:oiref>
+@operationNameAsText 'accept(MoveEvent):boolean'
+*/
+class link54 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard> 
+*/
+class link56 {
+}}/**
+@shapeType Object
+@__modelType node
+@name yellowPlayer
+@created true 
+*/
+class node26 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.AIPlayer:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation7
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node.link28:oiref> 
+*/
+class node {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 454
+@processingDuration 20 
+@sequenceNumber 4.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#java.util.Observable#addObserver#(#java.util.Observer#)#:oiref>
+@operationNameAsText 'addObserver(java.util.Observer):void'
+*/
+class link30 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard> 
+*/
+class link32 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33:oiref><oihard>
+@sendingInstant 479
+@processingDuration 50
+@sequenceNumber 4.2
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ai.GraphNode#$$constructor$$#(#de.fhhn.viergewinnt.ai.AIGameState#de.fhhn.viergewinnt.ai.GraphNode#)#:oiref>
+@operationNameAsText '<constructor>(AIGameState,GraphNode)'
+*/
+class link35 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33:oiref><oihard> 
+*/
+class link36 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node37:oiref><oihard>
+@sendingInstant 534
+@processingDuration 50
+@sequenceNumber 4.3
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@creationMessage true
+*/
+class link39 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node37:oiref><oihard> 
+*/
+class link40 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation13
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3.link3:oiref> 
+*/
+class node4 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node3:oiref><oihard>
+@sendingInstant 990
+@processingDuration 20 
+@sequenceNumber 5.2.1.1.5.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Game#getLastMoveEvent#(##)#:oiref>
+@operationNameAsText 'getLastMoveEvent():MoveEvent'
+*/
+class link8 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard>
+@sendingInstant 1015
+@processingDuration 85
+@sequenceNumber 5.2.1.1.5.2
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.game.AIPlayer#executeMove#(#de.fhhn.viergewinnt.game.MoveEvent#)#:oiref>
+@operationNameAsText 'executeMove(MoveEvent):void'
+*/
+class link10 {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation24
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link10:oiref> 
+*/
+class node11 {
+}/**
+@shapeType CollaborationLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26:oiref><oihard> 
+*/
+class link12 {
+}/**
+@shapeType MessageLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node33:oiref><oihard>
+@sendingInstant 1070
+@processingDuration 20 
+@sequenceNumber 5.2.1.1.5.2.1
+@diagram_uniqe_name <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.diagram:oiref>
+@operation <oiref:java#Member#de.fhhn.viergewinnt.ai.GraphNode#getSuccessors#(##)#:oiref>
+@operationNameAsText 'getSuccessors():ArrayList'
+*/
+class link13 {
+}}/**
+@shapeType Object
+@__modelType node
+@name root
+@created true 
+*/
+class node33 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNode:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation9
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link35:oiref> 
+*/
+class node {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation25
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link13:oiref> 
+*/
+class node14 {
+}}/**
+@shapeType Object
+@__modelType node
+@name list
+@created true 
+*/
+class node37 {
+/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNodeList:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Activation
+@__modelType node
+@name Activation10
+@activationMessage <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node26.link39:oiref> 
+*/
+class node {
+}}/**
+@shapeType Note
+@__modelType node
+@name Note1
+@text Eingabe 
+*/
+class node48 {
+/**
+@shapeType NoteLink
+@__modelType link
+@__ref <oiref:design#Class#id3vwqkdatfbt2jdatgqbal.node12.node42:oiref><oihard> 
+*/
+class link {
+}}

@@ -7,15 +7,15 @@ package idig0xbd947i6ond947q8z0;
 */
 class diagram {
 /**
-@__ref <oiref:design#Class#id7pt9od98gnr0cd98gqqvu.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id1apwld94e1i0xd94gte7d.diagram:oiref><oihard>
 @__modelType reference
 @__fqn <oiref:#Package#de:oiref> 
 */
 class reference {
 }/**
-@__ref <oiref:design#Class#id3ad7xd98gnr0cd98gqqt0.diagram:oiref><oihard>
+@__ref <oiref:design#Class#id30ds9d9mkyatyd9mmfzf2.diagram:oiref><oihard>
 @__modelType reference
-@__fqn <oiref:#Package#cvs:oiref> 
+@__fqn <oiref:#Package#test:oiref> 
 */
 class reference1 {
 }}/**
@@ -28,8 +28,8 @@ class __tags {
 */
 class __options {
 }/**
-@__positions <oigroup:<oiref:design#Class#id7pt9od98gnr0cd98gqqvu.diagram:oiref>=83,10,53,97,1:oigroup>
-<oigroup:<oiref:design#Class#id3ad7xd98gnr0cd98gqqt0.diagram:oiref>=10,10,53,58,1:oigroup>
+@__positions <oigroup:<oiref:design#Class#id30ds9d9mkyatyd9mmfzf2.diagram:oiref>=83,10,53,78,1:oigroup>
+<oigroup:<oiref:design#Class#id1apwld94e1i0xd94gte7d.diagram:oiref>=10,10,53,78,1:oigroup>
 */
 class __positions {
 }

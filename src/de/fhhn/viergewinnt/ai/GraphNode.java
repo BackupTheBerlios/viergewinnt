@@ -6,7 +6,7 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: p_herk $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since IOC
  */
 public class GraphNode {

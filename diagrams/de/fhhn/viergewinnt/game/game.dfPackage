@@ -12,16 +12,6 @@ class diagram {
 */
 class reference {
 }/**
-@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref><oihard>
-@__modelType reference 
-*/
-class reference10 {
-}/**
-@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Move:oiref><oihard>
-@__modelType reference 
-*/
-class reference11 {
-}/**
 @__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Token:oiref><oihard>
 @__modelType reference 
 */
@@ -32,6 +22,41 @@ class reference14 {
 @__ref <oiref:java#Class#de.fhhn.viergewinnt.aiProxy:oiref><oihard> 
 */
 class link {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.MoveEvent:oiref><oihard>
+@__modelType reference 
+*/
+class reference3 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.AIPlayer:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.HumanPlayer:oiref><oihard>
+@__modelType reference 
+*/
+class reference5 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.RemotePlayer:oiref><oihard>
+@__modelType reference 
+*/
+class reference6 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.MoveEventListener:oiref><oihard>
+@__modelType reference 
+*/
+class reference7 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.GameState:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref><oihard>
+@__modelType reference 
+*/
+class reference11 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -44,26 +69,39 @@ class __options {
 }/**
 @__positions 
 
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.HumanPlayer:oiref>=17,181,132,111,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.AIPlayer:oiref>=341,181,168,192,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.MoveEvent#token:oiref>=395,410,545,378,545,318:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#lnkGame:oiref>=83,89,254,166:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#lnkMove:oiref>=321,261,410,261:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#lnkMove:oiref>=384,203,30,13,0:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Player:oiref>=10,10,147,79,1:oigroup>
+<oigroup:<oiref:java#Implements#de.fhhn.viergewinnt.game.HumanPlayer#de.fhhn.viergewinnt.game.MoveEventListener:oiref>=61,181,61,115:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.MoveEvent:oiref>=330,410,135,186,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.GameState#whoseTurn:oiref>=668,430,561,373,561,318:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.RemotePlayer:oiref>=169,181,152,92,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.GameState:oiref>=570,430,196,218,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Player:oiref>=404,10,133,111,1:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#whosTurn:oiref>=320,192,420,124:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#YELLOW:oiref>=514,147,514,180,570,180,570,124,537,124:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref>=188,166,133,176,1:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Token:oiref>=420,10,117,137,1:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#lnkMove:oiref>=376,244,30,13,0:oigroup>
-<oigroup:Composite#supplierCardinality#MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#lnkGame:oiref>=197,149,16,13,0:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#RED:oiref>=491,147,491,203,593,203,593,101,537,101:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#whoseTurn:oiref>=321,192,420,124:oigroup>
-<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#EMPTY:oiref>=522,147,522,180,562,180,562,124,537,124:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#gameModel:oiref>=537,111,740,120:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#YELLOW:oiref>=600,318,600,354,702,354,702,292,646,292:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Game:oiref>=740,110,195,257,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Token:oiref>=529,181,117,137,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#color:oiref>=487,121,587,181:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#lastMoveEvent:oiref>=805,367,428,410:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#winner:oiref>=740,272,646,272:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#state:oiref>=753,367,753,430:oigroup>
+<oigroup:<oiref:java#Extends#de.fhhn.viergewinnt.game.AIPlayer#de.fhhn.viergewinnt.game.Player:oiref>=463,181,463,121:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#RED:oiref>=577,318,577,364,725,364,725,282,646,282:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Game#whoseTurn:oiref>=740,226,646,226:oigroup>
+<oigroup:<oiref:java#Extends#de.fhhn.viergewinnt.game.RemotePlayer#de.fhhn.viergewinnt.game.Player:oiref>=245,181,443,121:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.GameState#lastMoveEvent:oiref>=570,513,465,513:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#EMPTY:oiref>=623,318,623,344,679,344,679,302,646,302:oigroup>
+<oigroup:<oiref:java#Extends#de.fhhn.viergewinnt.game.HumanPlayer#de.fhhn.viergewinnt.game.Player:oiref>=105,181,423,121:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#GREEN:oiref>=652,134,652,167,708,167,708,111,675,111:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.MoveEventListener:oiref>=10,10,146,105,1:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#lnkMove:oiref>=120,89,462,220:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Move#token:oiref>=492,220,492,147:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#owner:oiref>=173,49,93,49:oigroup>
-<oigroup:Composite#clientCardinality#MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Player#lnkGame:oiref>=63,89,16,13,0:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Board#lnkGame:oiref>=251,89,251,166:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Move:oiref>=410,220,113,121,1:oigroup>
 
 */
 class __positions {

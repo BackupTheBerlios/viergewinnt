@@ -12,6 +12,12 @@ class diagram {
 @__fqn <oiref:#Package#test.de.fhhn.viergewinnt.game:oiref> 
 */
 class reference {
+}/**
+@__ref <oiref:design#Class#id24dx1dans6isodanttdp5.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#test.de.fhhn.viergewinnt.ai:oiref> 
+*/
+class reference1 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -22,7 +28,7 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:<oiref:design#Class#id3x5zxd9mkyatyd9mmfzc5.diagram:oiref>=10,10,86,61,1:oigroup> 
 */
 class __positions {
 }

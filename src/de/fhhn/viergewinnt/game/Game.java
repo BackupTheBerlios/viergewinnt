@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: p_herk $
- * @version $Revision: 1.41 $
+ * @version $Revision: 1.42 $
  * @since LCA
  * @stereotype Model
  */

@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: p_herk $
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -115,27 +115,29 @@ public class AIGameState extends GameState {
      * @return true wenn der Knoten einen Endzustand enthält
      * @param node Knoten dessen Zustand überprüft werden soll
      */
-	public boolean isFinalState(GraphNode node) {
+	public static boolean isFinalState(GraphNode node) {
 		/*
          * Der Parameter node wird gebraucht, um auf den Elternknoten
          * zuzugreifen.
          */
 		GraphNode parent = node.getParent();
 
+		// der aktuelle Zustand (eigentlic this)
+        AIGameState thisState = node.getState();
 		/*
          * Hat jemand gewonnen? Um das zu überprüfen, muss der letzte Zug
          * ermittelt werden, da checkWinner den benötigt.
          */
 		if (parent != null) {
-            int row = lastMoveEvent.getRow();
-            int col = lastMoveEvent.getColumn();
-			if (node.getState().checkWinner(row, col) == Token.RED || node.getState().checkWinner(row, col) == Token.YELLOW) {
+            int row = thisState.getLastMoveEvent().getRow();
+            int col = thisState.getLastMoveEvent().getColumn();
+			if (thisState.checkWinner(row, col) == Token.RED || thisState.checkWinner(row, col) == Token.YELLOW) {
 				return true;
 			}
 		}
 		
 		// Spielbrett voll?
-		if (boardIsFull()) {
+		if (thisState.boardIsFull()) {
 			return true;
 		} else {
 			return false;

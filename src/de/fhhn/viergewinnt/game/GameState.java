@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: p_herk $
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  * @since IOC
  */
 public class GameState {
