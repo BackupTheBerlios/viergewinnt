@@ -9,7 +9,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * View für die Kommandozeilen-Schnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -99,7 +99,7 @@ public class TextUI implements View {
 
     /** Gibt ein neues MoveEvent an alle Controller. */
     protected void fireMoveEventTokenMoved(int column) {
-        MoveEvent move = null; // XXX Warum ist das in SwingUI anders?
+        MoveEvent move = null;
         // XXX Code-Duplikation (s. SwingUI.java)
         System.out.println("TextUI.fireMoveEventTokenMoved(): column=" +
             column);
@@ -116,7 +116,6 @@ public class TextUI implements View {
                 ((MoveEventListener)listeners[i + 1]).tokenMoved(move);
             }
         }
-        move = null;
     }
 
     //

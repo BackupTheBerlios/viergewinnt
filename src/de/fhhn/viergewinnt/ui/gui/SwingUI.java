@@ -17,7 +17,7 @@ import de.fhhn.viergewinnt.ui.*;
 /**
  * View für die grapfische Benutzerschnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  * @since LCA
  */
 public class SwingUI extends JFrame implements MouseListener, View {
@@ -43,12 +43,6 @@ public class SwingUI extends JFrame implements MouseListener, View {
 
     /** Hier werden die MoveListener verwaltet. */
     private EventListenerList listenerList;
-
-    /** Ein Move-Event. */
-    private MoveEvent move = null;
-
-    /** Wird als Delegate benutzt, um das Interface View zu implementieren. */
-    //private DefaultView defaultView = new DefaultView();
 
     /** Farbe des Spielers. */
     private Token playerColor;
@@ -235,6 +229,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
 
     /** XXX: Besser ChangeEvent? */
     protected void fireMoveEventTokenMoved(int column) {
+		MoveEvent move = null;
         System.out.println("SwingUI.fireMoveEventTokenMoved(): column=" + column);
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
@@ -251,7 +246,6 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 ((MoveEventListener) listeners[i + 1]).tokenMoved(move);
             }
         }
-        move = null;
     }
 
     /** Steckt ein Token in Zeile row und Spalte column ins Spielbrett. */
