@@ -5,8 +5,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * Neuer Spiel Dialog
- * @author $Author: malte $
- * @version $Revision: 1.6 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.7 $
  * @since IOC
  */
 
@@ -100,11 +100,11 @@ import de.fhhn.viergewinnt.game.*;
 	}
 
 	private void askForStrength() {
-		String[] kiStrength = new String[3];
+		String[] kiStrength = new String[2];
 		
 		kiStrength[0] = "Schwach";
 		kiStrength[1] = "Mittel";
-		kiStrength[2] = "Stark";
+		//kiStrength[2] = "Stark";
 
         int strength = -1;
 		while(strength < 0 || strength >= kiStrength.length) {

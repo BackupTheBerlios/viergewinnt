@@ -6,8 +6,8 @@ import de.fhhn.viergewinnt.ai.*;
 
 /**
  * Gleichzeitig Controller und View.
- * @author $Author: malte $
- * @version $Revision: 1.30 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.31 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -17,7 +17,7 @@ public class AIPlayer extends Player implements View {
 	
 	public static final int WEAK=2;
 	public static final int MEDIUM=4;
-	public static final int STRONG=6;
+//	public static final int STRONG=6;
 	
     /** Der Knoten im Spielbaum, an dem das Spiel gerade ist. */
     private GraphNode root;

@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Der Dialog zum Anlegen eines neuen Spiels.
  * 
- * @author $Author: malte $
- * @version $Revision: 1.9 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.10 $
  */
 public class NewGameDialog extends JDialog implements ActionListener {
 	
@@ -23,7 +23,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	// mögliche Stärken der KI
 	public static final String SCHWACH			= "schwach";
 	public static final String MITTEL			= "mittel";
-	public static final String STARK				= "stark";
+	//public static final String STARK				= "stark";
 	// ActionCommands für ComboBoxen
 	public static final String SELECTEDREDPLAYER	= "selectedRedPlayer";
 	public static final String SELECTEDREDPLAYERSTRENGTH		= "selectRedPlayerStrength";
@@ -145,7 +145,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		redPlayerStrengthSelector.addItem(SCHWACH);
 		redPlayerStrengthSelector.addItem(MITTEL);
-		redPlayerStrengthSelector.addItem(STARK);
+		//redPlayerStrengthSelector.addItem(STARK);
 		redPlayerStrengthSelector.addActionListener(this);
 		redPlayerStrengthSelector.setActionCommand(SELECTEDREDPLAYERSTRENGTH);
 		redPlayerStrengthSelector.setSelectedItem(MITTEL);
@@ -183,7 +183,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		yellowPlayerStrengthSelector.addItem(SCHWACH);
 		yellowPlayerStrengthSelector.addItem(MITTEL);
-		yellowPlayerStrengthSelector.addItem(STARK);
+		//yellowPlayerStrengthSelector.addItem(STARK);
 		yellowPlayerStrengthSelector.addActionListener(this);
 		yellowPlayerStrengthSelector.setActionCommand(SELECTEDYELLOWPLAYERSTRENGTH);
 		yellowPlayerStrengthSelector.setSelectedItem(MITTEL);
@@ -412,15 +412,17 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		
 		int strength=AIPlayer.MEDIUM;
 		if (color == Token.RED) {
-			if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
-				strength = AIPlayer.STRONG;
-			} else if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
+//			if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
+//				strength = AIPlayer.STRONG;
+//			} else
+            if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
 				strength = AIPlayer.WEAK;
 			}
 		} else {
-			if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
-				strength = AIPlayer.STRONG;
-			} else if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
+//			if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(STARK)) {
+//				strength = AIPlayer.STRONG;
+//			} else
+            if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase(SCHWACH)) {
 				strength = AIPlayer.WEAK;
 			}
 		}

@@ -2,8 +2,8 @@ package de.fhhn.viergewinnt.game;
 
 /**
  * Konfiguratrion eines Spieles. Wer fängt an, wie ist die Spielstärke
- * @author $Author: manuel $
- * @version $Revision: 1.2 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.3 $
  */
 
 // leider ist in den Playern ein Zyklus über das modell drin. Daher kann ich keine
@@ -15,7 +15,7 @@ package de.fhhn.viergewinnt.game;
 
 	public static final int AIWEAK = AIPlayer.WEAK;
 	public static final int AIMEDIUM = AIPlayer.MEDIUM;
-	public static final int AISTRONG = AIPlayer.STRONG;
+//	public static final int AISTRONG = AIPlayer.STRONG;
 
 	private int firstPlayer;
     private int secondPlayer;
@@ -50,9 +50,9 @@ package de.fhhn.viergewinnt.game;
 			case(1):
 				selectedStrength = AIMEDIUM;
 				break;
-			case(2):
-				selectedStrength = AISTRONG;
-				break;
+//			case(2):
+//				selectedStrength = AISTRONG;
+//				break;
 		}
 
 		this.strength = selectedStrength;
