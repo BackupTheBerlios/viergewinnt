@@ -44,6 +44,12 @@ public class TestGame extends TestCase {
         assertTrue(play(moves) == Token.RED);
 	}
 	
+	/** Vier unzusammenhängende rote Steine in einer Zeile. */
+	public void testFourDisconnectedRedTokensInOneRow() {
+		int[] moves = {0, 1, 2, 0, 3, 0, 4};
+        assertTrue(play(moves) == Token.EMPTY);
+	}
+	
 	public boolean compareBoards(Token[][] expectedBoard, Token[][] resultBoard) {
         boolean valid = true;
 		for(int i=0; i < expectedBoard.length; i++) {
