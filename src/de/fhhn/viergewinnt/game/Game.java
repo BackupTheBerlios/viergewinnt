@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: kathrin $
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  * @since LCA
  * @stereotype Model
  */
@@ -143,7 +143,7 @@ public class Game extends Observable {
 		int counterLupRdown = 1;
 
 		// linker oberer Teil der Diagonale von links oben nach rechts unten.
-        while (row < ROWS && col > 0) {
+        while (row < ROWS - 1 && col > 0) {
             row++;
             col--;
 			if (token == board[row] [col]) {
@@ -157,7 +157,7 @@ public class Game extends Observable {
         col = last.getColumn();
 
 		// rechter unterer Teil der Diagonale links oben nach rechts unten.
-        while (row > 0 && col < COLS) {
+        while (row > 0 && col < COLS - 1) {
             row--;
             col++;
 			if (token == board[row] [col]) {
@@ -173,7 +173,7 @@ public class Game extends Observable {
 		int counterRupLdown = 1;
 
         // rechter oberer Teil der Diagonalen von links unten nach rchts oben.
-		while (row < ROWS && col < COLS) {
+		while (row < ROWS - 1 && col < COLS - 1) {
             row++;
             col++;
 			if (token == board[row] [col]) {
