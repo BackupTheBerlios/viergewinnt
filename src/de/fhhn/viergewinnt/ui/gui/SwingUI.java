@@ -17,7 +17,7 @@ import de.fhhn.viergewinnt.ui.*;
 /**
  * View für die grapfische Benutzerschnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  * @since LCA
  */
 public class SwingUI extends JFrame implements MouseListener, View {
@@ -157,7 +157,11 @@ public class SwingUI extends JFrame implements MouseListener, View {
     }
 
     public void mouseClicked(MouseEvent e) {
-        // falls mausklick -> agieren
+        //
+    }
+
+    public void mousePressed(MouseEvent e) {
+        //falls mausklick -> agieren
         boolean jumpout = false;
         for (int i = ROWS - 1; i >= 0; i--) {
             for (int j = 0; j < COLS; j++) {
@@ -174,10 +178,6 @@ public class SwingUI extends JFrame implements MouseListener, View {
                 break;
             }
         }
-    }
-
-    public void mousePressed(MouseEvent e) {
-        //
     }
 
     public void mouseReleased(MouseEvent e) {
