@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  * @since LCA
  * @stereotype Model
  */
@@ -20,10 +20,10 @@ public class Game extends Observable {
     private MoveEvent lastMoveEvent;
 
     /** 
-	 * Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der 
+	 * Spielbrett mit 6 Zeilen und 7 Spalten. Die Zeilen beginnen mit der 
 	 * Zählung von unten. 
 	 */
-    private Token[] [] board;
+    private Token[][] board;
 
     /** 
      * Der Gewinner des Spiels. Solange noch niemand gewonnen hat, ist der
@@ -31,6 +31,10 @@ public class Game extends Observable {
      */
     private Token winner;
 
+	/**
+	 * Konstruktor.
+	 * @param beginner der Spieler, der den ersten Zug machen darf
+	 */
     public Game(Token beginner) {
         whoseTurn = beginner;
         board = new Token[ROWS] [COLS];
@@ -41,57 +45,113 @@ public class Game extends Observable {
         }
     }
 
+	/**
+	 * Verarbeitet den Spielzug eines Spielers. Wenn der Spielzug ungültig ist
+	 * (z.B. weil der enstpsrechende Spieler gerade nicht dran ist), wird er 
+	 * ignoriert.
+	 * @param m Spielzug mit Token des ziehenden Spielers.
+	 */
+    public void accept(MoveEvent m) {
+		/*
+		 * XXX Wie können wir verhindern, dass ein Spieler für den _anderen_
+		 * einen Zug macht? Wenn beispielsweise der rote Spieler erst ein 
+		 * MoveEvent mit Token.RED, und anschließend gleich ein zweites mit
+		 * Token.YELLOW übergibt, hat er das Spiel sabotiert.
+		 */
 
-    private void save(MoveEvent m) {
-        int column = m.getColumn();
-        Token token = m.getToken();
-        // die richtige Zeile berechnen
-        int row = 0;
-        //for (row = 0; !(board[row] [column] == Token.EMPTY); row++) {
-        //}
-        while (!(board[row] [column] == Token.EMPTY)) {
-            row++;
+        System.out.println("Game.accept(): move=" + m);
+
+		if (m.getToken() != Token.RED && m.getToken() != Token.YELLOW) {
+			throw new IllegalArgumentException();
+		}
+
+        
+        if (isValid(m)) { // MoveEvent gültig?
+            System.out.println("Game.accept(): move ist gültig");
+            makeMove(m); // Zug ins interne Spielbrett eintragen
+            winner = checkWinner(); // prüfen, ob ein Spieler gewonnen hat
+            // XXX der andere Spieler ist dran:
+            if (whoseTurn == Token.RED) {
+                whoseTurn = Token.YELLOW;
+            } else if (whoseTurn == Token.YELLOW) {
+                whoseTurn = Token.RED;
+            } else {
+                // assert false
+            }
+
+            // Observer benachrichtigen
+	        setChanged();
+    	    notifyObservers();
+
+            System.out.println("Game.accept():" + whoseTurn + " ist dran");
+        } else {
+            System.out.println("Game.accept(): move ist ungültig!");
+            //Zug ungültig -> Fehler
         }
-        board[row] [column] = token;
-        // Move is valid and will be saved
-        m.setRow(row);
-        lastMoveEvent = m;
     }
 
-	/* This method will be called from the observers
-	 *
-     */
-
-    public MoveEvent getLastMoveEvent() {
-        // we need this for remote and ai player
-        // not checking
-		return new MoveEvent(lastMoveEvent);
-    }
-
-
+	/**
+	 * Prüft, ob das MoveEvent gültig ist. Ein MoveEvent ist gültig, wenn 
+	 * <ul>
+	 *   <li>der Spielstein in eine Spalte gesteckt wird, in der noch mindestens 
+	 *	     ein Platz frei ist
+	 *	 </li>
+	 *   <li>der Spielstein die Farbe des Spielers hat, der gerade am Zug
+	 *       ist
+	 *   </li>
+	 * </ul>
+	 */
     private boolean isValid(MoveEvent m) {
         int column = m.getColumn();
-        // assert Wertebereich eingehalten (0 < column < 6)
+        // assert (? < column && column < ?)
+		
         boolean valid = false;
-        // richtige Spalte?
-        if (board[5] [column] == Token.EMPTY) {
+        // in Spalte noch ein Platz frei?
+        if (board[5][column] == Token.EMPTY) {
             valid = true;
         } else {
             valid = false;
             System.out.println("Game.isValid(): falsche Spalte -> ungültiger Move");
         }
-        // richtiger Spieler?
+        // richtige Spielstein-Farbe?
         if (valid && (whoseTurn == m.getToken())) {
             valid = true;
         } else {
             valid = false;
-            System.out.println("Game.isValid(): falscher Spieler -> ungültiger Move");
+            System.out.println("Game.isValid(): falsche Farbe -> ungültiger Move");
         }
         return valid;
     }
 
 
 
+	/**
+	 * Trägt den Spielzug in das interne Spielbrett ein.
+	 * @param m ein gültiger Spielzug
+	 */
+    private void makeMove(MoveEvent m) {
+		// assert m.isValid();
+
+        int column = m.getColumn();
+        Token token = m.getToken();
+		
+        // die Zeile berechnen, in die der Spielstein landen soll
+        int row = 0;
+        while (!(board[row][column] == Token.EMPTY)) {
+            row++;
+        }
+
+        board[row][column] = token; // Zug in Spielbrett eintragen
+        m.setRow(row);
+        lastMoveEvent = m;
+    }
+
+	/**
+	 * Prüft, ob ein Spieler gewonnen hat. XXX Was ist mit unentschieden? Was
+	 * wird da zurückgegeben, wo wird das geprüft?
+	 * @return die Farbe des Spielers, der gewonnen hat, oder Token.EMPTY, wenn
+	 * noch niemand gewonnen hat
+	 */
     private Token checkWinner() {
         // Diagonale prüfen links unten nach rechts oben
 		MoveEvent last = getLastMoveEvent();
@@ -208,36 +268,17 @@ public class Game extends Observable {
         }
     }
 
-    public void accept(MoveEvent m) {
-        System.out.println("Game.accept(): move=" + m);
-        if (isValid(m)) {
-            System.out.println("Game.accept(): move ist gültig");
-            save(m); // Reihenfolge wichtig!
-            winner = checkWinner(); // s.o.
-            // XXX der andere ist dran:
-            if (whoseTurn == Token.RED) {
-                whoseTurn = Token.YELLOW;
-            } else if (whoseTurn == Token.YELLOW) {
-                whoseTurn = Token.RED;
-            } else {
-                // assert false
-            }
-           // notify observers, the model has changed
-	        setChanged();
-    	    notifyObservers();
-
-            System.out.println("Game.accept():" + whoseTurn + " ist dran");
-        } else {
-            System.out.println("Game.accept(): move ist ungültig!");
-            //Zug ungültig -> Fehler
-        }
+    /**
+	 * Gibt den zuletzt gemachten Spielzug als MoveEvent zurück.
+	 */
+	public MoveEvent getLastMoveEvent() {
+		return new MoveEvent(lastMoveEvent);
     }
 
-	/* This method will be called from the observers
-	 *
-     */
-
-    public Token[] [] getBoard() {
+	/**
+	 * Gibt eine Kopie des Spielfelds zurück.
+	 */
+    public Token[][] getBoard() {
 		Token[][] boardCopy = new Token[ROWS][COLS];
     	for (int i = 0; i < board.length; i++) {
 			System.arraycopy(board[i], 0, boardCopy[i], 0, board[i].length);
