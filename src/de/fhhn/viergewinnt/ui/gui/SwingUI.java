@@ -193,19 +193,39 @@ public class SwingUI
 	 * 
 	 * :TODO:	Dialog "Neues Spiel" einbauen
 	 */
-	public void startNewGame() {
-
+	private void startNewGame() {
+		
+		
 		// neues Spiel, rot beginnt
 		Game model = new Game(Token.RED);
 		setModel(model);
 		model.addObserver(this);
 
-		View redView = this;
-
-		playerColor = Token.RED;
-		Player redPlayer = new HumanPlayer(redView, model, Token.RED);
-		Player yellowPlayer = new AIPlayer(model, Token.YELLOW);
-
+		View actualView = this;
+		
+		NewGameDialog ngd = new NewGameDialog();
+		
+		Player redPlayer;
+		Player yellowPlayer;
+		
+		playerColor = ngd.getLocalPlayerColor();
+		
+		if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("Spieler")) {
+			redPlayer = new HumanPlayer(actualView, model, Token.RED);
+			yellowPlayer = new AIPlayer(model, Token.YELLOW);
+		} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
+			yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
+			redPlayer = new AIPlayer(model, Token.RED);
+		} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
+			redPlayer = new AIPlayer(model, Token.RED);
+			yellowPlayer = new AIPlayer(model, Token.YELLOW);
+		} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
+			yellowPlayer = new AIPlayer(model, Token.YELLOW);
+			redPlayer = new AIPlayer(model, Token.RED);
+		} else {
+			// scheiﬂe
+		}
+		
 		// GUI fertigmachen
 		initPlayfield();
 		this.setVisible(true);
