@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: kathrin $
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  * @since LCA
  * @stereotype Model
  */
@@ -112,7 +112,55 @@ public class Game extends Observable {
                 }
             }
         }
-        // Diagonale prüfen links unten nach rechts o
+        // Diagonale prüfen links unten nach rechts oben
+		MoveEvent last = getLastMoveEvent();
+        int row = last.getRow();
+        int col = last.getColumn();
+        Token token = last.getToken();
+
+		 // zählt ob vier Tokens von einer Farbe in einer Diagonalen links
+        //oben nach rechts unten liegen.
+		int counterLoRu = 1;
+
+		// linker oberer Teil der Diagonale von links oben nach rechts unten.
+        for (; row < ROWS && col >= 0; row++, col--) {
+			if (token == board[row + 1] [col - 1]) {
+				counterLoRu += 1;
+            } else {
+				break; //eventuell Variable continue einführen, damit man aus
+                		// for Schleife kommt sobald das if nicht mehr stimmt.
+            }
+        }
+
+		// rechter unterer Teil der Diagonale links oben nach rechts unten.
+        for (; row >= 0 && col < COLS; row--, col++) {
+			if (token == board[row - 1] [col + 1]) {
+				counterLoRu += 1;
+            } else {
+				break; //s.o.
+            }
+        }
+
+        // Counter für Diagonale rechts oben nach links unten.
+		int counterRoLu = 1;
+
+        // rechter oberer Teil der Diagonalen von links unten nach rchts oben.
+		for (; row < ROWS && col < COLS; row++, col++) {
+			if (token == board[row + 1] [col + 1]) {
+				counterRoLu += 1;
+            } else {
+				break; // s.o.
+            }
+        }
+
+        // linker unterer Teil der Diagonalen links unten nach rechts oben.
+        for (; row >= 0 && col >= 0; row--, col--) {
+			if (token == board[row - 1] [col - 1]) {
+				counterRoLu += 1;
+            } else {
+				break; // s.o.
+            }
+        }
 
 
         return Token.EMPTY;
@@ -122,8 +170,8 @@ public class Game extends Observable {
         System.out.println("Game.accept(): move=" + m);
         if (isValid(m)) {
             System.out.println("Game.accept(): move ist gültig");
-            save(m);
-            checkWinner();
+            save(m); // Reihenfolge wichtig!
+            checkWinner(); // s.o.
             // XXX der andere ist dran:
             if (whoseTurn == Token.RED) {
                 whoseTurn = Token.YELLOW;
