@@ -14,6 +14,7 @@ public class TestGame extends TestCase {
     /** Constructs a test case with the given name. */
     public TestGame(String name) {
         super(name);
+
     }
 
     /**
@@ -38,7 +39,11 @@ public class TestGame extends TestCase {
         assertTrue(play(moves) == Token.RED);
     }
 
-
+	public void testRedPreventsYellowFromWinningAndWinsVertical() {
+		int[] moves = {1, 0, 1, 0, 1, 0, 0, 0, 1};
+        assertTrue(play(moves) == Token.RED);
+	}
+	
 	public boolean compareBoards(Token[][] expectedBoard, Token[][] resultBoard) {
         boolean valid = true;
 		for(int i=0; i < expectedBoard.length; i++) {
