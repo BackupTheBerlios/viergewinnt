@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -32,7 +32,6 @@ public class AIPlayer extends Player implements View {
         limit = 4; // XXX Wert aus UI übernehmen
         // Wurzel initialisieren
         GraphNode.expand(root, list, limit);
-
     }
 
     /** Hier eigentlich überflüssig. */
@@ -50,7 +49,13 @@ public class AIPlayer extends Player implements View {
             executeMove(playerMove);
 
             if (!root.getState().isFinalState(root)) {// XXX wenn Spiel noch nicht zuende
-	   	        calculateMove();
+	   	        MoveEvent m = calculateMove();
+         		// den berechneten Spielzug an das Spiel übergeben. Falls er akzeptiert
+		        // wird, diesen Zug im intern nachvollziehen
+        		boolean isMoveEventValid = gameModel.accept(m);
+		        if (isMoveEventValid) {
+	    		    executeMove(m);
+		        }
             } else {
                 System.out.println("AIPlayer.update(): Spiel zuende");
             }
@@ -59,7 +64,7 @@ public class AIPlayer extends Player implements View {
         }
     }
 
-    private void calculateMove() {
+    private MoveEvent calculateMove() {
         GraphNode.expand(root, list, limit);
         // Nachfolger mit höchster Bewertung suchen.
         ArrayList succNodes = root.getSuccessors();
@@ -78,32 +83,34 @@ public class AIPlayer extends Player implements View {
         m.setRow(bestMove.getRow());
         m.setToken(color);
 
-		// den berechneten Spielzug an das Spiel übergeben. Falls er akzeptiert
-        // wird, diesen Zug im intern nachvollziehen
-        boolean isMoveEventValid = gameModel.accept(m);
-        if (isMoveEventValid) {
-	        executeMove(m);
-        }
+        return m;
     }
 
     private void executeMove(MoveEvent m) {
-        System.out.println("\tAIPlayer.executeMove(): 1. m=" + m);
+        System.out.println("\tAIPlayer.executeMove(): m=" + m);
         if (m.getRow() == -1) { // ungültiger Move?
             throw new IllegalArgumentException("Move ungültig (row==-1)!");
         }
         // richtigen Nachfolgernoten suchen
+        boolean foundSuccessor = false;
         ArrayList successors = root.getSuccessors();
         ListIterator iter = successors.listIterator();
         while (iter.hasNext()) {
+            System.out.println("\tAIPlayer.executeMove(): suche passenden Nachfolgerknoten...");
             GraphNode succ = (GraphNode) iter.next();
             AIGameState state = succ.getState();
             //Token[][] board = state.getBoard();
             //if (board[m.getRow()][m.getColumn()] != Token.EMPTY) {
 			if (state.getLastMoveEvent().equals(m)) {
-		        System.out.println("\tAIPlayer.executeMove(): 2. m=" + m);
+				System.out.println("\tAIPlayer.executeMove(): passender Nachfolger gefunden");
                 root = succ;
+                foundSuccessor = true;
                 break;
             }
+        }
+        if (!foundSuccessor) {
+			System.out.println("\tAIPlayer.executeMove(): kein passender Nachfolger gefunden -> Fehler!");
+			throw new RuntimeException(); // besser assert false
         }
     }
 }
