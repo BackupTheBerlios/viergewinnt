@@ -2,21 +2,26 @@ package de.fhhn.viergewinnt.game;
 
 import java.util.*;
 import de.fhhn.viergewinnt.ui.View;
+import de.fhhn.viergewinnt.ai.*;
+
 /**
  * Gleichzeitig Controller und View.
  * 
- * @author $Author: manuel $
- * @version $Revision: 1.5 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.6 $
  * @since LCA
  * @stereotype View, Controller
  */
 public class AIPlayer extends Player implements View {
-    // Wenn KI da Random raus!
-    private Random randomizer = new Random();
+	// Spielbaum
+    private GraphNode root;
+    private GraphNodeList list;
 	
     public AIPlayer(Game g, Token color) {
         super(g, color);
         g.addObserver(this); // als View registrieren
+        root = new GraphNode(new AIGameState(Token.RED), null);
+		list = new GraphNodeList();
     }
 
     /** Hier eigentlich überflüssig. */
@@ -29,12 +34,26 @@ public class AIPlayer extends Player implements View {
 
     public void update(Observable observable, Object obj) {
 		if (gameModel.getWhoseTurn() == color) {
-        	System.out.println("AIPlayer.update(): Pseudo-Move");
-			// XXX Token immer in erste Spalte stecken.
+			/* FIXME Funktioniert noch nicht
+            root.getState().expand(root, list, 4);
 
-		MoveEvent m = new MoveEvent(this, randomizer.nextInt(6));
+            // Nachfolger mit höchster Bewertung suchen.
+            ArrayList succNodes = root.getSuccessors();
+            ListIterator iter = succNodes.listIterator();
+			GraphNode maxRated;
+			maxRated = (GraphNode) iter.next();
+
+            while (iter.hasNext()) {
+				GraphNode current = (GraphNode) iter.next();
+                if (maxRated.getRating() < current.getRating()) {
+					maxRated = current;
+                }
+
+            }
+			MoveEvent m = new MoveEvent(this, -1); //FIXME
     	    m.setToken(color);
         	gameModel.accept(m);
+            */
         }
     }
 }

@@ -8,10 +8,10 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  * @since IOC
  */
-class AIGameState extends GameState {
+public class AIGameState extends GameState {
     /**
      * Erzeugt einen neuen Anfangs-Spielzustand.
      * @param whoseTurn der Spieler, der das Spiel beginnt
@@ -35,16 +35,19 @@ class AIGameState extends GameState {
      * @param list Container für bereits erzeugte Knoten
      * @param limit Suchtiefe (beeinflusst die Spielstärke)
      */
-	public static void expand(GraphNode node, GraphNodeList list, int limit) {
+	public void expand(GraphNode node, GraphNodeList list, int limit) {
 		// Abbruchbedingung
 		AIGameState state = node.getState();
 		if (state.isFinalState(node)) {
 			// Min-Max-Bewertung
-            if (checkWinner() == Token.RED) {
+            int row = lastMoveEvent.getRow();
+            int col = lastMoveEvent.getColumn();
+            Token winner = state.checkWinner(row, col);
+            if (winner == Token.RED) { // FIXME
                 node.setRating(Integer.MAX_VALUE);
-            } else if (checkWinner() == Token.YELLOW) {
+            } else if (winner == Token.YELLOW) { // FIXME
                 node.setRating(Integer.MIN_VALUE);
-            } else if (checkWinner() == Token.EMPTY) {
+            } else if (winner == Token.EMPTY) { // FIXME
                 node.setRating(0);
             }
 			return;
@@ -59,7 +62,7 @@ class AIGameState extends GameState {
         int b;
         if (whoseTurn == Token.RED) {
             b = Integer.MIN_VALUE; // FIXME oder -1?
-        } else if (whoseTurn ==Token.YELLOW) {
+        } else {
             b = Integer.MAX_VALUE; // FIXME oder 1?
         }
 
@@ -84,7 +87,7 @@ class AIGameState extends GameState {
 			// Min-Max-Bewertung
             if (whoseTurn == Token.RED) {
                 b = Math.max(b, succNode.getRating());
-            } else if (whoseTurn == Token.YELLOW) {
+            } else {
                 b = Math.min(b, succNode.getRating());
             }
             node.setRating(b);
@@ -100,7 +103,7 @@ class AIGameState extends GameState {
 		GraphNode parent = node.getParent();
 
 		// hat jemand gewonnen?
-		if (parent != null) { // XXX lastMoveEvent ermitteln
+		if (parent != null) { // XXX lastMoveEvent benutzen!
 			AIGameState parentState = parent.getState();
 			int row = 0;
 			int col = 0;
@@ -113,8 +116,8 @@ class AIGameState extends GameState {
 					}
 				}
 			}
-			
-			if (checkWinner(row, col) == Token.RED || checkWinner(row, col) == Token.YELLOW) {
+
+			if (node.getState().checkWinner(row, col) == Token.RED || node.getState().checkWinner(row, col) == Token.YELLOW) {
 				return true;
 			}
 		}
@@ -241,10 +244,11 @@ class AIGameState extends GameState {
 		return s.hashCode();
 	}
 
+    /** Nur zum Ausprobieren. */
 	public static void main(String[] args) {
 		GraphNode root = new GraphNode(new AIGameState(Token.RED), null);
 		GraphNodeList list = new GraphNodeList();
-		AIGameState.expand(root, list, 4);
+		root.getState().expand(root, list, 4);
 		System.out.println((root.getSuccessorAmount() +  1) + " Knoten");
 	}
 }

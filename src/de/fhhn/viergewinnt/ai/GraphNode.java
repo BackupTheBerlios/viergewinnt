@@ -6,10 +6,10 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since IOC
  */
-class GraphNode {
+public class GraphNode {
 	private GraphNode parent;
 	private AIGameState state;
 	private ArrayList successors;

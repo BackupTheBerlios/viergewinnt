@@ -6,16 +6,20 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: kathrin $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  * @since IOC
  */
 public class GameState {
+    protected MoveEvent lastMoveEvent;
+
 	protected Token whoseTurn = Token.EMPTY;
-	protected int remainingEmptyHoles = 9;
 
 	/** Zustand des Spielfelds. */
 	protected Token[][] board = new Token[Game.ROWS][Game.COLS];
 
+    /**
+     * Konstruktor für den ersten Spielzustand ohne Vorgänger.
+     */
 	public GameState(Token whoseTurn) {
 		this.whoseTurn = whoseTurn;
 		// board initialisieren
@@ -24,8 +28,13 @@ public class GameState {
 				board[i][j] = Token.EMPTY;
 			}
 		}
+
+        //lastMoveEvent = null;
 	}
 
+    /**
+     * Konstruktor für die Spielzustände nach dem ersten Zug.
+     */
 	public GameState(Token whoseTurn, Token[][] board) {
 		this.whoseTurn = whoseTurn;
 		for (int i = 0; i < board.length; i++) {
@@ -206,4 +215,12 @@ public class GameState {
 
 		return boardCopy;
 	}
+
+    public MoveEvent getLastMoveEvent() {
+        return new MoveEvent(lastMoveEvent);
+    }
+
+    public void setLastMoveEvent(MoveEvent lastMoveEvent) {
+        this.lastMoveEvent = lastMoveEvent;
+    }
 }

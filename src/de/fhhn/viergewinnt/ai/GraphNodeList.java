@@ -5,11 +5,11 @@ import java.util.*;
 /** 
  * Container für bereits erzeugte Knoten.
  *
- * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
-class GraphNodeList {
+public class GraphNodeList {
 	/** 
 	 * Enthält alle bereits erzeugten Knoten.
 	 * Eigentlich sollte das weder List noch Map sein, sondern Set. 

@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: manuel $
- * @version $Revision: 1.35 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.36 $
  * @since LCA
  * @stereotype Model
  */
@@ -17,7 +17,6 @@ public class Game extends Observable {
     public static final int ROWS = 6;
     public static final int COLS = 7;
     private Token whoseTurn;
-    private MoveEvent lastMoveEvent;
 
     /**
     * Zustand des Spiels mit Spielbrett.
@@ -162,9 +161,9 @@ public class Game extends Observable {
 
         board[row][column] = token; // Zug in Spielbrett eintragen
         m.setRow(row);
-        lastMoveEvent = m;
-		
+
 		state = new GameState(whoseTurn, board);
+        state.setLastMoveEvent(m);
     }
 
 	/**
@@ -174,16 +173,17 @@ public class Game extends Observable {
 	 * noch niemand gewonnen hat
 	 */
     private Token checkWinner() {
-        MoveEvent last = getLastMoveEvent();
+        MoveEvent last = state.getLastMoveEvent();
         return state.checkWinner(last.getRow(), last.getColumn());
     }
 
     /**
+     *
 	 * Gibt den zuletzt gemachten Spielzug als MoveEvent zurück.
 	 */
-	public MoveEvent getLastMoveEvent() {
-		return new MoveEvent(lastMoveEvent);
-    }
+	/*public MoveEvent getLastMoveEvent() {
+		return state.getLastMoveEvent();
+    }*/
 
 	/**
 	 * Gibt eine Kopie des Spielfelds zurück.
