@@ -1,0 +1,254 @@
+package id3xdlmd947sat9d947yk56;
+
+/**
+@version 2.0
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node1:oiref><oihard>
+@__modelType reference 
+*/
+class reference2 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node3:oiref><oihard>
+@__modelType reference 
+*/
+class reference4 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node5:oiref><oihard>
+@__modelType reference 
+*/
+class reference6 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node7:oiref><oihard>
+@__modelType reference 
+*/
+class reference8 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node9:oiref><oihard>
+@__modelType reference 
+*/
+class reference10 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node11:oiref><oihard>
+@__modelType reference 
+*/
+class reference12 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node21:oiref><oihard>
+@__modelType reference 
+*/
+class reference22 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node23:oiref><oihard>
+@__modelType reference 
+*/
+class reference24 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node25:oiref><oihard>
+@__modelType reference 
+*/
+class reference26 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node27:oiref><oihard>
+@__modelType reference 
+*/
+class reference28 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node29:oiref><oihard>
+@__modelType reference 
+*/
+class reference30 {
+}/**
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node31:oiref><oihard>
+@__modelType reference 
+*/
+class reference32 {
+}}/**
+
+@__tags
+@shapeType UseCaseDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node3.link13:oiref>=186,195,344,244,576,244,576,171:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node9:oiref>=286,147,170,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node3.link:oiref>=158,147,110,87:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node7:oiref>=520,150,133,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node5:oiref>=10,147,70,77,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node16.link:oiref>=:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node5.link:oiref>=45,147,93,87:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node11.link:oiref>=785,150,643,31:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node23:oiref>=580,440,198,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node27.link:oiref>=790,300,790,171:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node21:oiref>=330,440,215,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node3.link14:oiref>=186,157,286,157:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node3:oiref>=130,147,56,77,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node1:oiref>=491,10,209,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node9.link:oiref>=371,147,546,31:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node5.link15:oiref>=80,210,119,234,355,234,690,161:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node7.link:oiref>=586,150,586,31:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node:oiref>=76,10,52,77,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node29:oiref>=320,370,273,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node27:oiref>=710,300,184,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node31:oiref>=620,370,204,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node11:oiref>=690,150,191,21,1:oigroup>
+<oigroup:<oiref:design#Class#id3xdlmd947sat9d947yk56.node25:oiref>=330,490,286,40,1:oigroup>
+
+*/
+class __positions {
+}/**
+@shapeType Actor
+@__modelType node
+@name Spieler 
+*/
+class node {
+}/**
+@shapeType UseCase
+@__modelType node
+@name "Vier Gewinnt" spielen 
+@priority medium
+@number 1*/
+class node1 {
+}/**
+@shapeType Actor
+@__modelType node
+@name Mensch 
+*/
+class node3 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node7:oiref><oihard> 
+*/
+class link13 {
+}/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node9:oiref><oihard> 
+*/
+class link14 {
+}}/**
+@shapeType Actor
+@__modelType node
+@name Computer 
+*/
+class node5 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType CommunicatesLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node11:oiref><oihard> 
+*/
+class link15 {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name GUI benutzen 
+@priority high
+@number 3
+*/
+class node7 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node1:oiref><oihard> 
+*/
+class link {
+}/**
+@shapeType Hyperlink
+@__modelType link
+@__ref <oiref:design#Class#id3loegd94e1i0xd94fib7h.diagram:oiref><oihard> 
+*/
+class link55 {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name Text-UI benutzen 
+@number 2
+*/
+class node9 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node1:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name API benutzen (lokal)
+@number 4
+*/
+class node11 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node1:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name Lernen und verbessern 
+*/
+class node21 {
+}/**
+@shapeType UseCase
+@__modelType node
+@name Nebenläufig arbeiten 
+*/
+class node23 {
+}/**
+@shapeType UseCase
+@__modelType node
+@name Teilergebnisse wiederverwenden 
+*/
+class node25 {
+}/**
+@shapeType UseCase
+@__modelType node
+@name Über's Netz spielen 
+@number 5
+*/
+class node27 {
+/**
+@shapeType GeneralizationLink
+@__modelType link
+@__ref <oiref:design#Class#id3xdlmd947sat9d947yk56.node11:oiref><oihard> 
+*/
+class link {
+}}/**
+@shapeType UseCase
+@__modelType node
+@name Alpha-Beta Pruning benutzen 
+*/
+class node29 {
+}/**
+@shapeType UseCase
+@__modelType node
+@name Heuristiken benutzen 
+*/
+class node31 {
+}
