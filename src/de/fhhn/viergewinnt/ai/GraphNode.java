@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  * @since IOC
  */
 public class GraphNode {
@@ -107,8 +107,8 @@ public class GraphNode {
             } else {
                 b = Math.min(b, succNode.getRating());
             }
-            node.setRating(b);
 		}
+		node.setRating(b);
         //
         ///////////////////////////////////////////////////////////////////////
 
