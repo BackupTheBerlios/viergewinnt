@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: malte $
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -103,7 +103,13 @@ public class AIGameState extends GameState {
 				System.arraycopy(state.board[k], 0, succ[k], 0, state.board[k].length);
 			}
 
-			// in den Nachfolgerzuständen ist der andere Spieler dran.
+			// Marke setzen
+			succ[row][cols] = state.getWhoseTurn();
+            MoveEvent move = new MoveEvent(state, cols);
+            move.setRow(row);
+            move.setToken(state.getWhoseTurn());
+
+			// im Nachfolgerzustand ist der andere Spieler dran.
             Token newWhoseTurn = Token.EMPTY;
 			if (state.getWhoseTurn() == Token.RED) {
 				newWhoseTurn = Token.YELLOW;
@@ -112,11 +118,7 @@ public class AIGameState extends GameState {
 			} else {
 				throw new RuntimeException(); // assert false
 			}
-			// neue Marke setzen
-			succ[row][cols] = newWhoseTurn;
-            MoveEvent move = new MoveEvent(state, cols);
-            move.setRow(row);
-            move.setToken(newWhoseTurn);
+
             AIGameState succState = new AIGameState(newWhoseTurn, succ, move);
             //succState.setLastMoveEvent(move);
 			successors.add(succState);
