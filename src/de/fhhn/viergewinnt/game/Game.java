@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  * @since LCA
  * @stereotype Model
  */
@@ -53,7 +53,7 @@ public class Game extends Observable {
     public MoveEvent getLastMoveEvent() {
         // we need this for remote and ai player
         // not checking
-        return lastMoveEvent; // do we need to clone() ?;
+		return new MoveEvent(lastMoveEvent);
     }
 
 
