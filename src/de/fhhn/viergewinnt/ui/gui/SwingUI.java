@@ -13,7 +13,7 @@ import de.fhhn.viergewinnt.ui.*;
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
  * @author $Author: p_herk $
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
 	
@@ -270,7 +270,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 			}
 			
 		}
-		
+
 		this.setVisible(true);
 
 	}
@@ -280,6 +280,7 @@ public class SwingUI extends JFrame implements MouseListener, ActionListener, Vi
 	 */
 	private void exitGame() {
 		this.dispose();
+		System.exit(0);
 	}
 
 	/**
