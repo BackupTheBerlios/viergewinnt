@@ -5,15 +5,15 @@ import de.fhhn.viergewinnt.game.*;
 /** 
  * Die Bewetung der einzellen Stellungen
  *
- * @author $Author: manuel $
- * @version $Revision: 1.3 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.4 $
  */
 public class AIGameStateHeuristic {
     // speicher der verwendeten leeren Tokens, gewinnen kann man nur einmal
 	private static boolean[][] emptyTokenBoard;
 	private static int[] lastEmptyTokenPosition = new int[2];
-	private static final int XAXIS = Game.ROWS;
-	private static final int YAXIS = Game.COLS;
+	private static final int XAXIS = Game.COLS;
+	private static final int YAXIS = Game.ROWS;
 	
     /**
      * Heuristische Stellungsbewertung eines Zustandes
@@ -21,19 +21,54 @@ public class AIGameStateHeuristic {
 	 * @return rating Bewertung
      */
 	public static int ratePosition(GameState state) {
-		emptyTokenBoard = new boolean[6][7]; // für diesen Zustand verwendete leere Tokens merken
+		emptyTokenBoard = new boolean[YAXIS][XAXIS]; // für diesen Zustand verwendete leere Tokens merken
 		int[] rating = new int[2];
 		
 		int[] axisRating = rateAxes(state);
 		int[] diagsRating = rateDiags(state);
+/*
+		Token[][] board = state.getBoard();
+		System.out.println("Dieser Zustand:\n");
+        StringBuffer sb = new StringBuffer();
 
+        // Spalten-Nummerierung
+        for (int i = 0; i < board[0].length; i++) {
+            sb.append(" " + (i + 1));
+        }
+        sb.append("\n");
+
+        // Spielfeld
+        for (int i = board.length - 1; i >= 0; i--) {
+            sb.append("|");
+            for (int j = 0; j < board[0].length; j++) {
+                sb.append(board[i][j] + "|");
+            }
+            sb.append("\n");
+        }
+        sb.append("---------------");
+        System.out.println(sb);
+		System.out.println("ZustandEnde\n\n");
+*/
 		rating[0] = axisRating[0] + diagsRating[0];
 		rating[1] = axisRating[1] + diagsRating[1];
-		//System.out.println("0 = "+rating[0]+"  1 =  "+rating[1]);
+
+        Token winnerToken = state.checkWinner();
+		boolean isWinner = false;
+		if (winnerToken == state.getWhoseTurn()) {
+			isWinner = true;
+        }
 
 		if (state.getWhoseTurn() == Token.RED) {
-			return rating[0] - rating[1];
+			if (isWinner) {
+				return Integer.MAX_VALUE;
+            }
+
+            return rating[0] - rating[1];
         } else {
+            if (isWinner) {
+				return Integer.MIN_VALUE;
+            }
+
             return rating[1] - rating[0];
         }
 	}
@@ -44,10 +79,10 @@ public class AIGameStateHeuristic {
 	 * @return boolean ja/nein
 	 */	
 	private static boolean useEmptyToken(int[] position) {
-		if(emptyTokenBoard[position[1]][position[0]]) {
+		if(emptyTokenBoard[position[0]][position[1]]) {
 			return false;
 		} else {
-			emptyTokenBoard[position[1]][position[0]] = true;
+			emptyTokenBoard[position[0]][position[1]] = true;
 			return true;
 		}
 	}
@@ -90,11 +125,14 @@ public class AIGameStateHeuristic {
 	private static int[] rateTuple(int[] rating, int[] localValues) {
 		// wenn es nur einen leeren Token gibt und diesen nicht schon bei einer anderen Stellung verwendet wird
 		if((localValues[2] == 1) && useEmptyToken(getLastEmptyTokenPosition())) {
-			if(localValues[0] == 0) { // MAX
+			if(localValues[0] == 0) { // MIN
+				//rating[1] = rating[1] + 1;
+               	rating[1]++;
+			} else if (localValues[1] == 0) { // MAX
+				//rating[0] = rating[0] + 1;
 				rating[0]++;
-			} else if (localValues[1] == 0) { // MIN
-				rating[1]++;	
 			}
+            //System.out.println("0: "+rating[0]+" 1: "+rating[1]);
 		}
 		
 		return rating;
@@ -110,8 +148,8 @@ public class AIGameStateHeuristic {
 		int[] xAxisRating = new int[2];
 		int[] yAxisRating = new int[2];
 		
-		xAxisRating = rateAxis(state, state.getBoard().length);
-		yAxisRating = rateAxis(state, state.getBoard()[0].length);
+		xAxisRating = rateAxis(state, XAXIS);
+		yAxisRating = rateAxis(state, YAXIS);
 		
 		rating[0] = xAxisRating[0] + yAxisRating[0];
 		rating[1] = xAxisRating[1] + yAxisRating[1];
@@ -129,37 +167,46 @@ public class AIGameStateHeuristic {
 		Token[][] board = state.getBoard();
 		int[] rating = new int[2];
 		int touple = 0;
-		
+        int iterations = 0;
+
 		if(dimension == XAXIS) {
-			touple = 4;
-		} else if(dimension == YAXIS) {
-			touple = 3;
+			iterations = YAXIS;
+            touple = 4;
+        } else if(dimension == YAXIS) {
+			iterations = XAXIS;
+            touple = 3;
 		} else {
 			throw new IllegalArgumentException("Dimension nicht richtig");
 		}
-		
-		for(int i=0; i < dimension; i++) {
+
+		int[] localValues = new int[3]; // MAX, MIN, EMPTY
+		int[] position = new int[2];
+
+		for(int i=0; i < iterations; i++) {
 			for(int j=0; j < touple; j++) { // über alle Tupel in dieser Achse
-				int[] localValues = new int[3]; // MAX, MIN, EMPTY
-				int[] position = new int[2];
-				
+				localValues[0] = 0;
+				localValues[1] = 0;
+				localValues[2] = 0;
+
 				for(int k=0; k < 4; k++) { // vierer Tupel betrachten: scanline
 					if(dimension == XAXIS) { // Zeilen
-						position[0] = j+k; // X
-						position[1] = i; // Y
+						position[0] = i; // Y
+						position[1] = j+k; // X
 					} else if(dimension == YAXIS) { // Spalten
-						position[0] = i; // X
-						position[1] = j+k; // Y
+						position[0] = j+k; // Y
+						position[1] = i; // X
 					}
-					
-					localValues = countTokens(board[position[1]][position[0]],
+
+					localValues = countTokens(board[position[0]][position[1]],
                         position, localValues);
 				}
 				
 				rating = rateTuple(rating, localValues);
 			}
 		}
-		
+
+
+
 		return rating;
 	}
 	
@@ -175,28 +222,35 @@ public class AIGameStateHeuristic {
 		int[] leftDiagRating = new int[2];
 		int[] rightDiagRating = new int[2];
 		
-		int[][] leftStartPoints = {
-								new int[] {0,0},
-								new int[] {0,1},
-								new int[] {0,2},
-								new int[] {1,0},
-								new int[] {1,1},
-								new int[] {2,0},
+		int[][] leftStartPoints = { // y,x
+            					new int[] {0,0},
+                                new int[] {1,0},
+                                new int[] {2,0},
 								new int[] {2,1},
-								new int[] {2,2},
-								new int[] {3,0}
+								new int[] {1,1},
+                                new int[] {0,1},
+                                new int[] {0,2},
+                                new int[] {1,2},
+                                new int[] {2,2},
+                                new int[] {0,3},
+                                new int[] {1,3},
+                                new int[] {2,3}
+
 		};
 		
 		int[][] rightStartPoints = {
-								new int[] {6,0},
-								new int[] {6,1},
-								new int[] {6,2},
-								new int[] {5,0},
-								new int[] {5,1},
-								new int[] {4,0},
-								new int[] {4,1},
-								new int[] {4,2},
-								new int[] {3,0}
+								new int[] {0,6},
+								new int[] {1,6},
+								new int[] {2,6},
+                                new int[] {0,5},
+                                new int[] {1,5},
+                                new int[] {2,5},
+                                new int[] {0,4},
+                                new int[] {1,4},
+                                new int[] {2,4},
+                                new int[] {0,3},
+                                new int[] {1,3},
+                                new int[] {2,3}
 		};
 		
 		leftDiagRating = rateDiag(state, leftStartPoints, 1);
@@ -219,15 +273,21 @@ public class AIGameStateHeuristic {
 		Token[][] board = state.getBoard();
 		int[] rating = new int[2];
 
+		int[] position = new int[2];
+        int[] localValues = new int[3]; // MAX, MIN, EMPTY
+
 		for(int i=0; i < startPoints.length; i++) { // Startpunkte "abgrasen"
-			int[] localValues = new int[3]; // MAX, MIN, EMPTY
-			int[] position = new int[2];
-			
-			for(int j=0; j < 4; j++) { // vierer Tupel betrachten: scanline
-				position[0] = startPoints[i][0] + (j * direction); // X
-				position[1] = startPoints[i][1] + j; // Y
-				
-				localValues = countTokens(board[position[1]][position[0]], position, localValues);
+			localValues[0] = 0;
+			localValues[1] = 0;
+			localValues[2] = 0;
+
+			for(int j=0; j < 3; j++) {	// vierer Tupel betrachten: scanline, aber
+                						// nicht vergessen Startpunkt ist schon
+                						// dabei
+				position[0] = startPoints[i][0] + j; // Y
+				position[1] = startPoints[i][1] + (j * direction); // X
+
+				localValues = countTokens(board[position[0]][position[1]], position, localValues);
 			 }
 			 
 			 rating = rateTuple(rating, localValues);
