@@ -8,7 +8,7 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: malte $
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  * @since IOC
  * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
@@ -39,7 +39,7 @@ public class AIGameState extends GameState {
      */
     public AIGameState(AIGameState state) {
         super(state.getWhoseTurn());
-        if (lastMoveEvent != null) {
+        if (state.lastMoveEvent != null) {
 	        lastMoveEvent = new MoveEvent(state.lastMoveEvent);
         }
 		for (int i = 0; i < state.board.length; i++) {
