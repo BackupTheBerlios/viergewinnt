@@ -53,6 +53,7 @@ public class SwingUI extends JFrame implements MouseListener, View {
         setVisible(true);
         listenerList = new EventListenerList();
         this.game = game;
+        game.addObserver(this);
         playerColor = Token.RED; // FIXME
     }
 
@@ -195,6 +196,15 @@ public class SwingUI extends JFrame implements MouseListener, View {
     public void update(Observable o, Object arg) {
         // Im Game hat sich etwas geändert -> neu zeichnen!
         System.out.println("SwingUI.update(): " + o + " sagt " + arg);
+
+        // Spielbrett komplett neu zeichnen:
+        Token[][] board = game.getBoard();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                this.setToken(i, j, board[i][j]);
+            }
+        }
+
     }
 
     /** Fügt einen MoveEventListener hinzu. */

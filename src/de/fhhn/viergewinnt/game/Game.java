@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  * @since LCA
  * @stereotype Model
  */
@@ -39,7 +39,7 @@ public class Game extends Observable {
         Token token = m.getToken();
         int row;
         for (row = 0; !(board[row] [column] == Token.EMPTY); row++) { }
-        board[row] [column] = token;
+        board[row][column] = token;
         // der View Bescheid geben, dass sich was geändert hat
         setChanged();
         notifyObservers();
@@ -120,5 +120,9 @@ public class Game extends Observable {
             System.out.println("Game.accept(): move ist ungültig!");
             //Zug ungültig -> Fehler
         }
+    }
+
+    public Token[][] getBoard() {
+        return board; // XXX mit arraycopy Kopie zurückgeben?
     }
 }
