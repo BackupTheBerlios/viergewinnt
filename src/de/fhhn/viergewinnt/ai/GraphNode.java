@@ -6,13 +6,14 @@ import java.util.*;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @since IOC
  */
 class GraphNode {
-	GraphNode parent;
+	private GraphNode parent;
 	private AIGameState state;
 	private ArrayList successors;
+	private int[] rating = new int[2]; // 0=red, 1=yellow
 
 	public GraphNode(AIGameState state, GraphNode parent) {
 		this.parent = parent;
@@ -26,6 +27,15 @@ class GraphNode {
 
 	public ArrayList getSuccessors() {
 		return new ArrayList(successors);
+	}
+
+	public void setRating(int[] rating) {
+		this.rating[0] = rating[0];
+		this.rating[1] = rating[1];
+	}
+
+	public int[] getRating() {
+		return rating; // XXX Kopie zurück
 	}
 
 	/**

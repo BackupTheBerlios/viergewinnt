@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.*;
  * "Zustand des Spielfelds, Methode zum Teste ob Endzustand, Methode zur
  * Berechnung der Nachfolgerzustände".
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since IOC
  */
 class AIGameState extends GameState {
@@ -23,10 +23,12 @@ class AIGameState extends GameState {
 		// Abbruchbedingung
 		AIGameState state = node.getState();
 		if (state.isFinalState(node)) {
-			// Knotenbewertung
+			// Min-Max-Bewertung
 			return;
 		} else if (limit == 0) {
 			// heuristische Stellungsbewertung
+			int[] rating = state.ratePosition();
+			node.setRating(rating);
 			return;
 		}
 
@@ -79,6 +81,25 @@ class AIGameState extends GameState {
 		} else {
 			return false;
 		}
+	}
+
+	private int[] ratePosition() {
+		int[] rating = new int[2]; // rating[0] = red, rating[1] = yellow
+		
+		for (int i = 0; i < board.length - 4; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if ((board[i][j] == board[i+1][j]) 
+						&& (board[i][j] == board[i+2][j]) 
+						&& (board[i+3][j] == Token.EMPTY)) {
+					if (board[i][j] == Token.RED) {
+						rating[0]++;
+					} else if (board[i][j] == Token.YELLOW) {
+						rating[1]++;
+					}
+				}
+			}
+		}
+		return rating;
 	}
 
 	private boolean boardIsFull() {
