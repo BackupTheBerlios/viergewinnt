@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: malte $
- * @version $Revision: 1.11 $
+ * @author $Author: kathrin $
+ * @version $Revision: 1.12 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -198,9 +198,9 @@ public class TextUI implements View {
 			TextUI tui = (TextUI)redView;
 			tui.run();
 
-			while(!selection.equals("") && !selection.equals("y") && !selection.equals("n")) {
+			while(!selection.equals("") && !selection.equals("j") && !selection.equals("n") && !selection.equals("J")) {
 				try {
-					selection = IO.promptAndRead("\nNoch einmal spielen? (Y/n) ");
+					selection = IO.promptAndRead("\nNoch einmal spielen? (J/n) ");
 					selection.toUpperCase();
 				} catch (Exception e) {}
 			}
