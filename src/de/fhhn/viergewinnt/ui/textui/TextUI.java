@@ -9,7 +9,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * View für die Kommandozeilen-Schnittstelle.
  * @author $Author: malte $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -45,8 +45,8 @@ public class TextUI implements View {
 		do {
             drawBoard();
             int col = 0;
-            while (col < 1 || col > 6) {
-                System.out.println("Spielstein in welche Spalte (1-6)?");
+            while (col < 1 || col > Game.COLS) {
+                System.out.println("Spielstein in welche Spalte (1-" + Game.COLS + ")?");
                 try {
                     col = Integer.parseInt(stdin.readLine()); // XXX IOException
                 } catch (NumberFormatException e) {
