@@ -8,8 +8,8 @@ import de.fhhn.viergewinnt.game.*;
 
 /**
  * View für die Kommandozeilen-Schnittstelle.
- * @author $Author: malte $
- * @version $Revision: 1.7 $
+ * @author $Author: p_herk $
+ * @version $Revision: 1.8 $
  * @since IOC
  */
 public class TextUI implements View {
@@ -154,7 +154,7 @@ public class TextUI implements View {
         Game model = new Game(Token.RED); // FIXME: Rot fängt immer an
         View redView = new TextUI(model);
         Player redPlayer = new HumanPlayer(redView, model, Token.RED);
-        Player yellowPlayer = new AIPlayer(model, Token.YELLOW);
+        Player yellowPlayer = new AIPlayer(AIPlayer.MEDIUM, model, Token.YELLOW);
         // XXX Mangels Nebenläufigkeit kann View erst jetzt gestartet werden
         TextUI tui = (TextUI)redView;
         tui.run();

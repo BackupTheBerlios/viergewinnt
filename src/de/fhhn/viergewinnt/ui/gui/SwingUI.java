@@ -89,7 +89,7 @@ public class SwingUI
 		playerColor = Token.RED;
 		
 		redPlayer = new HumanPlayer(actualView, model, Token.RED);
-		yellowPlayer = new AIPlayer(model, Token.YELLOW);
+		yellowPlayer = new AIPlayer(AIPlayer.MEDIUM, model, Token.YELLOW);
 		
 		initPlayfield();
 		this.setVisible(true);
@@ -216,7 +216,7 @@ public class SwingUI
 	 * Erzeugt einen "Neues Spiel" Dialog und erzeugt daraufhin
 	 * ein neues Spielemodel.
 	 * 
-	 * :TODO:	Dialog "Neues Spiel" einbauen
+	 * :TODO:	Netzwerkspieler einbauen (wird im Moment durch KI substituiert)
 	 */
 	private void startNewGame() {
 		
@@ -231,22 +231,24 @@ public class SwingUI
 			View actualView = this;
 		
 			Player redPlayer;
+			String redPlayerStrength;
 			Player yellowPlayer;
+			String yellowPlayerStrength;
 			
 			playerColor = ngd.getLocalPlayerColor();
 			
 			if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("Spieler")) {
+				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 				redPlayer = new HumanPlayer(actualView, model, Token.RED);
-				yellowPlayer = new AIPlayer(model, Token.YELLOW);
 			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
 				yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
-				redPlayer = new AIPlayer(model, Token.RED);
+				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);			
 			} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
-				redPlayer = new AIPlayer(model, Token.RED);
-				yellowPlayer = new AIPlayer(model, Token.YELLOW);
+				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
+				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
-				yellowPlayer = new AIPlayer(model, Token.YELLOW);
-				redPlayer = new AIPlayer(model, Token.RED);
+				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
+				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
 			} else {
 				// scheiﬂe
 			}
@@ -262,11 +264,9 @@ public class SwingUI
 
 	/**
 	 * Beendet das Spiel
-	 * 
-	 * :TODO:	Spiel beenden
 	 */
 	private void exitGame() {
-		//
+		this.dispose();
 	}
 
 	/**

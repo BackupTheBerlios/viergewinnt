@@ -10,8 +10,6 @@ import de.fhhn.viergewinnt.game.*;
  * 
  * @author		p.herk
  * @version	06.01.2003 / 14:38:30
- * 
- * :TODO:	Spielstärke noch mit abfragen
  */
 public class NewGameDialog extends JDialog implements ActionListener {
 	
@@ -29,6 +27,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	private JPanel redPlayerHostPane = new JPanel();
 	private JLabel redPlayerHostLabel = new JLabel();
 	private JTextField redPlayerHostTextField = new JTextField();
+	private JComboBox redPlayerStrengthSelector = new JComboBox();
 	// rechte Seite (gelber Spieler)
 	private JPanel yellowDialogPane1 = new JPanel();
 	private JPanel yellowDialogPane2 = new JPanel();
@@ -38,6 +37,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	private JPanel yellowPlayerHostPane = new JPanel();
 	private JLabel yellowPlayerHostLabel = new JLabel();
 	private JTextField yellowPlayerHostTextField = new JTextField();
+	private JComboBox yellowPlayerStrengthSelector = new JComboBox();
 	// unterer Teil (Buttons)
 	private JPanel dialogButtonPane = new JPanel();
 	private JButton okButton = new JButton();
@@ -121,6 +121,13 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		redPlayerTypeSelector.setActionCommand("selectRedPlayer");
 		redPlayerTypeSelector.setSelectedItem("Spieler");
 		
+		redPlayerStrengthSelector.addItem("schwach");
+		redPlayerStrengthSelector.addItem("mittel");
+		redPlayerStrengthSelector.addItem("stark");
+		redPlayerStrengthSelector.addActionListener(this);
+		redPlayerStrengthSelector.setActionCommand("selectRedPlayerStrength");
+		redPlayerStrengthSelector.setSelectedItem("mittel");
+		
 		/*
 		 * gelbe Seite anlegen
 		 */
@@ -143,7 +150,6 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		yellowPlayerHostPane.add(yellowPlayerHostTextField);
 		
 		yellowPlayerHostTextField.setText("");
-		yellowPlayerHostTextField.setEditable(false);
 		yellowPlayerHostTextField.setPreferredSize(new java.awt.Dimension(118, 20));
 		
 		yellowPlayerTypeSelector.addItem("Spieler");
@@ -152,6 +158,13 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		yellowPlayerTypeSelector.addActionListener(this);
 		yellowPlayerTypeSelector.setActionCommand("selectYellowPlayer");
 		yellowPlayerTypeSelector.setSelectedItem("KI");
+		
+		yellowPlayerStrengthSelector.addItem("schwach");
+		yellowPlayerStrengthSelector.addItem("mittel");
+		yellowPlayerStrengthSelector.addItem("stark");
+		yellowPlayerStrengthSelector.addActionListener(this);
+		yellowPlayerStrengthSelector.setActionCommand("selectYellowPlayerStrength");
+		yellowPlayerStrengthSelector.setSelectedItem("mittel");
 		
 		/*
 		 * Buttonleiste anlegen
@@ -196,22 +209,70 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		if (actionCommand.equalsIgnoreCase("selectRedPlayer")) {
 
 			if (selectedItem.equalsIgnoreCase("Spieler")) {
-				redPlayerHostTextField.setEditable(false);
+				
+				if (redPlayerHostPane.isAncestorOf(redPlayerHostTextField)) {
+					redPlayerHostLabel.setText("");
+					redPlayerHostPane.remove(redPlayerHostTextField);
+				} else if (redPlayerHostPane.isAncestorOf(redPlayerStrengthSelector)) {
+					redPlayerHostLabel.setText("");
+					redPlayerHostPane.remove(redPlayerStrengthSelector);
+				}
+				
 			} else if (selectedItem.equalsIgnoreCase("KI")) {
-				redPlayerHostTextField.setEditable(false);
+				
+				if (redPlayerHostPane.isAncestorOf(redPlayerHostTextField)) {
+					redPlayerHostLabel.setText("");
+					redPlayerHostPane.remove(redPlayerHostTextField);
+				}
+				
+				redPlayerHostLabel.setText("Stärke");
+				redPlayerHostPane.add(redPlayerStrengthSelector);
+				
 			} else if (selectedItem.equalsIgnoreCase("Netz")) {
-				redPlayerHostTextField.setEditable(true);
+				
+				if (redPlayerHostPane.isAncestorOf(redPlayerStrengthSelector)) {
+					redPlayerHostLabel.setText("");
+					redPlayerHostPane.remove(redPlayerStrengthSelector);
+				}
+				
+				redPlayerHostLabel.setText("Hostadresse");
+				redPlayerHostPane.add(redPlayerHostTextField);
+				
 			}
 
 		// gelber Spielertyp wurde verändert
 		} else if (actionCommand.equalsIgnoreCase("selectYellowPlayer")) {
-
+			
 			if (selectedItem.equalsIgnoreCase("Spieler")) {
-				yellowPlayerHostTextField.setEditable(false);
+				
+				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerHostTextField)) {
+					yellowPlayerHostLabel.setText("");
+					yellowPlayerHostPane.remove(yellowPlayerHostTextField);
+				} else if (yellowPlayerHostPane.isAncestorOf(yellowPlayerStrengthSelector)) {
+					yellowPlayerHostLabel.setText("");
+					yellowPlayerHostPane.remove(yellowPlayerStrengthSelector);
+				}
+				
 			} else if (selectedItem.equalsIgnoreCase("KI")) {
-				yellowPlayerHostTextField.setEditable(false);
+				
+				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerHostTextField)) {
+					yellowPlayerHostLabel.setText("");
+					yellowPlayerHostPane.remove(yellowPlayerHostTextField);
+				}
+				
+				yellowPlayerHostLabel.setText("Stärke");
+				yellowPlayerHostPane.add(yellowPlayerStrengthSelector);
+				
 			} else if (selectedItem.equalsIgnoreCase("Netz")) {
-				yellowPlayerHostTextField.setEditable(true);
+				
+				if (yellowPlayerHostPane.isAncestorOf(yellowPlayerStrengthSelector)) {
+					yellowPlayerHostLabel.setText("");
+					yellowPlayerHostPane.remove(yellowPlayerStrengthSelector);
+				}
+				
+				yellowPlayerHostLabel.setText("Hostadresse");
+				yellowPlayerHostPane.add(yellowPlayerHostTextField);
+				
 			}
 		
 		// OK-Button wurde angeklickt
@@ -221,6 +282,14 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		// Abbrechen-Button wurde angeklickt
 		} else if (actionCommand.equalsIgnoreCase("cancelStartNewGame")) {
 			cancelStartNewGame();
+		
+		// Stärkeeinstellung des roten KI-Spielers wurde verändert
+		} else if (actionCommand.equalsIgnoreCase("selectRedPlayerStrength")) {
+			//
+		
+		// Stärkeeinstellung des gelben KI-Spielers wurde verändert
+		} else if (actionCommand.equalsIgnoreCase("selectYellowPlayerStrength")) {
+			//
 		}
 	}
 	
@@ -276,7 +345,7 @@ public class NewGameDialog extends JDialog implements ActionListener {
 	 * Typ (Human/AI/Remote) des Spielers einer bestimmten Farbe ermitteln
 	 * 
 	 * @param	color	"Farbe" des Spielers dessen Typ ermittelt werden soll
-	 * @return			Typ des Spielers ("Spieler"/"KI"/"Netz"))
+	 * @return			Typ des Spielers ("Spieler"/"KI"/"Netz")
 	 */
 	public String getPlayerType(Token color) {
 		if (color == Token.RED) {
@@ -284,6 +353,31 @@ public class NewGameDialog extends JDialog implements ActionListener {
 		} else {
 			return yellowPlayerTypeSelector.getSelectedItem().toString();
 		}
+	}
+	
+	/**
+	 * Stellt Informationen über die gewünschte Spielstärke eine AIPlayers
+	 * zur Verfügung
+	 * 
+	 * @param	color	"Farbe" des Spielers dessen Stärke ermittelt werden soll
+	 * @return			Stärke des Spielers ("schwach"/"mittel"/"stark"))
+	 */
+	public int getPlayerStrength(Token color) {
+		int strength=AIPlayer.MEDIUM;
+		if (color == Token.RED) {
+			if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("stark")) {
+				strength = AIPlayer.STRONG;
+			} else if (redPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("schwach")) {
+				strength = AIPlayer.WEAK;
+			}
+		} else {
+			if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("stark")) {
+				strength = AIPlayer.STRONG;
+			} else if (yellowPlayerStrengthSelector.getSelectedItem().toString().equalsIgnoreCase("schwach")) {
+				strength = AIPlayer.WEAK;
+			}
+		}
+		return strength;
 	}
 	
 	/**
