@@ -23,11 +23,11 @@ public class Runner {
 	 */
 	Runner(String[] args) {
 		
-		if (args.length > 1) {
-			if (args[1].equalsIgnoreCase("-t")) {
-				guiRunner();
-			} else if (args[1].equalsIgnoreCase("-g")) {
+		if (args.length > 0) {
+			if (args[0].equalsIgnoreCase("-t")) {
 				tuiRunner();
+			} else if (args[0].equalsIgnoreCase("-g")) {
+				guiRunner();
 			} else {
 				System.out.println("USAGE: java VierGewinnt.jar [-t|-g]");
 				System.out.println("       /t TextUI");
@@ -45,7 +45,6 @@ public class Runner {
 	 */
 	private void guiRunner() {
 		new SwingUI();
-		
 	}
 
 	/**
