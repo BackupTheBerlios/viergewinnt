@@ -72,13 +72,13 @@ class __positions {
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node.link12:oiref>=64,303,216,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link30:oiref>=489,190,489,70:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node31:oiref>=480,380,50,60,1:oigroup>
-<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=493,120,206,13,1:oigroup>
+<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=493,120,212,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=510,305,208,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.node:oiref>=403,-143,0,0,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node19:oiref>=34,10,54,60,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10:oiref>=33,187,55,60,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15:oiref>=470,190,52,60,1:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=0,0,206,13,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=0,0,212,13,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=0,0,208,13,1:oigroup>
 
 @__viewType collaborationView 

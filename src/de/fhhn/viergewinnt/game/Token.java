@@ -1,23 +1,30 @@
 package de.fhhn.viergewinnt.game;
 
 /**
- * Repräsentiert einen Spielstein. Ein Token liegt entweder noch "im Säckchen"
- * beim Player oder es steckt im Board.
+ * Konstanten, die gelbe und rote Spielsteine repräsentieren (
+ * <a href="http://developer.java.sun.com/developer/Books/shiftintojava/page1.html#replaceenums">Details</a>
+ * zur Implementierung).
+ *
+ * Achtung: wenn ein Token serialisiert werden soll  (z.B. um es im Rahmen des
+ * Design Patterns "Command" über's Netz zu versenden), muss u.a. readResolve()
+ * implementiert werden
+ * (<a href="http://www.javaworld.com/javaworld/javatips/jw-javatip122.html">Details</a>)!
  * 
- * @author $Author: kathrin $
- * @version $Revision: 1.3 $
+ * @author $Author: malte $
+ * @version $Revision: 1.4 $
  * @since LCA 
  */
 public class Token {
-    /**
-     * @bidirectional 
-     */
-    private Player lnkrevPlayer;
+    public static final Token RED = new Token("red");
+    public static final Token GREEN = new Token("green");
 
-    public Token(Player player) {
+    private final String name;
+
+    private Token(String name) {
+        this.name = name;
     }
 
-    public Player getOwner() {
-        return lnkrevPlayer;
+    public String toString() {
+        return name;
     }
 }
