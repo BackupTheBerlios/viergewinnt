@@ -2,9 +2,8 @@ package de.fhhn.viergewinnt.game;
 
 /**
  * @author $Author: malte $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since LCA
  * @stereotype View, Controller
  */
-public class RemotePlayer extends Player {
-}
+public class RemotePlayer extends Player { }

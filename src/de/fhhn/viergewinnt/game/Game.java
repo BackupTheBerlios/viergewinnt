@@ -1,17 +1,15 @@
 package de.fhhn.viergewinnt.game;
 
 import java.util.Observable;
+
 /**
  * Modell des Spiels "Vier Gewinnt" mit Regeln (Züge prüfen, Gewinner bestimmen)
  * und Zustand (Position der Spielsteine, wer gerade am Zug ist, wer eventuell
- * gewonnen hat).
- * 
- * Akzeptiert Eingaben der beiden Player (z.B. einen Zug des Benutzers).
- * Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn ein Spieler
- * einen Zug macht, obwohl er nicht dran ist).
- * 
+ * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
+ * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
+ * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: malte $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  * @since LCA
  * @stereotype Model
  */
@@ -24,27 +22,24 @@ public class Game extends Observable {
      * Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der
      * Zählung von unten.
      */
-    private Token[][] board;
+    private Token[] [] board;
 
     public Game() {
-		whoseTurn = Token.RED; // XXX
-
-        board = new Token[ROWS][COLS];
+        whoseTurn = Token.RED; // XXX
+        board = new Token[ROWS] [COLS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                board[i][j] = Token.EMPTY;
+                board[i] [j] = Token.EMPTY;
             }
         }
-
     }
 
     private void save(Move m) {
         int column = m.getColumn();
         Token token = m.getToken();
         int row;
-        for (row = 0; !(board[row][column] == Token.EMPTY); row++) { }
-        board[row][column] = token;
-
+        for (row = 0; !(board[row] [column] == Token.EMPTY); row++) { }
+        board[row] [column] = token;
         // der View Bescheid geben, dass sich was geändert hat
         setChanged();
         notifyObservers();
@@ -55,7 +50,7 @@ public class Game extends Observable {
         // assert Wertebereich eingehalten (0 < column < 6)
         boolean valid = false;
         // richtige Spalte?
-        if (board[5][column] == Token.EMPTY) {
+        if (board[5] [column] == Token.EMPTY) {
             valid = true;
         } else {
             valid = false;
@@ -90,21 +85,20 @@ public class Game extends Observable {
         for (int j = 0; j < COLS; j++) { // für jede Spalte
             // Scanline
             for (int i = 0; i < ROWS - 3; i++) { // für alle n-3 Elemente
-                if (board[i][j] != Token.EMPTY) {
+                if (board[i] [j] != Token.EMPTY) {
                     boolean equal = false;
                     for (int k = 0; k < 4; k++) {
-                        equal = (board[i][j] == board[i][j + k]);
+                        equal = (board[i] [j] == board[i] [j + k]);
                         if (!equal) {
                             break;
                         }
                     }
-                    return board[i][j];
+                    return board[i] [j];
                 }
             }
         }
         // Diagonale prüfen
-        for (int i = 0, j = 0; i < COLS && j < ROWS; i++, j++) {
-        }
+        for (int i = 0, j = 0; (i < COLS) && (j < ROWS); i++, j++) { }
         return Token.EMPTY;
     }
 
@@ -117,7 +111,7 @@ public class Game extends Observable {
             // XXX der andere ist dran:
             if (whoseTurn == Token.RED) {
                 whoseTurn = Token.YELLOW;
-            } else if  (whoseTurn == Token.YELLOW) {
+            } else if (whoseTurn == Token.YELLOW) {
                 whoseTurn = Token.RED;
             } else {
                 // assert false

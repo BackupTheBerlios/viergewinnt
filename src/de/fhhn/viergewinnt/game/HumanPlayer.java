@@ -4,9 +4,8 @@ import de.fhhn.viergewinnt.ui.View;
 
 /**
  * Controller für einen menschlichen Spieler.
- * 
  * @author $Author: malte $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @since LCA
  * @stereotype Controller
  */
@@ -17,12 +16,11 @@ public class HumanPlayer extends Player implements MoveListener {
     public HumanPlayer(View v, Game g) {
         view = v;
         gameModel = g;
-		view.addMoveListener(this);
+        view.addMoveListener(this);
     }
 
     public void tokenMoved(Move m) {
         System.out.println("HumanPlayer.tokenMoved(): move=" + m);
-
         gameModel.accept(m);
     }
 }
