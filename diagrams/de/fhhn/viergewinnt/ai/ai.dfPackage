@@ -1,0 +1,34 @@
+package id627kd95fvn02d95fxxuq;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.aiProxy:oiref><oihard>
+@__reversed 
+*/
+class link20 {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref>=10,10,200,105,1:oigroup> 
+*/
+class __positions {
+}

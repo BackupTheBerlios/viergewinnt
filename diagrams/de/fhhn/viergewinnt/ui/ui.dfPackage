@@ -1,0 +1,34 @@
+package idgvz6d98czun1d98eg7r2;
+
+/**
+@version 2.0
+@physicalPackage
+@__modelType diagram 
+*/
+class diagram {
+/**
+@__ref <oiref:design#Class#id7auwd95p4kb6d95ru0ui.diagram:oiref><oihard>
+@__modelType reference
+@__fqn <oiref:#Package#de.fhhn.viergewinnt.ui.gui:oiref> 
+*/
+class reference {
+}/**
+@shapeType DependencyLink
+@__modelType link
+@__ref <oiref:design#Class#id254jfd98czun1d98edle2.diagram:oiref><oihard> 
+*/
+class link {
+}}/**
+@__tags
+@shapeType ClassDiagram 
+*/
+class __tags {
+}/**
+@__options 
+*/
+class __options {
+}/**
+@__positions <oigroup:<oiref:design#Class#id7auwd95p4kb6d95ru0ui.diagram:oiref>=10,10,53,52,1:oigroup> 
+*/
+class __positions {
+}
