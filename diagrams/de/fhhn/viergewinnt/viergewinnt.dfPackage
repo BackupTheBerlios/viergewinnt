@@ -64,9 +64,9 @@ class __options {
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#naechstenZugBerechnen#(##)#:oiref>=462,255,194,13,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#neueKI#(#int#)#:oiref>=462,242,194,13,1:oigroup>
 <oigroup:<oiref:design#Class#id4541jd95p4kb6d95ruicg.diagram.link:oiref>=223,220,380,220:oigroup>
-<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Hole#addToken#(#de.fhhn.viergewinnt.game.Token#)#:oiref>=92,602,111,13,1:oigroup>
+
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Move#$$constructor$$#(#de.fhhn.viergewinnt.game.Player#de.fhhn.viergewinnt.game.Hole#)#:oiref>=-228,402,98,13,1:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Hole:oiref>=90,550,117,79,1:oigroup>
+
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Board#insertToken#(#int#de.fhhn.viergewinnt.game.Player#)#:oiref>=-68,602,124,13,1:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#owner:oiref>=281,550,281,409:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Game#validate#(#de.fhhn.viergewinnt.game.Move#)#:oiref>=-28,252,121,13,1:oigroup>

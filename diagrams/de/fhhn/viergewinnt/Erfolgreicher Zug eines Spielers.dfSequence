@@ -53,7 +53,7 @@ class __positions {
 }/**
 @__positions <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node:oiref>=20,380,102,81,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link23:oiref>=65,118,179,13,1:oigroup>
-<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link17:oiref>=202,184,252,13,1:oigroup>
+<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link17:oiref>=172,184,280,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node31.node:oiref>=679,-170,0,0,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node.link13:oiref>=60,380,60,247:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link34:oiref>=506,250,506,380:oigroup>
@@ -63,23 +63,23 @@ class __positions {
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link24:oiref>=61,187,61,70:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node19.node:oiref>=-386,-560,0,0,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link18:oiref>=88,218,470,218:oigroup>
-<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link25:oiref>=202,199,144,13,1:oigroup>
+<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link25:oiref>=172,199,144,13,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link25:oiref>=0,0,144,13,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link23:oiref>=0,0,179,13,1:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link17:oiref>=0,0,252,13,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10.link17:oiref>=0,0,280,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node27.node:oiref>=-135,-300,0,0,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node.link12:oiref>=0,0,216,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node.link12:oiref>=64,303,216,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link30:oiref>=489,190,489,70:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node31:oiref>=480,380,50,60,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=493,120,212,13,1:oigroup>
-<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=510,305,208,13,1:oigroup>
+<oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=510,305,214,13,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.node:oiref>=403,-143,0,0,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node19:oiref>=34,10,54,60,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node10:oiref>=33,187,55,60,1:oigroup>
 <oigroup:<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15:oiref>=470,190,52,60,1:oigroup>
 <oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link29:oiref>=0,0,212,13,1:oigroup>
-<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=0,0,208,13,1:oigroup>
+<oigroup:Composite#$messageInplaceEditing#<oiref:design#Class#id37efnd95fvn02d95i1pqp.node15.link33:oiref>=0,0,214,13,1:oigroup>
 
 @__viewType collaborationView 
 */
@@ -239,7 +239,7 @@ class link30 {
 @processingDuration 20
 @sequenceNumber 1.3.2
 @diagram_uniqe_name <oiref:design#Class#id37efnd95fvn02d95i1pqp.diagram:oiref>
-@operation <oiref:java#Member#de.fhhn.viergewinnt.game.Hole#addToken#(#de.fhhn.viergewinnt.game.Token#)#:oiref>
+@operation <oiref:java#Member##addToken#(#de.fhhn.viergewinnt.game.Token#)#:oiref>
 @operationNameAsText 'addToken(Token):void' 
 */
 class link33 {
@@ -295,12 +295,6 @@ class node {
 */
 class node31 {
 /**
-@shapeType DependencyLink
-@__modelType link
-@__ref <oiref:java#Class#de.fhhn.viergewinnt.game.Hole:oiref><oihard> 
-*/
-class link {
-}/**
 @shapeType Activation
 @__modelType node
 @name Activation6
