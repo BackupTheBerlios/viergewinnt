@@ -14,11 +14,6 @@ class diagram {
 */
 class link20 {
 }/**
-@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.AIGameState:oiref><oihard>
-@__modelType reference 
-*/
-class reference {
-}/**
 @__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNodeList:oiref><oihard>
 @__modelType reference 
 */
@@ -28,6 +23,11 @@ class reference1 {
 @__modelType reference 
 */
 class reference2 {
+}/**
+@__ref <oiref:java#Class#de.fhhn.viergewinnt.ai.AIGameState:oiref><oihard>
+@__modelType reference 
+*/
+class reference {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -38,7 +38,11 @@ class __tags {
 */
 class __options {
 }/**
-@__positions 
+@__positions <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.ai.GraphNode#parent:oiref>=130,255,130,294,198,294,198,226,159,226:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNode:oiref>=10,10,149,245,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.AIGameState:oiref>=213,166,183,254,1:oigroup>
+<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.GraphNodeList:oiref>=238,10,135,142,1:oigroup>
+<oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.ai.GraphNode#state:oiref>=159,240,213,240:oigroup> 
 */
 class __positions {
 }

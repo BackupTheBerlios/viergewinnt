@@ -12,12 +12,18 @@ import de.fhhn.viergewinnt.ui.*;
  * Die grafische Benutzeroberfläche für VierGewinnt.
  * GUI ist als View für ein Spielmodel (Game) konzipiert.
  * 
- * @author		p.herk
- * @version	06.01.2003 / 14:38:30
+ * @author $Author: p_herk $
+ * @version $Revision: 1.27 $
  */
-public class SwingUI
-	extends JFrame
-	implements MouseListener, ActionListener, View {
+public class SwingUI extends JFrame implements MouseListener, ActionListener, View {
+	
+	/*
+	 * einige oft verwendete Stringliterale (verhindert vertippen)
+	 */
+	// Spielertypen
+	public static final String STARTNEWGAME	= "startNewGame";
+	public static final String EXITGAME		= "exitGame";
+	public static final String ABOUTGAME		= "aboutGame";
 
 	// Anzahl der Zeilen aus Game-Klasse besorgen
 	static final int ROWS = Game.ROWS;
@@ -74,7 +80,7 @@ public class SwingUI
 		
 		/* 
 		 * alternativ zu startNewGame(); wird hier das Spiel
-		 * mit Standardwerten Spieler-KI
+		 * mit Standardwerten Spieler gegen KI (mittel)
 		 * gestartet
 		 */
 		Game model = new Game(Token.RED);
@@ -146,15 +152,15 @@ public class SwingUI
 		mainMenuBar.add(gameMenu);
 		mainMenuBar.add(helpMenu);
 		gameMenuNew.setText("Neu");
-		gameMenuNew.setActionCommand("startNewGame");
+		gameMenuNew.setActionCommand(STARTNEWGAME);
 		gameMenuNew.addActionListener(this);
 		gameMenuExit.setText("Beenden");
-		gameMenuExit.setActionCommand("exitGame");
+		gameMenuExit.setActionCommand(EXITGAME);
 		gameMenuExit.addActionListener(this);
 		helpMenu.add(helpMenuAbout);
 		helpMenu.setText("Info");
 		helpMenuAbout.setText("Info");
-		helpMenuAbout.setActionCommand("aboutGame");
+		helpMenuAbout.setActionCommand(ABOUTGAME);
 		helpMenuAbout.addActionListener(this);
 
 		/*
@@ -237,18 +243,18 @@ public class SwingUI
 			
 			playerColor = ngd.getLocalPlayerColor();
 			
-			if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("Spieler")) {
+			if (ngd.getPlayerType(Token.RED).equalsIgnoreCase(NewGameDialog.SPIELER)) {
 				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 				redPlayer = new HumanPlayer(actualView, model, Token.RED);
-			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("Spieler")) {
+			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase(NewGameDialog.SPIELER)) {
 				yellowPlayer = new HumanPlayer(actualView, model, Token.YELLOW);
 				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
 				aiStarts = true;		
-			} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase("KI")) {
+			} else if (ngd.getPlayerType(Token.RED).equalsIgnoreCase(NewGameDialog.KI)) {
 				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
 				aiStarts = true;
 				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
-			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase("KI")) {
+			} else if (ngd.getPlayerType(Token.YELLOW).equalsIgnoreCase(NewGameDialog.KI)) {
 				yellowPlayer = new AIPlayer(ngd.getPlayerStrength(Token.YELLOW), model, Token.YELLOW);
 				redPlayer = new AIPlayer(ngd.getPlayerStrength(Token.RED), model, Token.RED);
 				aiStarts = true;
@@ -432,11 +438,11 @@ public class SwingUI
 	 */
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
-		if (actionCommand.equalsIgnoreCase("startNewGame")) {
+		if (actionCommand.equalsIgnoreCase(STARTNEWGAME)) {
 			startNewGame();
-		} else if (actionCommand.equalsIgnoreCase("exitGame")) {
+		} else if (actionCommand.equalsIgnoreCase(EXITGAME)) {
 			exitGame();
-		} else if (actionCommand.equalsIgnoreCase("aboutGame")) {
+		} else if (actionCommand.equalsIgnoreCase(ABOUTGAME)) {
 			aboutGame();
 		}
 	}
