@@ -8,8 +8,8 @@ import java.util.Observable;
  * gewonnen hat). Akzeptiert Eingaben der beiden Player (z.B. einen Zug des
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
- * @author $Author: malte $
- * @version $Revision: 1.13 $
+ * @author $Author: manuel $
+ * @version $Revision: 1.14 $
  * @since LCA
  * @stereotype Model
  */
@@ -17,11 +17,9 @@ public class Game extends Observable {
     private static final int ROWS = 6;
     private static final int COLS = 7;
     private Token whoseTurn;
+    private MoveEvent lastMove;
 
-    /**
-     * Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der
-     * Zählung von unten.
-     */
+    /** Spielbrett mit 6 Zeilen und 7 Spalten. Die Spalten beginnen mit der Zählung von unten. */
     private Token[] [] board;
 
     public Game(Token beginner) {
@@ -38,12 +36,26 @@ public class Game extends Observable {
         int column = m.getColumn();
         Token token = m.getToken();
         int row;
-        for (row = 0; !(board[row] [column] == Token.EMPTY); row++) { }
-        board[row][column] = token;
-        // der View Bescheid geben, dass sich was geändert hat
+        for (row = 0; !(board[row] [column] == Token.EMPTY); row++) {
+        }
+        board[row] [column] = token;
+        // Move is valid and will be saved
+        lastMove = m;
+        // notify observers, the model has changed
         setChanged();
         notifyObservers();
     }
+
+	/* This method will be called from the observers
+	 *
+     */
+
+    public MoveEvent getLastMove() {
+        // we need this for remote and ai player
+        // not checking
+        return lastMove; // do we need to clone() ?;
+    }
+
 
     private boolean isValid(MoveEvent m) {
         int column = m.getColumn();
@@ -122,7 +134,12 @@ public class Game extends Observable {
         }
     }
 
-    public Token[][] getBoard() {
-        return board; // XXX mit arraycopy Kopie zurückgeben?
+	/* This method will be called from the observers
+	 *
+     */
+
+    public Token[] [] getBoard() {
+        // return no reference, copy the array!
+        return board;
     }
 }
