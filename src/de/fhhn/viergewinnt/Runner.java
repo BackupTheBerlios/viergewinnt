@@ -33,8 +33,9 @@ public class Runner {
 				System.out.println("       /t TextUI");
 				System.out.println("       /g SwingUI (default)");
 			}
+		} else {
+			guiRunner();	// Gui als Standard
 		}
-		guiRunner();	// Gui als Standard
 	}
 	
 	/**
