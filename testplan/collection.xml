@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test_collection comment="unknown" empty="true" name="Test Plan" project_root="true">
+  <refid value="test1039692737736_0.6046785069203302_">
+  </refid>
+  <category>
+    <identifier value="test_collection">
+    </identifier>
+  </category>
+</test_collection>

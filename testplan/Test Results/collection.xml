@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test_collection comment="unknown" empty="true" name="Test Results" result_collection="true">
+  <refid value="test1039692738184_0.6575104173568941_">
+  </refid>
+  <category>
+    <identifier value="test_collection">
+    </identifier>
+  </category>
+</test_collection>
