@@ -15,12 +15,12 @@ public class SwingUI extends JFrame implements MouseListener {
 	static final int ROWS = 6;
 	static final int COLS = 7;
 	
-	private ImageIcon blankIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/blank.gif");
-	private ImageIcon redArrowIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/redarrow.gif");
-	private ImageIcon yellowArrowIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/yellowarrow.gif");
-	private ImageIcon emptyTokenIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/emptytoken.gif");
-	private ImageIcon redTokenIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/redtoken.gif");
-	private ImageIcon yellowTokenIcon = new ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/yellowtoken.gif");
+	private ImageIcon blankIcon = new ImageIcon("./img/blank.gif");
+	private ImageIcon redArrowIcon = new ImageIcon("./img/redarrow.gif");
+	private ImageIcon yellowArrowIcon = new ImageIcon("./img/yellowarrow.gif");
+	private ImageIcon emptyTokenIcon = new ImageIcon("./img/emptytoken.gif");
+	private ImageIcon redTokenIcon = new ImageIcon("./img/redtoken.gif");
+	private ImageIcon yellowTokenIcon = new ImageIcon("./img/yellowtoken.gif");
 
 	private JPanel applicationDesktop = new JPanel();
 	private JPanel playField = new JPanel();
@@ -70,7 +70,7 @@ public class SwingUI extends JFrame implements MouseListener {
 		setIconImage(
 			(new javax
 				.swing
-				.ImageIcon("./src/de/fhhn/viergewinnt/ui/gui/titleicon.gif"))
+				.ImageIcon("./img/titleicon.gif"))
 				.getImage());
 		gameMenu.setText("Spiel");
 		gameMenu.add(gameMenuNew);
@@ -140,7 +140,21 @@ public class SwingUI extends JFrame implements MouseListener {
 	
 	public void mouseClicked(MouseEvent e) {
 		// falls mausklick -> agieren
-		messageLabel.setText("Klick!");
+		boolean jumpout = false;
+		for(int i=ROWS-1; i>=0; i--) {
+			for(int j=0; j<COLS; j++) {
+				if(e.getSource().equals(playfieldToken[i][j])) {
+					
+					
+					messageLabel.setText("Klick @ col. " + j);
+					
+					
+					jumpout = true;
+				}
+				if(jumpout==true) break;
+			}
+			if(jumpout==true) break;
+		}
 	}
 	
 	public void mousePressed(MouseEvent e) {
