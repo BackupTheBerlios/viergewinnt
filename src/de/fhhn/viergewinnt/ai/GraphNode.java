@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.game.Token;
  * Enthält einen Spielzustand und Kanten zu Nachfolgerknoten.
  *
  * @author $Author: malte $
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  * @since IOC
  */
 public class GraphNode {
@@ -56,7 +56,7 @@ public class GraphNode {
 	public static void expand(GraphNode node, GraphNodeList list, int limit) {
 		// Abbruchbedingung
 		AIGameState nodeState = node.getState();
-		if (nodeState.isFinalState(node)) {
+		if (AIGameState.isFinalState(node)) {
 			// Min-Max-Bewertung
             int row = nodeState.getLastMoveEvent().getRow();
             int col = nodeState.getLastMoveEvent().getColumn();

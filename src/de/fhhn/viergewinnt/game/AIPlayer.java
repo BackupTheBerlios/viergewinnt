@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: malte $
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -50,7 +50,7 @@ public class AIPlayer extends Player implements View {
 	        MoveEvent playerMove = gameModel.getLastMoveEvent();
             executeMove(playerMove);
 
-            if (!root.getState().isFinalState(root)) {// XXX wenn Spiel noch nicht zuende
+            if (!AIGameState.isFinalState(root)) {// XXX wenn Spiel noch nicht zuende
 	   	        MoveEvent m = calculateMove();
          		// den berechneten Spielzug an das Spiel übergeben. Falls er akzeptiert
 		        // wird, diesen Zug im intern nachvollziehen
