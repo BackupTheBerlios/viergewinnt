@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Neuer Spiel Dialog
  * @author $Author: kathrin $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @since IOC
  */
 
@@ -61,7 +61,7 @@ import de.fhhn.viergewinnt.game.*;
 					}
 	
 					IO.write(arrayToString(players, firstPlayer)+"\n");
-					selectedPlayer = IO.readInt("\nBitte einen Spieler auswälen: ");
+					selectedPlayer = IO.readInt("\nBitte einen Spieler auswählen: ");
 	
 					if(i == 0) {
 						firstPlayer = selectedPlayer;
@@ -85,7 +85,7 @@ import de.fhhn.viergewinnt.game.*;
 		while(strength < 0 || strength >= kiStrength.length) {
 			try {
 				IO.write(arrayToString(kiStrength, strength)+"\n");
-				strength = IO.readInt("\nBitte Spielstärke auswälen: ");
+				strength = IO.readInt("\nBitte Spielstärke auswählen: ");
             } catch (Exception e) {
 				// neuer Durchlauf
             }
