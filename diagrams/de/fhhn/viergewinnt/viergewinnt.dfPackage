@@ -35,6 +35,12 @@ class reference {
 @__modelType reference 
 */
 class reference17 {
+}/**
+@__ref <oiref:design#Class#id4md00d9dug116d9duv15q.diagram:oiref><oihard>
+@__modelType reference
+@__imported 
+*/
+class reference30 {
 }}/**
 @__tags
 @shapeType ClassDiagram 
@@ -58,16 +64,14 @@ class __options {
 <oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Token:oiref>=250,550,113,108,1:oigroup>
 <oigroup:<oiref:design#Class#id254jfd98czun1d98edle2.diagram.link:oiref>=181,137,181,210:oigroup>
 <oigroup:BeanProperty#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#getOwner#(##)#:oiref>=268,631,91,13,1:oigroup>
-<oigroup:<oiref:java#Class#de.fhhn.viergewinnt.game.Board:oiref>=-70,550,130,79,1:oigroup>
+
 <oigroup:<oiref:java#Class#de.fhhn.viergewinnt.ai.AI:oiref>=460,190,200,105,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Token#$$constructor$$#(#de.fhhn.viergewinnt.game.Player#)#:oiref>=268,602,91,13,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#naechstenZugBerechnen#(##)#:oiref>=462,255,194,13,1:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.ai.AI#neueKI#(#int#)#:oiref>=462,242,194,13,1:oigroup>
 <oigroup:<oiref:design#Class#id4541jd95p4kb6d95ruicg.diagram.link:oiref>=223,220,380,220:oigroup>
-
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Move#$$constructor$$#(#de.fhhn.viergewinnt.game.Player#de.fhhn.viergewinnt.game.Hole#)#:oiref>=-228,402,98,13,1:oigroup>
 
-<oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Board#insertToken#(#int#de.fhhn.viergewinnt.game.Player#)#:oiref>=-68,602,124,13,1:oigroup>
 <oigroup:MemberLink#<oiref:java#Member#de.fhhn.viergewinnt.game.Token#owner:oiref>=281,550,281,409:oigroup>
 <oigroup:<oiref:java#Member#de.fhhn.viergewinnt.game.Game#validate#(#de.fhhn.viergewinnt.game.Move#)#:oiref>=-28,252,121,13,1:oigroup>
 <oigroup:<oiref:design#Class#id7auwd95p4kb6d95ru0ui.diagram:oiref>=150,150,53,52,1:oigroup>
