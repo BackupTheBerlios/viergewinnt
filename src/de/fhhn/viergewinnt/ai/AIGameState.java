@@ -8,8 +8,9 @@ import de.fhhn.viergewinnt.game.*;
  * Berechnung der Nachfolgerzustände". erweitert
  * de.fhhn.viergewinnt.game.GameState um KI-spezifische Funktionen.
  * @author $Author: kathrin $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  * @since IOC
+ * @testcase test.de.fhhn.viergewinnt.ai.TestAIGameState
  */
 public class AIGameState extends GameState {
     /**
@@ -95,14 +96,21 @@ public class AIGameState extends GameState {
 	}
 
     /**
-     * überprüft, ob der Knoten einen Endzustand enthält
+     * Überprüft, ob der Knoten einen Endzustand enthält
      * @return true wenn der Knoten einen Endzustand enthält
      * @param node Knoten dessen Zustand überprüft werden soll
      */
-	private boolean isFinalState(GraphNode node) {
+	public boolean isFinalState(GraphNode node) {
+		/*
+         * Der Parameter node wird gebraucht, um auf den Elternknoten
+         * zuzugreifen.
+         */
 		GraphNode parent = node.getParent();
 
-		// hat jemand gewonnen?
+		/*
+         * Hat jemand gewonnen? Um das zu überprüfen, muss der letzte Zug
+         * ermittelt werden, da checkWinner den benötigt.
+         */
 		if (parent != null) { // XXX lastMoveEvent benutzen!
 			AIGameState parentState = parent.getState();
 			int row = 0;
@@ -194,7 +202,7 @@ public class AIGameState extends GameState {
 				row++;
 			} while (!(board[row][cols] == Token.EMPTY) && (row < Game.ROWS)); 
 
-			if (row == Game.ROWS) { // Spalte voll?
+			if (row == Game.ROWS - 1) { // Spalte voll?
 				continue;
 			}
 			

@@ -7,7 +7,7 @@ import de.fhhn.viergewinnt.ai.*;
 /**
  * Gleichzeitig Controller und View.
  * @author $Author: kathrin $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since LCA
  * @stereotype View, Controller
  */
@@ -37,8 +37,13 @@ public class AIPlayer extends Player implements View {
 	        MoveEvent playerMove = gameModel.getLastMoveEvent();
             executeMove(playerMove);
 
-            // eigenen Zug machen
-            calculateMove();
+            if (!root.getState().isFinalState(root)) {// XXX wenn Spiel noch nicht zuende
+	   	        calculateMove();
+            } else {
+                System.out.println("AIPlayer.update(): Spiel zuende");
+            }
+        } else {
+            System.out.println("AIPlayer.update(): KI nicht dran");
         }
     }
 
@@ -48,9 +53,9 @@ public class AIPlayer extends Player implements View {
         ArrayList succNodes = root.getSuccessors();
         ListIterator iter = succNodes.listIterator();
         GraphNode maxRated;
-        maxRated = (GraphNode)iter.next();
+        maxRated = (GraphNode) iter.next();
         while (iter.hasNext()) {
-            GraphNode current = (GraphNode)iter.next();
+            GraphNode current = (GraphNode) iter.next();
             if (maxRated.getRating() < current.getRating()) {
                 maxRated = current;
             }

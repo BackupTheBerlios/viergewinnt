@@ -6,7 +6,7 @@ import de.fhhn.viergewinnt.game.*;
 /**
  * Zustand des Spielfelds. Immutable.
  * @author $Author: kathrin $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  * @since IOC
  */
 public class GameState {
@@ -181,6 +181,11 @@ public class GameState {
 		return counterRupLdown;
 	}
 
+    /** vereint die einzelnen Auswertungen (horizontal...)
+	* @return Farbe des Spielers (Token.RED oder Toen.Yellow)
+	* @param lastMoveRow Zeile in die der letzte Stein eingeworfen wurde
+	* @param lastMoveCol Spalte in die der letzte Stein eingeworfen wurde
+	*/
     public Token checkWinner(int lastMoveRow, int lastMoveCol) {
         int row = lastMoveRow;
         //System.out.println("checkWinner(): row=" + row);
@@ -203,7 +208,7 @@ public class GameState {
 */
         if ((counterRupLdown >= 4) || (counterLupRdown >= 4)
             	|| (counterVertical >= 4) || (counterHorizontal >= 4)) {
-            System.out.println(token + " hat gewonnen!");
+            //System.out.println(token + " hat gewonnen!");
 			return token;
         } else {
 			return Token.EMPTY;

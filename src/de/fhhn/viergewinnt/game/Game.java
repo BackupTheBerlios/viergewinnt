@@ -9,7 +9,7 @@ import java.util.Observable;
  * Benutzers). Ungültige Eingaben werden dabei einfach ignoriert (z.B. wenn
  * ein Spieler einen Zug macht, obwohl er nicht dran ist).
  * @author $Author: kathrin $
- * @version $Revision: 1.37 $
+ * @version $Revision: 1.38 $
  * @since LCA
  * @stereotype Model
  */
@@ -136,7 +136,7 @@ public class Game extends Observable {
 			valid = true;
 		} else {
 			valid = false;
-			System.out.println("---> SPIELENDE");
+			System.out.println("Game.isValid(): es gibt schon einen Gewinner -> ungültiger Move");
 		}
         return valid;
     }
